@@ -1,0 +1,216 @@
+/**/
+
+/* 1. Margin body */
+body{
+    margin-right: 3%;
+    margin-left: 3%;
+}
+/* 1.1 Fonts */
+@font-face {
+    font-family: "Caviar-Dreams";
+    src: url("../font/CaviarDreams.ttf") ;
+}
+html {
+    line-height: 1.5;
+    font-family: "Caviar-Dreams", sans-serif;
+    font-weight: normal;
+    color: rgba(0, 0, 0, 0.87);
+}
+@font-face {
+    font-family: "Caviar-Dreams-Bold";
+    src: url("../font/CaviarDreams_Bold.ttf") ;
+}
+
+/* 2.Colors of company*/
+.red-sigpe{
+    background-color: #EE3434 !important;
+}
+.black-transparent{
+    background-color:rgba(0, 0, 0, 0.58) !important;
+}
+/*Modification of forms*/
+
+input:not([type]):focus:not([readonly]) + label,
+input[type=text]:focus:not([readonly]) + label,
+input[type=password]:focus:not([readonly]) + label,
+input[type=email]:focus:not([readonly]) + label,
+input[type=url]:focus:not([readonly]) + label,
+input[type=time]:focus:not([readonly]) + label,
+input[type=date]:focus:not([readonly]) + label,
+input[type=datetime-local]:focus:not([readonly]) + label,
+input[type=tel]:focus:not([readonly]) + label,
+input[type=number]:focus:not([readonly]) + label,
+input[type=search]:focus:not([readonly]) + label,
+textarea.materialize-textarea:focus:not([readonly]) + label {
+    color: #EE3434;
+}
+input:not([type]):focus:not([readonly]),
+input[type=text]:focus:not([readonly]),
+input[type=password]:focus:not([readonly]),
+input[type=email]:focus:not([readonly]),
+input[type=url]:focus:not([readonly]),
+input[type=time]:focus:not([readonly]),
+input[type=date]:focus:not([readonly]),
+input[type=datetime-local]:focus:not([readonly]),
+input[type=tel]:focus:not([readonly]),
+input[type=number]:focus:not([readonly]),
+input[type=search]:focus:not([readonly]),
+textarea.materialize-textarea:focus:not([readonly]) {
+    border-bottom: 1px solid #EE3434;
+    box-shadow: 0 1px 0 0 #EE3434;
+}
+.input-field .prefix.active{
+    color:#EE3434 !important;
+}
+label:after, 
+input[type=password]:focus.invalid + label:after, 
+input[type=email].invalid + label:after, 
+input[type=email]:focus.invalid + label:after, 
+input[type=url].invalid + label:after, 
+input[type=url]:focus.invalid + label:after, 
+input[type=time].invalid + label:after, 
+input[type=time]:focus.invalid + label:after, 
+input[type=date].invalid + label:after, 
+input[type=date]:focus.invalid + label:after, 
+input[type=datetime-local].invalid + label:after, 
+input[type=datetime-local]:focus.invalid + label:after, 
+input[type=tel].invalid + label:after, 
+input[type=tel]:focus.invalid + label:after, 
+input[type=number].invalid + label:after, 
+input[type=number]:focus.invalid + label:after, 
+input[type=search].invalid + label:after, 
+input[type=search]:focus.invalid + label:after, 
+textarea.materialize-textarea.invalid + label:after, 
+textarea.materialize-textarea:focus.invalid + label:after {
+    content: attr(data-error);
+    color: #F44336;
+    opacity: 1;
+    width: 160px;
+}
+/* 3. modification of slider */
+.slider .slides {
+    height: 630px !important;
+}
+.slider {
+    height: 660px !important;
+}
+/* 4. Material Icons*/
+.md-10{
+    font-size: 50px;
+}
+.md-15{
+    font-size: 100px;
+}
+p{
+    font-size: 20px;
+}
+/* 5. Modification Cards*/
+.card .card-image {
+    height: 100%;
+    overflow: hidden;
+}
+.card .card-image img {
+    min-width: 100%;
+    height: 300px;
+}
+.btn-price{
+    position: absolute;
+    margin: 10px;
+}
+.card-action-buttons{
+    margin: -20px 10px -17px 0px;
+    text-align: right;
+}
+ul.card-action-buttons li {
+    display: inline-block;
+    padding-left: 5px;
+}
+/* 6. modification footer*/
+footer.page-footer {
+    margin-top: 0px;
+}
+/* 7. contact form*/
+.contact {
+    background-color: #350000;
+    background-image: url(../img/map-image.png);
+    background-position: center;
+    background-repeat: no-repeat;
+}
+/* 8. register form*/
+.image-background {
+    background-color: #350000;
+    background-image: url(../img/sections/paint1.jpg);
+    background-position: center;
+    background-repeat: no-repeat;
+}
+/*2. mmodifications of dashboard admin*/
+.side-nav.inherit {
+    position: inherit;
+}
+#menu li i {
+    float: left;
+}
+.user-details {
+    background-image: url(https://lh4.googleusercontent.com/-c2kWlW-DE9A/VMSgQjCdffI/AAAAAAAADy4/tB__iZ25nxQ/w1080-h600/atardecer8.png);
+    background-size: cover;
+    margin-bottom: 15px;
+    background-position: center center;
+    padding: 15px 0px 0px 15px !important;
+}
+.profile-image{
+    height: 50px !important;
+    width: 70px;
+    overflow: hidden;
+}
+/* 2.1 Notifiactions*/
+.notification{
+    width: 250px !important;
+}
+.not{
+    width: 20px;
+    height: 20px;
+    border-radius: 30px 30px 30px 30px;
+    background-color: #f00;
+    padding: 1px 5px;
+    color: #fff;
+    font-size: 15px;
+}  
+.mensaje-sesion-none{
+    display: none;
+}
+.mensaje-sesion-active{
+    display: initial;
+}
+/* 3. Scrollbar*/
+::-webkit-scrollbar{
+    width: 10px;
+    background: transparent;
+}
+::-webkit-scrollbar-button{
+    width:8px;
+    height: 5px;
+}
+::-webkit-scrollbar-track{
+    background:transparent;
+    border: transparent;
+    -webkit-box-shadow: transparent;
+    -webkit-border-radius: 10px;
+    border-radius: 10px;
+}
+::-webkit-scrollbar-thumb{
+    background: rgba(0, 0, 0, 0.30) ;
+    -webkit-box-shadow:  rgba(0, 0, 0, 0.30),
+        rgba(0, 0, 0, 0.30),
+        rgba(0, 0, 0, 0.30);
+
+    border: rgba(0, 0, 0, 0.30);
+    border-radius: 10px;
+    -webkit-border-radius: 10px;
+}
+::-webkit-scrollbar-thumb:hover{
+    background: -webkit-linear-gradient(top, rgba(0, 0, 0, 0.30), rgba(0, 0, 0, 0.30));
+}
+/* Pseudo-clase */
+::-webkit-scrollbar-thumb:window-inactive {
+    background: transparent;
+}
