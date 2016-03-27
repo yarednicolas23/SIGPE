@@ -45,6 +45,17 @@
                     <li><a href="products.html">Productos</a></li>
                     <li><a href="contact.html">Contáctenos</a></li>
                     <li><a class="modal-trigger" href="#sesion">Iniciar Sesión</a></li>
+                    <li class="user-details cyan darken-2">
+                        <div class="row">
+                            <div class="col col s4 m4 l4">
+                                <img src="#{item.foto}" alt="" class="circle responsive-img valign profile-image"/>
+                            </div>
+                            <div class="col col s8 m8 l8 white-text">                        
+                                <a class="btn-flat dropdown-button waves-effect waves-light white-text profile-btn" >#{item.nombres}</a>
+                                <h6>#{item.rol}</h6>
+                            </div>
+                        </div>
+                    </li>
                 </ul>
                 <a href="#" data-activates="menu" class="button-collapse"><i class="material-icons">menu</i></a>
             </div>
@@ -261,9 +272,9 @@
                 <ul class="collection">
                     <li class="collection-item avatar">
                         <img src="https://www.c7creative.com/wp-content/uploads/2015/05/Brian-Avatar.png" alt="" class="circle"/>
-                            <span class="title">Title</span>
-                            <p>First Line <br/> Second Line </p>
-                            <a href="#!" class="secondary-content"><i class="material-icons">grade</i></a>
+                        <span class="title">Title</span>
+                        <p>First Line <br/> Second Line </p>
+                        <a href="#!" class="secondary-content"><i class="material-icons">grade</i></a>
                     </li>
                     <li class="collection-item avatar">
                         <i class="material-icons circle">folder</i>
@@ -278,7 +289,7 @@
             </div>
         </div>
         <!--end of collapsible shopping cart-->
-        
+
         <!--Import jQuery before materialize.js-->
         <script type="text/javascript" src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
         <script type="text/javascript" src="http://materializecss.com/bin/materialize.js"></script>
