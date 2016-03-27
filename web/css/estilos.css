@@ -153,7 +153,7 @@ footer.page-footer {
 .user-details {
     background-image: url(https://lh4.googleusercontent.com/-c2kWlW-DE9A/VMSgQjCdffI/AAAAAAAADy4/tB__iZ25nxQ/w1080-h600/atardecer8.png);
     background-size: cover;
-    margin-bottom: 15px;
+    margin-bottom: 0px;
     background-position: center center;
     padding: 15px 0px 0px 15px !important;
 }

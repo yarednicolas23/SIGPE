@@ -4,7 +4,7 @@
       xmlns:h="http://xmlns.jcp.org/jsf/html"
       xmlns:c="http://xmlns.jcp.org/jsp/jstl/core">
     <h:head>
-        <title>Inicio</title>
+        <title>Panel</title>
         <meta charset="UTF-8"/>
         <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
         <!--Favicon-->
@@ -32,6 +32,9 @@
                     <li><a href="products.html">Productos</a></li>
                     <li><a href="contact.html">Contáctenos</a></li>
                     <li><a class="modal-trigger" href="#sesion">Iniciar Sesión</a></li>
+                    <li class="user-details cyan darken-2">
+                       
+                    </li>
                 </ul>
                 <ul id="menu" class="side-nav">
                     <li><a href="index.html">Inicio</a></li>
@@ -44,19 +47,7 @@
                     </li>
                     <li><a href="products.html">Productos</a></li>
                     <li><a href="contact.html">Contáctenos</a></li>
-                    <li><a class="modal-trigger" href="#sesion">Iniciar </a></li>
-                    <li class="user-details cyan darken-2">
-                        <div class="row">
-                            <div class="col col s4 m4 l4">
-                                <img src="#{item.foto}" alt="" class="circle responsive-img valign profile-image"/>
-                            </div>
-                            <div class="col col s8 m8 l8 white-text">                        
-                                <a class="btn-flat dropdown-button waves-effect waves-light white-text profile-btn" >#{item.nombres}</a>
-                                <h6>#{item.rol}</h6>
-                            </div>
-                        </div>
-                    </li>
-                    <li>Algo</li>
+                    <li><a class="modal-trigger" href="#sesion">Iniciar </a></li>                    
                 </ul>
                 <a href="#" data-activates="menu" class="button-collapse"><i class="material-icons">menu</i></a>
             </div>
