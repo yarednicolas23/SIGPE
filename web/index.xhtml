@@ -31,11 +31,33 @@
                     </li>
                     <li><a href="products.html">Productos</a></li>
                     <li><a href="contact.html">Contáctenos</a></li>
-                    <li><a class="modal-trigger" href="#sesion">Iniciar Sesión</a></li>
-                    <li class="user-details cyan darken-2">
-                       
-                    </li>
+                    <c:if test="#{controladorUsuarios.sesionActiva==false}">
+                        <li><a class="modal-trigger" href="#sesion">Iniciar Sesión</a></li>
+                    </c:if>                    
+                    <c:if test="#{controladorUsuarios.sesionActiva==true}">
+                        <li class="activate">                        
+                            <a class='dropdown-button' data-activates='prof'>                           
+                                <i class="material-icons">
+                                    <img src="img/profile/avatar.png" class="responsive-img circle user-profile-image"/> 
+                                    arrow_drop_down
+                                </i>
+                            </a>
+                            <ul id='prof' class='dropdown-content profile'>
+                                <li class="user-details">
+                                    <span class="white-text"><img src="img/profile/avatar.png" class="responsive-img circle user-profile-image"/>  Nicolas</span>
+                                </li>
+                                <li class="divider"></li>
+                                <li><a href="#!"><i class="material-icons left">face</i> Perfil</a></li>
+                                <li><a href="#!"><i class="material-icons left">shopping_cart</i> Carrito</a></li>
+                                <li><a href="#!"><i class="material-icons left">monetization_on</i> Pedidos</a></li>
+                                <li class="divider"></li>
+                                <li><a href="#!"><i class="material-icons left">settings</i> Configuración</a></li>
+                                <li><a href="#!"><i class="material-icons left">exit_to_app</i> Salir</a></li>                                
+                            </ul>   
+                        </li>
+                    </c:if>
                 </ul>
+
                 <ul id="menu" class="side-nav">
                     <li><a href="index.html">Inicio</a></li>
                     <li>
@@ -232,10 +254,10 @@
                         </div>
                         <div class="row center white-text">
                             ¿Aún no tienes cuenta?<br/>        
-                            <a href="register.html">Regístrate ahora</a><br/>
+                            <a href="faces/register.xhtml">Regístrate ahora</a><br/>
                             <a href="" class="white-text">¿No puees acceder a tu cuenta?</a>
-                        </div>                       
-                        <div class="row mensaje-sesion-none #{controladorUsuarios.tipoMensaje}">
+                        </div>
+                        <div class="row inactive #{controladorUsuarios.tipoMensaje}">
                             <div class="chip col s10 red white-text">
                                 <img src="http://wpwarriors.com/wp-content/uploads/2015/10/c7e54cbbe843e27256fe82466009ab87.png" alt="Contact Person"></img>
                                 #{controladorUsuarios.mensaje}

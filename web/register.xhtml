@@ -1,0 +1,228 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html">
+    <h:head>
+        <title>Registro</title>
+        <meta charset="UTF-8"/>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+        <!--Favicon-->
+        <link rel="shortcut icon" href="img/favicon.png" />
+        <!--Import Google Icon Font-->
+        <link href="http://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet"/>
+        <!--Import materialize.css-->
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.5/css/materialize.min.css" />
+        <link rel="stylesheet" type="text/css" href="css/estilos.css"/>
+    </h:head>
+
+    <h:body>
+        <!--Navbar-->
+        <nav class="red-sigpe">
+            <div class="nav-wrapper container">
+                <a href="index.html" class="brand-logo">SIGPE</a>
+                <ul id="nav-mobile" class="right hide-on-med-and-down">
+                    <li><a href="index.html">Inicio</a></li>
+                    <li>
+                        <a class='dropdown-button' href='#' data-activates='quienes'>¿Quiénes Somos?</a>
+                        <ul id='quienes' class='dropdown-content'>
+                            <li><a href="mission.html">Misión</a></li>
+                            <li><a href="view.html">Visión</a></li>
+                        </ul>
+                    </li>
+                    <li><a href="products.html">Productos</a></li>
+                    <li><a href="contact.html">Contáctenos</a></li>
+                    <li><a class="modal-trigger" href="#modal1">Iniciar Sesión</a></li>
+                </ul>
+                <ul id="menu" class="side-nav">
+                    <li><a href="index.html">Inicio</a></li>
+                    <li>
+                        <a class='dropdown-button' href='#' data-activates='dropdown1'>¿Quiénes Somos?</a>
+                        <ul id='dropdown1' class='dropdown-content'>
+                            <li><a href="mission.html">Misión</a></li>
+                            <li><a href="view.html">Visión</a></li>
+                        </ul>
+                    </li>
+                    <li><a href="products.html">Productos</a></li>
+                    <li><a href="contact.html">Contáctenos</a></li>
+                    <li><a class="modal-trigger" href="#modal1">Iniciar Sesión</a></li>
+                </ul>
+                <a href="#" data-activates="menu" class="button-collapse"><i class="material-icons">menu</i></a>
+            </div>
+        </nav>
+        <!--end of NavBar-->
+        <!--Editable Area-->
+        <div class="image-background">
+            <div class="row black-transparent">
+                <h:form class="white-text ">
+                    <div class="col s12 ">
+                        <div class="">
+                            <h3>Formulario de Registro</h3>                    
+                            <div class="row">
+                                <div class="input-field col s12">
+                                    <i class="material-icons prefix">dialpad</i>
+                                    <input name="cedula" type="text" class="validate" pattern="[0-9]{8,11}" required=""/>
+                                    <label for="cedula" data-error="El campo debe contener mas de 8 y meno de 11 caracteres">Cedula</label>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="input-field col s12">
+                                    <i class="material-icons prefix">contact_mail</i>
+                                    <input id="correo" type="email" class="validate" name="correo" required=""/>
+                                    <label for="correo" data-error="el campo es invalido">Correo</label>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="input-field col s6">
+                                    <i class="material-icons prefix">face</i>
+                                    <input name="nombres" type="text" class="validate" pattern="[A-Za-z]{0,25}" title="El campo no debe contener numeros" required=""/>
+                                    <label for="Nombres">Nombres</label>
+                                </div>
+                                <div class="input-field col s6">
+                                    <i class="material-icons prefix">person</i>
+                                    <input name="apellidos" type="text" class="validate" pattern="[A-Za-z]{0,25}" title="El campo no debe contener numeros" required=""/>
+                                    <label for="Nombres">Apellidos</label>
+                                </div>
+                            </div>  
+                            <div class="row">
+                                <div class="input-field col s12">
+                                    <select name="sexo" class="validate">
+                                        <option value="" disabled="true" selected="true">Seleccionar</option>
+                                        <option value="1">Femenino</option>
+                                        <option value="2">Masculino</option>
+                                    </select>
+                                    <label>Sexo</label>
+                                </div>
+                            </div>                           
+                            <div class="row">
+                                <div class="input-field col s12">
+                                    <i class="material-icons prefix">phone</i>
+                                    <input name="telefono" type="tel" class="validate" pattern="[0-9]{1,10}" title="El campo debe ser llenado con menos de 10 digitos" required=""/>
+                                    <label for="celular">Teléfono</label>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="input-field col s12">
+                                    <i class="material-icons prefix">lock</i>
+                                    <input id="icon_telephone" type="password" class="validate" name="clave" required=""/>
+                                    <label for="icon_telephone">Contraseña</label>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col s12 center">
+                                    <h:commandButton class="waves-effect waves-red btn blue accent-4" value="Registrar" action="#{controladorUsuarios.registrarse()}"></h:commandButton>                            
+                                </div>
+                            </div>
+                            <div class="row inactive #{controladorUsuarios.tipoMensaje}">
+                                <div class="chip col s10 red white-text">
+                                    <img src="http://wpwarriors.com/wp-content/uploads/2015/10/c7e54cbbe843e27256fe82466009ab87.png" alt="Contact Person"></img>
+                                    ¡Error! El correo ya esta registrado
+                                    <i class="material-icons">close</i>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </h:form>
+            </div>
+        </div>
+        <!--end of Editable Area-->
+
+        <footer class="page-footer red-sigpe">
+            <div class="container">
+                <div class="row">
+                    <div class="col l6 s12">
+                        <h5 class="white-text">SIGPE</h5>
+                        <p class="grey-text text-lighten-4">Es un sistema dedicado a la empresa ENAR LTDA de Colombia.</p>
+                    </div>
+                    <div class="col l4 offset-l2 s12">
+                        <h5 class="white-text">Links</h5>
+                        <ul>
+                            <li><a class="grey-text text-lighten-3" href="index.html">Inicio</a></li>
+                            <li><a class="grey-text text-lighten-3" href="aboutUs.html">¿Quiénes Somos?</a></li>
+                            <li><a class="grey-text text-lighten-3" href="view.html">Visión</a></li>
+                            <li><a class="grey-text text-lighten-3" href="mission.html">Misión</a></li>
+                            <li><a class="grey-text text-lighten-3" href="products.html">Productos</a></li>
+                            <li><a class="grey-text text-lighten-3" href="contact.html">Contáctenos</a></li>
+                            <li><a class="grey-text text-lighten-3" href="register.html">Registrarse</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-copyright">
+                <div class="container">
+                    Colombia -Copyright © 2015 Diseñado por Yared Nicolas Toro - All Rights Reserved
+                    <a class="grey-text text-lighten-4 right" href="#!">Don't click here </a>
+                </div>
+            </div>
+        </footer>
+        <!-- Modal Sesion -->
+        <div id="modal1" class="modal black-transparent">
+            <div class="modal-content">
+                <h4 class="white-text">Iniciar Sesión</h4>
+                <div class="row">
+                    <form id="login" class="col s12 ">
+                        <div class="row white-text center">
+                            <div class="input-field col s10">
+                                <i class="material-icons prefix">email</i>
+                                <input id="mail" type="email" class="validate" name="email"/>
+                                <label for="icon_prefix" id="campo1" data-error="el campo es invalido">E-mail</label>
+                            </div>
+                            <div class="input-field col s10">
+                                <i class="material-icons prefix">lock</i>
+                                <input id="icon_telephone" type="password" class="validate" name="password"/>
+                                <label for="icon_telephone">Contraseña</label>
+                            </div>
+                            <a class="waves-effect waves-purple btn red"><i class="material-icons right">send</i>Entrar</a>
+                        </div>
+                        <div class="row center white-text">
+                            ¿Aún no tienes cuenta?<br/>        
+                            <a href="register.html">Regístrate ahora</a><br/>
+                            <a href="" class="white-text">¿No puees acceder a tu cuenta?</a>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+        <!--end Modal-->
+        <!--collapsible shopping cart-->
+        <!--Button Floating-->
+        <div class="fixed-action-btn " style="bottom: 45px; right: 30px;">
+            <a class="waves-effect waves-light modal-trigger btn-floating btn-large light-blue darken-1" href="#shop">
+                <i class="material-icons">add_shopping_cart</i>
+            </a>
+        </div>
+        <!--end of Button Floating-->
+        <div id="shop" class="modal bottom-sheet">
+            <div class="modal-content">
+                <h4><b>Carrito de Compras</b></h4>
+                <ul class="collection">
+                    <li class="collection-item avatar">
+                        <img src="https://www.c7creative.com/wp-content/uploads/2015/05/Brian-Avatar.png" alt="" class="circle"/>
+                        <span class="title">Title</span>
+                        <p>First Line <br/> Second Line </p>
+                        <a href="#!" class="secondary-content"><i class="material-icons">grade</i></a>
+                    </li>
+                    <li class="collection-item avatar">
+                        <i class="material-icons circle">folder</i>
+                        <span class="title">Title</span>
+                        <p>First Line <br/> Second Line </p>
+                        <a href="#!" class="secondary-content"><i class="material-icons">grade</i></a>
+                    </li>
+                </ul>
+            </div>
+            <div class="modal-footer">
+                <a href="#!" class=" modal-action modal-close waves-effect waves-green btn-flat">Aceptar</a>
+            </div>
+        </div>
+        <!--end of collapsible shopping cart-->
+
+        <!--Import jQuery before materialize.js-->
+        <script type="text/javascript" src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
+        <script type="text/javascript" src="http://materializecss.com/bin/materialize.js"></script>
+        <script type="text/javascript" src="js/resources.js"></script>
+    </h:body>
+</html>
