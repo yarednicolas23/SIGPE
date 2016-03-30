@@ -35,26 +35,28 @@
                         <li><a class="modal-trigger" href="#sesion">Iniciar Sesión</a></li>
                     </c:if>                    
                     <c:if test="#{controladorUsuarios.sesionActiva==true}">
-                        <li class="activate">                        
-                            <a class='dropdown-button' data-activates='prof'>                           
-                                <i class="material-icons">
-                                    <img src="img/profile/avatar.png" class="responsive-img circle user-profile-image"/> 
-                                    arrow_drop_down
-                                </i>
-                            </a>
-                            <ul id='prof' class='dropdown-content profile'>
-                                <li class="user-details">
-                                    <span class="white-text"><img src="img/profile/avatar.png" class="responsive-img circle user-profile-image"/>  Nicolas</span>
-                                </li>
-                                <li class="divider"></li>
-                                <li><a href="#!"><i class="material-icons left">face</i> Perfil</a></li>
-                                <li><a href="#!"><i class="material-icons left">shopping_cart</i> Carrito</a></li>
-                                <li><a href="#!"><i class="material-icons left">monetization_on</i> Pedidos</a></li>
-                                <li class="divider"></li>
-                                <li><a href="#!"><i class="material-icons left">settings</i> Configuración</a></li>
-                                <li><a href="#!"><i class="material-icons left">exit_to_app</i> Salir</a></li>                                
-                            </ul>   
-                        </li>
+                        <c:forEach var="item" items="#{controladorUsuarios.usuarioSesion}">
+                            <li class="activate">            
+                                <a class='dropdown-button' data-activates='prof'>                           
+                                    <i class="material-icons md-5">
+                                        <img src="#{item.foto}" class="responsive-img circle user-profile-image"/> 
+                                        arrow_drop_down
+                                    </i>
+                                </a>
+                                <ul id='prof' class='dropdown-content profile'>
+                                    <li class="user-details">
+                                        <span class="white-text"><img src="#{item.foto}" class="responsive-img circle user-profile-image"/>  #{item.nombres}</span>
+                                    </li>
+                                    <li class="divider"></li>
+                                    <li><a href="#!"><i class="material-icons left">face</i> Perfil</a></li>
+                                    <li><a href="#!"><i class="material-icons left">shopping_cart</i> Carrito</a></li>
+                                    <li><a href="#!"><i class="material-icons left">monetization_on</i> Pedidos</a></li>
+                                    <li class="divider"></li>
+                                    <li><a href="#!"><i class="material-icons left">settings</i> Configuración</a></li>
+                                    <li><a href="#!"><i class="material-icons left">exit_to_app</i> Salir</a></li>                                
+                                </ul>   
+                            </li>
+                        </c:forEach>
                     </c:if>
                 </ul>
 
@@ -69,7 +71,33 @@
                     </li>
                     <li><a href="products.html">Productos</a></li>
                     <li><a href="contact.html">Contáctenos</a></li>
-                    <li><a class="modal-trigger" href="#sesion">Iniciar </a></li>                    
+                    <c:if test="#{controladorUsuarios.sesionActiva==false}">
+                        <li><a class="modal-trigger" href="#sesion">Iniciar Sesión</a></li>
+                    </c:if>                    
+                    <c:if test="#{controladorUsuarios.sesionActiva==true}">
+                        <c:forEach var="item" items="#{controladorUsuarios.usuarioSesion}">
+                            <li class="activate">            
+                                <a class='dropdown-button' data-activates='prof'>                           
+                                    <i class="material-icons md-5">
+                                        <img src="#{item.foto}" class="responsive-img circle user-profile-image"/> 
+                                        arrow_drop_down
+                                    </i>
+                                </a>
+                                <ul id='prof' class='dropdown-content profile'>
+                                    <li class="user-details">
+                                        <span class="white-text"><img src="#{item.foto}" class="responsive-img circle user-profile-image"/>  #{item.nombres}</span>
+                                    </li>
+                                    <li class="divider"></li>
+                                    <li><a href="#!"><i class="material-icons left">face</i> Perfil</a></li>
+                                    <li><a href="#!"><i class="material-icons left">shopping_cart</i> Carrito</a></li>
+                                    <li><a href="#!"><i class="material-icons left">monetization_on</i> Pedidos</a></li>
+                                    <li class="divider"></li>
+                                    <li><a href="#!"><i class="material-icons left">settings</i> Configuración</a></li>
+                                    <li><a href="#!"><i class="material-icons left">exit_to_app</i> Salir</a></li>                                
+                                </ul>   
+                            </li>
+                        </c:forEach>
+                    </c:if>
                 </ul>
                 <a href="#" data-activates="menu" class="button-collapse"><i class="material-icons">menu</i></a>
             </div>
@@ -105,7 +133,7 @@
                             <p class="light">
                                 Empresa Nacional De Adhesivos y Recubrimientos, Es una empresa Colombiana que busca ser líder en la fabricación de productos para la decoración de superficies...</p>
                             <div class="row center">
-                                <a href="aboutUs.html" id="download-button" class="btn-large waves-effect waves-light red lighten-1">Leer más...</a>
+                                <a href="faces/aboutUs.xhtml" id="download-button" class="btn-large waves-effect waves-light red lighten-1">Leer más...</a>
                             </div>
                         </div>
                     </div>

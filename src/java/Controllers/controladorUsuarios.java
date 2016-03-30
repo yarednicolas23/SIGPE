@@ -37,7 +37,7 @@ public class controladorUsuarios implements Serializable {
     private String mensaje;
     private String tipoMensaje;
     private String scriptMensaje;
-    private boolean sesionActiva=false;
+    private boolean sesionActiva = false;
 
     public controladorUsuarios() {
     }
@@ -88,7 +88,7 @@ public class controladorUsuarios implements Serializable {
 
     public void setSesionActiva(boolean sesionActiva) {
         this.sesionActiva = sesionActiva;
-    }   
+    }
 
     //Metodo para traer el ExternalContext y Mapear los datos.
     public ExternalContext traerDatos() {
@@ -107,36 +107,38 @@ public class controladorUsuarios implements Serializable {
             }
         }
     }
-    
+
     //registro usuario
-    
-    public void usuarioNuevo(){
+    public void usuarioNuevo() {
         Map datos = traerDatos().getRequestParameterMap();
-        
-        user.setCedula((Long) datos.get("cedula"));
-        user.setCorreo(""+datos.get("correo"));
-        user.setNombres(""+datos.get("nombres"));
-        user.setApellidos(""+datos.get("apellidos"));
-        user.setSexo(""+datos.get("sexo"));
-        user.setTelefono((long) datos.get("telefono"));
-        user.setContrasena(""+datos.get("clave"));
+
+        user.setCedula(Long.parseLong("" + datos.get("cedula")));
+        user.setCorreo("" + datos.get("correo"));
+        user.setNombres("" + datos.get("nombres"));
+        user.setApellidos("" + datos.get("apellidos"));
+        user.setSexo("" + datos.get("sexo"));
+        user.setTelefono(Long.parseLong("" + datos.get("telefono")));
+        user.setContrasena("" + datos.get("clave"));
         user.setRol("1");
         user.setFoto("img/profile/avatar.png");
+        userFacade.create(user);
     }
 
-    public void registrarse(){
-        Map datos= traerDatos().getRequestParameterMap();
-        listaUser= userFacade.consultarUsuario(""+datos.get("correo"));
+    public void registrarse() {
+        Map datos = traerDatos().getRequestParameterMap();
+        listaUser = userFacade.consultarUsuario("" + datos.get("correo"));
         if (listaUser.isEmpty()) {
             usuarioNuevo();
             try {
                 traerDatos().redirect("index.xhtml");
             } catch (Exception e) {
-            } 
-        } if (!listaUser.isEmpty()) {
-            tipoMensaje="activate";
+            }
+        }
+        if (!listaUser.isEmpty()) {
+            tipoMensaje = "activate";
         }
     }
+
     //Metodo de inicio de sesion  
     public void iniciarSesion() {
         Map d = traerDatos().getRequestParameterMap();
@@ -148,7 +150,7 @@ public class controladorUsuarios implements Serializable {
             mensaje = "¡Error! El correo no esta registrado";
         }
         for (int i = 0; i < listaUser.size(); i++) {
-            if (listaUser.get(i).getContrasena().equals("" + d.get("password"))) {
+            if (listaUser.get(i).getContrasena().equals("" + d.get("password"))) {               
                 if (listaUser.get(i).getRol().equals("Administrador")) {
                     sr.getSession().setAttribute("admin", listaUser);
                     usuarioSesion = (List<Usuario>) sr.getSession().getAttribute("admin");
@@ -156,14 +158,14 @@ public class controladorUsuarios implements Serializable {
                         traerDatos().redirect("admin/index.xhtml");
                     } catch (Exception e) {
                     }
-                    if (listaUser.get(i).getRol().equals("Cliente")) {
-                        sr.getSession().setAttribute("user", listaUser);
-                        usuarioSesion = (List<Usuario>) sr.getSession().getAttribute("user");
-                        sesionActiva=true;
-                        try {
-                            traerDatos().redirect("index.xhtml");
-                        } catch (Exception e) {
-                        }
+                }
+                if (listaUser.get(i).getRol().equals("Cliente")) {
+                    sr.getSession().setAttribute("user", listaUser);
+                    usuarioSesion = (List<Usuario>) sr.getSession().getAttribute("user");
+                    sesionActiva = true;
+                    try {
+                        traerDatos().redirect("index.xhtml");
+                    } catch (Exception e) {
                     }
                 } else {
                     tipoMensaje = "activate";
@@ -177,7 +179,7 @@ public class controladorUsuarios implements Serializable {
     public void cerrarSesion() {
         HttpServletRequest sr = (HttpServletRequest) traerDatos().getRequest();
         sr.getSession().invalidate();
-        sesionActiva=false;
+        sesionActiva = false;
         try {
             traerDatos().redirect("../index.xhtml");
         } catch (Exception e) {
