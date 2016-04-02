@@ -34,10 +34,15 @@ public class controladorUsuarios implements Serializable {
     @EJB
     UsuarioFacade userFacade = new UsuarioFacade();
 
+    //Variable para mensajes emergentes de validación
     private String mensaje;
+    //Variable tipo Mensaje para activa y desactivar el mensaje por medio de "activate"
     private String tipoMensaje;
+    //variable Script Mensaje envia el mensaje por medio de un script del framework
     private String scriptMensaje;
-    private boolean sesionActiva = false;
+    //variable Sesion activa activa las opciones de perfil de Usuario 
+    private String sesionActiva;
+    private String inactive;
 
     public controladorUsuarios() {
     }
@@ -82,12 +87,20 @@ public class controladorUsuarios implements Serializable {
         this.usuarioSesion = usuarioSesion;
     }
 
-    public boolean isSesionActiva() {
+    public String getSesionActiva() {
         return sesionActiva;
     }
 
-    public void setSesionActiva(boolean sesionActiva) {
+    public void setSesionActiva(String sesionActiva) {
         this.sesionActiva = sesionActiva;
+    }
+
+    public String getInactive() {
+        return inactive;
+    }
+
+    public void setInactive(String inactive) {
+        this.inactive = inactive;
     }
 
     //Metodo para traer el ExternalContext y Mapear los datos.
@@ -150,7 +163,7 @@ public class controladorUsuarios implements Serializable {
             mensaje = "¡Error! El correo no esta registrado";
         }
         for (int i = 0; i < listaUser.size(); i++) {
-            if (listaUser.get(i).getContrasena().equals("" + d.get("password"))) {               
+            if (listaUser.get(i).getContrasena().equals("" + d.get("password"))) {
                 if (listaUser.get(i).getRol().equals("Administrador")) {
                     sr.getSession().setAttribute("admin", listaUser);
                     usuarioSesion = (List<Usuario>) sr.getSession().getAttribute("admin");
@@ -162,27 +175,38 @@ public class controladorUsuarios implements Serializable {
                 if (listaUser.get(i).getRol().equals("Cliente")) {
                     sr.getSession().setAttribute("user", listaUser);
                     usuarioSesion = (List<Usuario>) sr.getSession().getAttribute("user");
-                    sesionActiva = true;
+                    sesionActiva = "activate";
+                    inactive="inactive";
                     try {
                         traerDatos().redirect("index.xhtml");
                     } catch (Exception e) {
                     }
-                } else {
-                    tipoMensaje = "activate";
-                    mensaje = "¡Error! La contraseña no coincide";
-                    scriptMensaje = "$('#sesion').openModal();";
                 }
+            } else {
+                tipoMensaje = "activate";
+                mensaje = "¡Error! La contraseña no coincide";
+                scriptMensaje = "$('#sesion').openModal();";
             }
         }
     }
 
     public void cerrarSesion() {
         HttpServletRequest sr = (HttpServletRequest) traerDatos().getRequest();
-        sr.getSession().invalidate();
-        sesionActiva = false;
-        try {
-            traerDatos().redirect("../index.xhtml");
-        } catch (Exception e) {
+        sr.getSession().getAttribute("admin");
+        if (sr.getSession().getAttribute("user") != null) {
+            sr.getSession().invalidate();
+            sesionActiva = "false";
+            try {
+                traerDatos().redirect("index.xhtml");
+            } catch (Exception e) {
+            }
+        }
+        if (sr.getSession().getAttribute("admin") != null) {
+            sr.getSession().invalidate();
+            try {
+                traerDatos().redirect("../index.xhtml");
+            } catch (Exception e) {
+            }
         }
     }
 }

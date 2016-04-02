@@ -6,9 +6,12 @@
 package Facades;
 
 import Entities.Producto;
+import java.util.ArrayList;
+import java.util.List;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+import javax.persistence.Query;
 
 /**
  *
@@ -27,6 +30,14 @@ public class ProductoFacade extends AbstractFacade<Producto> {
 
     public ProductoFacade() {
         super(Producto.class);
+    }
+    
+    public boolean consultarProducto(String nombre){
+        List<Producto> lista= new ArrayList<>();
+        Query q = em.createNativeQuery("select * from producto where nombre=?", Producto.class);
+        q.setParameter(1, nombre);
+        lista=q.getResultList();
+        return lista.isEmpty();
     }
     
 }

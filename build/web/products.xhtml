@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:c="http://xmlns.jcp.org/jsp/jstl/core"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
+    <ui:composition template="template.xhtml">
+        <ui:define name="titulo">Productos</ui:define>
+
+        <ui:define name="editableZone">
+            <!--Products List-->
+            <div class="row">
+                <c:forEach var="listaProductos" items="#{controladorProductos.listaProductos()}">
+                    <div class="col s12 m4">
+                        <div class="card">
+                            <div class="card-image waves-effect waves-block waves-light">
+                                <a href="#" class="btn-floating btn-large btn-price waves-effect waves-light  pink accent-2">$#{listaProductos.precio}</a>
+                                <img class="activator" src="#{listaProductos.foto}"/>
+                            </div>
+                            <ul class="card-action-buttons">
+                                <li><a class="btn-floating waves-effect waves-light green accent-4"><i class="material-icons">add_shopping_cart</i></a>
+                                </li>
+                                <li>
+                                    <a class="btn-floating waves-effect waves-light red accent-2 tooltipped" data-position="top" data-delay="50" data-tooltip="❤ 100">
+                                        <i class="material-icons">favorite</i>
+                                    </a>
+                                </li>
+                                <li><a class="btn-floating waves-effect waves-light light-blue"><i class="material-icons activator">info</i></a>
+                                </li>
+                            </ul>
+                            <div class="card-content">
+                                <span class="card-title activator grey-text text-darken-4">#{listaProductos.nombre}<i class="material-icons right">more_vert</i>
+                                </span>
+                            </div>
+                            <div class="card-reveal">
+                                <span class="card-title grey-text text-darken-4">#{listaProductos.nombre}<i class="material-icons right">close</i></span>
+                                <p>#{listaProductos.descripcion}
+                                    <a href="#">Ver más...</a>
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </c:forEach>
+            </div>
+
+        </ui:define>
+    </ui:composition>
+</html>

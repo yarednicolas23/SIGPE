@@ -9,7 +9,7 @@ and open the template in the editor.
       xmlns:h="http://xmlns.jcp.org/jsf/html"
       xmlns:c="http://xmlns.jcp.org/jsp/jstl/core">
     <head>
-        <title>Panel de Control</title>
+        <title>Perfil</title>
         <meta charset="UTF-8"/>
         <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
         <!--Favicon-->
@@ -143,70 +143,68 @@ and open the template in the editor.
 
                     <!--Editable Area-->
                     <div class="row">
-                        <!--Cards of graphics-->
-                        <div class="col s12 m6">
-                            <div class="card">
+                        <!--Cards of graphics-->                   
+                        <div class="col s12 m9">
+                            <h4 class="header">Perfil</h4>
+
+                            <div id="profile-card" class="card">
                                 <div class="card-image waves-effect waves-block waves-light">
-                                    <div class="blue-grey darken-2">
-                                        <div id="canvas-holder">
-                                            <canvas id="grafico" class="activator" width="600px" height="300px"></canvas>
-                                        </div>
+                                    <img class="img-card-profile" src="https://lh4.googleusercontent.com/-c2kWlW-DE9A/VMSgQjCdffI/AAAAAAAADy4/tB__iZ25nxQ/w1080-h600/atardecer8.png" alt="user bg"/>
+                                </div>
+                                <div class="card-content">
+                                    <img src="#{item.foto}" class="circle responsive-img card-profile-image"/>
+                                    <a class="btn-floating activator btn-move-up waves-effect waves-light darken-2 right">
+                                        <i class="mdi-editor-mode-edit"></i>
+                                    </a>
+                                    <span class="card-title grey-text text-darken-4"><i class="material-icons">face</i> #{item.nombres} #{item.apellidos}</span>
+                                </div>
+                                <div class="card-reveal">
+                                    <span class="card-title grey-text text-darken-4">#{item.rol}
+                                        <a class="btn-floating activator btn-move-up waves-effect waves-light red right">
+                                            <i class="material-icons">close</i>
+                                        </a>
+                                    </span>
+                                    <div class="input-field col s10">
+                                        <i class="material-icons prefix">fingerprint</i>                                    
+                                        <h:inputText class="validate" value="#{item.cedula}" disabled="true"></h:inputText>
+                                        <label for="icon_prefix" data-error="el campo es invalido">Cedula</label>
                                     </div>
-                                </div>
-                                <ul class="card-action-buttons">
-                                    <li>
-                                        <a class="btn-floating waves-effect waves-light pink"><i class="material-icons activator">info_outline</i></a>
-                                    </li>
-                                </ul>
-                                <div class="card-content blue-grey darken-4 white-text">
-                                    <span class="card-title">Reporte de Pedidos</span>
-                                    <p><i class="material-icons red-text">brightness_1</i> Pedidos</p>
-                                </div>
-                                <div class="card-reveal blue-grey darken-4 white-text">
-                                    <span class="card-title ">Card Title<i class="material-icons right">close</i></span>
-                                    <p>Here is some more information about this product that is only revealed once clicked on.</p>
+                                    <div class="input-field col s10">
+                                        <i class="material-icons prefix">face</i>                                    
+                                        <h:inputText class="validate" value="#{item.nombres}"></h:inputText>
+                                        <label for="icon_prefix" data-error="el campo es invalido">Nombres</label>
+                                    </div>
+                                    <div class="input-field col s10">
+                                        <i class="material-icons prefix">person</i>                                    
+                                        <h:inputText class="validate" value="#{item.apellidos}"></h:inputText>
+                                        <label for="icon_prefix" data-error="el campo es invalido">Apellidos</label>
+                                    </div>
+                                    <div class="input-field col s10">
+                                        <i class="material-icons prefix">person_outline</i>                                    
+                                        <h:inputText class="validate" value="#{item.rol}" disabled="true"></h:inputText>
+                                        <label for="icon_prefix" data-error="el campo es invalido">Rol</label>
+                                    </div>  
+                                    <div class="input-field col s10">
+                                        <i class="material-icons prefix">phone_iphone</i>                                    
+                                        <h:inputText class="validate" value="#{item.telefono}"></h:inputText>
+                                        <label for="icon_prefix" data-error="el campo es invalido">Telefono</label>
+                                    </div>
+                                    <div class="input-field col s10">
+                                        <i class="material-icons prefix">mail_outline</i>                                    
+                                        <h:inputText class="validate" value="#{item.correo}"></h:inputText>
+                                        <label for="icon_prefix" data-error="el campo es invalido">Correo</label>
+                                    </div>
+                                    <div class="input-field col s10">
+                                        <h:commandLink class="waves-effect waves-light btn pink" value="Editar"><i class="material-icons left">edit</i></h:commandLink>
+                                    </div>                                    
                                 </div>
                             </div>
-                        </div>
-                        <div class="col s12 m3">
-                            <div class="card">
-                                <div class="card-image waves-effect waves-block waves-light">
-                                    <div class="teal">
-                                        <div id="canvas-holder">
-                                            <canvas id="grafico2" class="activator" width="300px" height="300px"></canvas>
-                                        </div>
-                                    </div>
-                                </div>
-                                <ul class="card-action-buttons">
-                                    <li>
-                                        <a class="btn-floating waves-effect waves-light pink"><i class="material-icons activator">info_outline</i></a>
-                                    </li>
-                                </ul>
-                                <div class="card-content teal darken-3 white-text">
-                                    <span class="card-title">Stock de Productos</span>
-                                    <div id="canvas-holder">             
-                                        <div class="row">
-                                            <div class="col s7">
-                                                <h6><i class="material-icons red-text">brightness_1</i> Pegante</h6>
-                                                <h6><i class="material-icons indigo-text">brightness_1</i> Vinilo</h6>
-                                                <h6><i class="material-icons orange-text">brightness_1</i> PVA</h6>
-                                                <h6><i class="material-icons white-text">brightness_1</i> Esmalte</h6>
-                                                <h6><i class="material-icons grey-text">brightness_1</i> Estuco</h6>
-                                                <h6><i class="material-icons green-text">brightness_1</i> Anticorrosivo</h6>
-                                            </div>
-                                            <canvas id="grafico3" class="activator right" width="100px" height="200px"></canvas>
-                                        </div>             
-                                    </div>
-                                </div>
-                                <div class="card-reveal teal darken-3 white-text">
-                                    <span class="card-title ">Card Title<i class="material-icons right">close</i></span>
-                                    <p>Here is some more information about this product that is only revealed once clicked on.</p>
-                                </div>
-                            </div>
-                        </div>      
+                        </div>               
+
                         <!--End of Cards of graphics-->
                     </div>
-                    <!--End of Editable Area-->
+                    <!--End of Editable Area-->	
+
                 </div>
                 <!--end of side navbar-->
                 <footer class="page-footer blue-grey darken-2">

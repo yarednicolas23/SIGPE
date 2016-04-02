@@ -11,7 +11,8 @@
         3.2 register form
     4. Modification Cards
     5. Modification footer
-    6. Modifications of dashboard admin*
+    6. Modifications of dashboard admin<----
+        6.1 Edition of tabs indicators
     7. User profile modifications
     8. Notifications
     9. Scrollbar
@@ -177,6 +178,25 @@ footer.page-footer {
     height: 50px !important;
     width: 70px;
     overflow: hidden;
+}
+.card-profile-image {
+    width: 70px;
+    position: absolute;
+    top: 110px;
+    z-index: 1;
+    cursor: pointer;
+}
+/* 6.1 Edition of tabs indicators*/
+.indicator{
+    background-color:#455a64 !important;
+}
+.tab a{
+    color:#455a64 !important;
+}
+/* 6.2 Card profile*/
+.img-card-profile{
+    min-width: inherit !important;
+    height: inherit !important;
 }
 /* 7. User profile modifications*/
 .user-profile-image{

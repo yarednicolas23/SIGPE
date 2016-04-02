@@ -2,342 +2,137 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:h="http://xmlns.jcp.org/jsf/html"
-      xmlns:c="http://xmlns.jcp.org/jsp/jstl/core">
-    <h:head>
-        <title>Inicio</title>
-        <meta charset="UTF-8"/>
-        <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-        <!--Favicon-->
-        <link rel="shortcut icon" href="img/favicon.png" />
-        <!--Import Google Icon Font-->
-        <link href="http://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet"/>
-        <!--Import materialize.css-->
-        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.5/css/materialize.min.css" />
-        <link rel="stylesheet" type="text/css" href="css/estilos.css"/>
-    </h:head>
-    <h:body>
-        <!--Navbar-->
-        <nav class="red-sigpe">
-            <div class="nav-wrapper container">
-                <a href="index.html" class="brand-logo">SIGPE</a>
-                <ul id="nav-mobile" class="right hide-on-med-and-down">
-                    <li><a href="index.html">Inicio</a></li>
-                    <li>
-                        <a class='dropdown-button' href='#' data-activates='quienes'>¿Quiénes Somos?</a>
-                        <ul id='quienes' class='dropdown-content'>
-                            <li><a href="mission.html">Misión</a></li>
-                            <li><a href="view.html">Visión</a></li>
-                        </ul>
-                    </li>
-                    <li><a href="products.html">Productos</a></li>
-                    <li><a href="contact.html">Contáctenos</a></li>
-                    <c:if test="#{controladorUsuarios.sesionActiva==false}">
-                        <li><a class="modal-trigger" href="#sesion">Iniciar Sesión</a></li>
-                    </c:if>                    
-                    <c:if test="#{controladorUsuarios.sesionActiva==true}">
-                        <c:forEach var="item" items="#{controladorUsuarios.usuarioSesion}">
-                            <li class="activate">            
-                                <a class='dropdown-button' data-activates='prof'>                           
-                                    <i class="material-icons md-5">
-                                        <img src="#{item.foto}" class="responsive-img circle user-profile-image"/> 
-                                        arrow_drop_down
-                                    </i>
-                                </a>
-                                <ul id='prof' class='dropdown-content profile'>
-                                    <li class="user-details">
-                                        <span class="white-text"><img src="#{item.foto}" class="responsive-img circle user-profile-image"/>  #{item.nombres}</span>
-                                    </li>
-                                    <li class="divider"></li>
-                                    <li><a href="#!"><i class="material-icons left">face</i> Perfil</a></li>
-                                    <li><a href="#!"><i class="material-icons left">shopping_cart</i> Carrito</a></li>
-                                    <li><a href="#!"><i class="material-icons left">monetization_on</i> Pedidos</a></li>
-                                    <li class="divider"></li>
-                                    <li><a href="#!"><i class="material-icons left">settings</i> Configuración</a></li>
-                                    <li><a href="#!"><i class="material-icons left">exit_to_app</i> Salir</a></li>                                
-                                </ul>   
-                            </li>
-                        </c:forEach>
-                    </c:if>
-                </ul>
+      xmlns:c="http://xmlns.jcp.org/jsp/jstl/core"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
 
-                <ul id="menu" class="side-nav">
-                    <li><a href="index.html">Inicio</a></li>
-                    <li>
-                        <a class='dropdown-button' href='#' data-activates='dropdown1'>¿Quiénes Somos?</a>
-                        <ul id='dropdown1' class='dropdown-content'>
-                            <li><a href="mission.html">Misión</a></li>
-                            <li><a href="view.html">Visión</a></li>
-                        </ul>
-                    </li>
-                    <li><a href="products.html">Productos</a></li>
-                    <li><a href="contact.html">Contáctenos</a></li>
-                    <c:if test="#{controladorUsuarios.sesionActiva==false}">
-                        <li><a class="modal-trigger" href="#sesion">Iniciar Sesión</a></li>
-                    </c:if>                    
-                    <c:if test="#{controladorUsuarios.sesionActiva==true}">
-                        <c:forEach var="item" items="#{controladorUsuarios.usuarioSesion}">
-                            <li class="activate">            
-                                <a class='dropdown-button' data-activates='prof'>                           
-                                    <i class="material-icons md-5">
-                                        <img src="#{item.foto}" class="responsive-img circle user-profile-image"/> 
-                                        arrow_drop_down
-                                    </i>
-                                </a>
-                                <ul id='prof' class='dropdown-content profile'>
-                                    <li class="user-details">
-                                        <span class="white-text"><img src="#{item.foto}" class="responsive-img circle user-profile-image"/>  #{item.nombres}</span>
-                                    </li>
-                                    <li class="divider"></li>
-                                    <li><a href="#!"><i class="material-icons left">face</i> Perfil</a></li>
-                                    <li><a href="#!"><i class="material-icons left">shopping_cart</i> Carrito</a></li>
-                                    <li><a href="#!"><i class="material-icons left">monetization_on</i> Pedidos</a></li>
-                                    <li class="divider"></li>
-                                    <li><a href="#!"><i class="material-icons left">settings</i> Configuración</a></li>
-                                    <li><a href="#!"><i class="material-icons left">exit_to_app</i> Salir</a></li>                                
-                                </ul>   
-                            </li>
-                        </c:forEach>
-                    </c:if>
-                </ul>
-                <a href="#" data-activates="menu" class="button-collapse"><i class="material-icons">menu</i></a>
-            </div>
-        </nav>
-        <!--end of NavBar-->
-        <!--paralax-->
-        <div class="parallax-container black-transparent">
-            <div class="section no-pad-bot">
-                <div class="container">
-                    <br></br>
-                    <h1 class="header center white-text ">¿Quiénes  Somos?</h1>
-                    <div class="row center">
-                        <h5 class="header col s12 white-text">Acerca De ENAR LTDA...</h5>
-                    </div>
-                    <div class="parallax">
-                        <img src="http://photos01.wisgoon.com/media/pin/images/o/2014/9/7/11/1410072745117537.jpg"/>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <!--paralax end-->
-
-        <!--Section-->
-        <div class="container">
-            <div class="section">
-                <!--   Icon Section   -->
-                <div class="row">
-                    <div class="col s12 center">
-                        <div class="icon-block">
-                            <h1 class="center red-text"><i class="material-icons md-10">accessibility</i></h1>
-                            <h4 class="center">ENAR LTDA</h4>
-
-                            <p class="light">
-                                Empresa Nacional De Adhesivos y Recubrimientos, Es una empresa Colombiana que busca ser líder en la fabricación de productos para la decoración de superficies...</p>
-                            <div class="row center">
-                                <a href="faces/aboutUs.xhtml" id="download-button" class="btn-large waves-effect waves-light red lighten-1">Leer más...</a>
-                            </div>
+    <ui:composition template="template.xhtml">
+        <ui:define name="titulo">Inicio</ui:define>
+        <!-- edicable Zone-->
+        <ui:define name="editableZone">
+            <!--paralax-->
+            <div class="parallax-container black-transparent">
+                <div class="section no-pad-bot">
+                    <div class="container">
+                        <br></br>
+                        <h1 class="header center white-text ">¿Quiénes  Somos?</h1>
+                        <div class="row center">
+                            <h5 class="header col s12 white-text">Acerca De ENAR LTDA...</h5>
+                        </div>
+                        <div class="parallax">
+                            <img src="http://photos01.wisgoon.com/media/pin/images/o/2014/9/7/11/1410072745117537.jpg"/>
                         </div>
                     </div>
                 </div>
             </div>
-        </div>
-        <!--end Section-->
-
-        <!--paralax-->
-        <div class="parallax-container black-transparent">
-            <div class="section no-pad-bot">
-                <div class="container">
-                    <br></br>
-                    <h1 class="header center white-text ">Nuestro Catálogo</h1>
-                    <div class="row center">
-                        <h5 class="header col s12 white-text">Conoce Nuestro Catálogo de Productos.</h5>
-                    </div>
-                    <div class="parallax">
-                        <img src="http://monsterkamer.com/files/2014/09/ZEE_MG_2145.jpg"/>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <!--paralax end-->
-
-        <!--Section-->
-        <div class="container">
-            <div class="section">
-                <!--   Icon Section   -->
-                <div class="row">
-                    <div class="col s12 center">
-                        <div class="icon-block">
-                            <h1 class="center red-text"><i class="material-icons md-10">add_shopping_cart</i></h1>
-                            <h4 class="center">Catálogo</h4>
-                            <p class="ligth">ENAR LTDA En compañía de el sistema SIGPE cuentan con un completo catálogo de productos dirigido directamente para sus clientes.</p>
-                            <div class="row center">
-                                <a href="products.html" id="download-button" class="btn-large waves-effect waves-light red lighten-1">Ver más...</a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <!--end Section-->
-
-        <!--paralax-->
-        <div class="parallax-container black-transparent">
-            <div class="section no-pad-bot">
-                <div class="container">
-                    <br></br>
-                    <h1 class="header center white-text ">Nuestros productos</h1>
-                    <div class="row center">
-                        <h5 class="header col s12 white-text">Conoce Los Productos ENAR que puedes obtener, con lista de detalles.
-                        </h5>
-                    </div>
-                    <div class="parallax">
-                        <img src="http://www.walltor.com/images/wallpaper/mixing-paints--paint-brush--close-up-photo-92746.jpg"/>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <!--paralax end-->
-
-        <!--Section-->
-        <div class="container">
-            <div class="section">
-                <!--   Icon Section   -->
-                <div class="row">
-                    <div class="col s12 center">
-                        <div class="icon-block">
-                            <h1 class="center red-text"><i class="material-icons md-10">format_paint</i></h1>
-                            <h4 class="center">Productos</h4>
-                            <p class="ligth">ENAR LTDA En compañía de el sistema SIGPE cuentan con un completo catálogo de productos dirigido directamente para sus clientes.</p>
-                            <div class="row center">
-                                <a href="products.html" id="download-button" class="btn-large waves-effect waves-light red lighten-1">Ver Todos...</a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <!--end Section-->
-
-        <!--paralax-->
-        <div class="parallax-container black-transparent">
-            <div class="section no-pad-bot">
-                <div class="container">
-                    <br></br>
-                    <h1 class="header center white-text">Contáctenos </h1>
-                    <div class="row center">
-                        <a href="aboutUs.html" id="download-button" class="btn-large waves-effect waves-light red lighten-1">Ir...</a>
-                    </div>
-                    <div class="parallax">
-                        <img src="http://www.neontommy.com/sites/default/files/IMG_20140308_144414_0.jpg?1394689869"/>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <!--paralax end-->
-        <footer class="page-footer red-sigpe">
+            <!--paralax end-->
+            <!--Section-->
             <div class="container">
-                <div class="row">
-                    <div class="col l6 s12">
-                        <h5 class="white-text">SIGPE</h5>
-                        <p class="grey-text text-lighten-4">Es un sistema dedicado a la empresa ENAR LTDA de Colombia.</p>
+                <div class="section">
+                    <!--   Icon Section   -->
+                    <div class="row">
+                        <div class="col s12 center">
+                            <div class="icon-block">
+                                <h1 class="center red-text"><i class="material-icons md-10">accessibility</i></h1>
+                                <h4 class="center">ENAR LTDA</h4>
+
+                                <p class="light">
+                                    Empresa Nacional De Adhesivos y Recubrimientos, Es una empresa Colombiana que busca ser líder en la fabricación de productos para la decoración de superficies...</p>
+                                <div class="row center">
+                                    <h:link outcome="aboutUs" class="btn-large waves-effect waves-light red lighten-1">Leer más...</h:link>
+                                </div>
+                            </div>
+                        </div>
                     </div>
-                    <div class="col l4 offset-l2 s12">
-                        <h5 class="white-text">Links</h5>
-                        <ul>
-                            <li><a class="grey-text text-lighten-3" href="index.html">Inicio</a></li>
-                            <li><a class="grey-text text-lighten-3" href="aboutUs.html">¿Quiénes Somos?</a></li>
-                            <li><a class="grey-text text-lighten-3" href="view.html">Visión</a></li>
-                            <li><a class="grey-text text-lighten-3" href="mission.html">Misión</a></li>
-                            <li><a class="grey-text text-lighten-3" href="products.html">Productos</a></li>
-                            <li><a class="grey-text text-lighten-3" href="contact.html">Contáctenos</a></li>
-                            <li><a class="grey-text text-lighten-3" href="register.html">Registrarse</a></li>
-                        </ul>
+                </div>
+            </div>
+            <!--end Section-->
+            <!--paralax-->
+            <div class="parallax-container black-transparent">
+                <div class="section no-pad-bot">
+                    <div class="container">
+                        <br></br>
+                        <h1 class="header center white-text ">Nuestro Catálogo</h1>
+                        <div class="row center">
+                            <h5 class="header col s12 white-text">Conoce Nuestro Catálogo de Productos.</h5>
+                        </div>
+                        <div class="parallax">
+                            <img src="http://monsterkamer.com/files/2014/09/ZEE_MG_2145.jpg"/>
+                        </div>
                     </div>
                 </div>
             </div>
-            <div class="footer-copyright">
-                <div class="container">
-                    Colombia -Copyright © 2015 Diseñado por Yared Nicolas Toro - All Rights Reserved
-                    <a class="grey-text text-lighten-4 right" href="#!">Don't click here </a>
+            <!--paralax end-->
+            <!--Section-->
+            <div class="container">
+                <div class="section">
+                    <!--   Icon Section   -->
+                    <div class="row">
+                        <div class="col s12 center">
+                            <div class="icon-block">
+                                <h1 class="center red-text"><i class="material-icons md-10">add_shopping_cart</i></h1>
+                                <h4 class="center">Catálogo</h4>
+                                <p class="ligth">ENAR LTDA En compañía de el sistema SIGPE cuentan con un completo catálogo de productos dirigido directamente para sus clientes.</p>
+                                <div class="row center">
+                                    <h:link outcome="products" class="btn-large waves-effect waves-light red lighten-1">Ver más...</h:link>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
-        </footer>
-        <!-- Modal Sesion -->
-        <div id="sesion" class="modal black-transparent">
-            <div class="modal-content">
-                <h4 class="white-text">Iniciar Sesión</h4>
-                <div class="row">
-                    <h:form id="login" class="col s12 ">
-                        <div class="row white-text center">
-                            <div class="input-field col s10">
-                                <i class="material-icons prefix">email</i>
-                                <input id="mail" type="email" class="validate" name="email" required="true"/>
-                                <label for="icon_prefix" id="campo1" data-error="el campo es invalido">E-mail</label>
-                            </div>
-                            <div class="input-field col s10">
-                                <i class="material-icons prefix">lock</i>
-                                <input id="icon_telephone" type="password" class="validate" name="password" required="true"/>
-                                <label for="icon_telephone">Contraseña</label>
-                            </div>
-                            <h:commandButton action="#{controladorUsuarios.iniciarSesion()}" type="submit" class="waves-effect waves-purple btn red" value="Entrar "><i class="material-icons">send</i></h:commandButton>
+            <!--end Section-->
+            <!--paralax-->
+            <div class="parallax-container black-transparent">
+                <div class="section no-pad-bot">
+                    <div class="container">
+                        <br></br>
+                        <h1 class="header center white-text ">Nuestros productos</h1>
+                        <div class="row center">
+                            <h5 class="header col s12 white-text">Conoce Los Productos ENAR que puedes obtener, con lista de detalles.
+                            </h5>
                         </div>
-                        <div class="row center white-text">
-                            ¿Aún no tienes cuenta?<br/>        
-                            <a href="faces/register.xhtml">Regístrate ahora</a><br/>
-                            <a href="" class="white-text">¿No puees acceder a tu cuenta?</a>
+                        <div class="parallax">
+                            <img src="http://www.walltor.com/images/wallpaper/mixing-paints--paint-brush--close-up-photo-92746.jpg"/>
                         </div>
-                        <div class="row inactive #{controladorUsuarios.tipoMensaje}">
-                            <div class="chip col s10 red white-text">
-                                <img src="http://wpwarriors.com/wp-content/uploads/2015/10/c7e54cbbe843e27256fe82466009ab87.png" alt="Contact Person"></img>
-                                #{controladorUsuarios.mensaje}
-                                <i class="material-icons">close</i>
-                            </div>
-                        </div>
-                    </h:form>
+                    </div>
                 </div>
             </div>
-        </div>
-        <!--end Modal Session-->
-
-
-        <!--collapsible shopping cart-->
-
-        <!--Button Floating-->
-        <div class="fixed-action-btn " style="bottom: 45px; right: 30px;">
-            <a class="waves-effect waves-light modal-trigger btn-floating btn-large light-blue darken-1" href="#shop">
-                <i class="material-icons">add_shopping_cart</i>
-            </a>
-        </div>
-        <!--end of Button Floating-->
-        <div id="shop" class="modal bottom-sheet">
-            <div class="modal-content">
-                <h4><b>Carrito de Compras</b></h4>
-                <ul class="collection">
-                    <li class="collection-item avatar">
-                        <img src="https://www.c7creative.com/wp-content/uploads/2015/05/Brian-Avatar.png" alt="" class="circle"/>
-                        <span class="title">Title</span>
-                        <p>First Line <br/> Second Line </p>
-                        <a href="#!" class="secondary-content"><i class="material-icons">grade</i></a>
-                    </li>
-                    <li class="collection-item avatar">
-                        <i class="material-icons circle">folder</i>
-                        <span class="title">Title</span>
-                        <p>First Line <br/> Second Line </p>
-                        <a href="#!" class="secondary-content"><i class="material-icons">grade</i></a>
-                    </li>
-                </ul>
+            <!--paralax end-->
+            <!--Section-->
+            <div class="container">
+                <div class="section">
+                    <!--   Icon Section   -->
+                    <div class="row">
+                        <div class="col s12 center">
+                            <div class="icon-block">
+                                <h1 class="center red-text"><i class="material-icons md-10">format_paint</i></h1>
+                                <h4 class="center">Productos</h4>
+                                <p class="ligth">ENAR LTDA En compañía de el sistema SIGPE cuentan con un completo catálogo de productos dirigido directamente para sus clientes.</p>
+                                <div class="row center">
+                                    <h:link outcome="products" class="btn-large waves-effect waves-light red lighten-1">Ver Todos...</h:link>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
-            <div class="modal-footer">
-                <a href="#!" class=" modal-action modal-close waves-effect waves-green btn-flat">Aceptar</a>
+            <!--end Section-->
+            <!--paralax-->
+            <div class="parallax-container black-transparent">
+                <div class="section no-pad-bot">
+                    <div class="container">
+                        <br></br>
+                        <h1 class="header center white-text">Contáctenos </h1>
+                        <div class="row center" >
+                            <h:link outcome="contact" class="btn-large waves-effect waves-light red lighten-1">Ir...</h:link>
+                        </div>
+                        <div class="parallax">
+                            <img src="http://www.neontommy.com/sites/default/files/IMG_20140308_144414_0.jpg?1394689869"/>
+                        </div>
+                    </div>
+                </div>
             </div>
-        </div>
-        <!--end of collapsible shopping cart-->
-
-        <!--Import jQuery before materialize.js-->
-        <script type="text/javascript" src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
-        <script type="text/javascript" src="http://materializecss.com/bin/materialize.js"></script>
-        <script type="text/javascript" src="js/resources.js"></script>
-        <script type="text/javascript">
-            #{controladorUsuarios.scriptMensaje}
-        </script>
-    </h:body>
+            <!--paralax end-->
+        </ui:define>
+    </ui:composition>
 </html>

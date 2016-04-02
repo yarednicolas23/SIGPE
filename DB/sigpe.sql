@@ -4,7 +4,6 @@ create database sigpe;
 use sigpe;
 
 
-
 create table usuario(
 	cedula bigint PRIMARY KEY not null,
 	correo varchar(40),
@@ -13,7 +12,7 @@ create table usuario(
 	sexo enum ('Femenino ','Maculino'),
 	telefono bigint,
 	clave varchar(40),
-	Rol	enum ('Cliente','Administrador','Empresa'),
+	Rol	enum ('Cliente','Administrador'),
 	foto varchar (40)
 )ENGINE=InnoDB;
 
@@ -131,37 +130,4 @@ DELIMITER ;
 
 
 
-listaR=getListaCuentas();
-        for (int i = 0; i < listaR.size(); i++) {
-            listaR.get(i).setSaldo(listaR.get(i).getSaldo()+Double.parseDouble(sald));            
-            cuentaFacade.edit(cuenta);
-            return "";
-        }
-        return "";
 
-
-
-
-
-
-
-        <div class="row">
-            <div class="col s8 offset-s3">
-                <h4>Consignar Saldo</h4>
-                <h:form>
-                    <div class="row white-text">
-                        <div class="col s5 offset-s3 black-transparent">
-                            <div class="input-field col s10">
-                                <i class="material-icons">monetization_on</i>
-                                <h:inputText class="validate" value="#{controladorCuenta.sald}" required=""></h:inputText>
-                                
-                                <label for="icon_prefix" data-error="el campo es invalido">Monto a Consignar</label>
-                            </div>
-                            <div class="col s10">
-                                <h:commandButton action="#{controladorCuenta.consignar()}" value="consignar" class="waves-effect waves-red btn pink col s12"></h:commandButton>                                
-                            </div>
-                        </div>
-                    </div>            
-                </h:form>
-            </div>
-        </div>

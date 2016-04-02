@@ -7,9 +7,10 @@ and open the template in the editor.
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:h="http://xmlns.jcp.org/jsf/html"
-      xmlns:c="http://xmlns.jcp.org/jsp/jstl/core">
+      xmlns:c="http://xmlns.jcp.org/jsp/jstl/core"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
     <head>
-        <title>Panel de Control</title>
+        <title>Productos</title>
         <meta charset="UTF-8"/>
         <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
         <!--Favicon-->
@@ -33,7 +34,7 @@ and open the template in the editor.
                 <!--Navbar-->
                 <nav class="navbar-fixed blue-grey darken-2">
                     <div class="nav-wrapper container">
-                        <a href="index.xhtml" class="brand-logo">Panel De Control</a>
+                        <a href="index.html" class="brand-logo">Panel De Control</a>
                         <ul id="nav-mobile" class="right hide-on-med-and-down">
                             <li>            
                                 <a class='dropdown-button' data-activates='notif'>
@@ -77,24 +78,24 @@ and open the template in the editor.
                                     </div>
                                 </div>
                             </li>
-                            <li class="active">
+                            <li>
                                 <a href="index.xhtml" class="waves-effect waves-cyan"><i class="material-icons">home</i> Inicio</a>
                             </li>
-                            <li class="bold">
+                            <li class="active">
                                 <a href="products.xhtml" class="waves-effect waves-cyan"><i class="material-icons">style</i> Productos</a>
                             </li>
-                            <li class="bold">
-                                <a href="orders.xhtml" class="waves-effect waves-cyan"><i class="material-icons">monetization_on</i> Pedidos</a>
+                            <li>
+                                <a href="orders.html" class="waves-effect waves-cyan"><i class="material-icons">monetization_on</i> Pedidos</a>
                             </li>
-                            <li class="bold">
-                                <a href="shipments.xhtml" class="waves-effect waves-cyan"><i class="material-icons">local_shipping</i> Envíos</a>
+                            <li>
+                                <a href="shipments.html" class="waves-effect waves-cyan"><i class="material-icons">local_shipping</i> Envíos</a>
                             </li>
                             <li class="li-hover">
                                 <div class="divider"></div>
                             </li>
-                            <li><a href="profile.xhtml"><i class="material-icons">face</i> Perfil</a>
+                            <li><a href="profile.html"><i class="material-icons">face</i> Perfil</a>
                             </li>
-                            <li><a href="settings.xhtml"><i class="material-icons">settings</i> Configuración</a>
+                            <li><a href="settings.html"><i class="material-icons">settings</i> Configuración</a>
                             </li>
                             <li><a><i class="material-icons">exit_to_app</i>   Cerrar Sesión</a>
                             </li>        
@@ -117,24 +118,24 @@ and open the template in the editor.
                                 </div>
                             </div>
                         </li>
-                        <li class="active">
+                        <li>
                             <a href="index.xhtml" class="waves-effect waves-cyan"><i class="material-icons">home</i> Inicio</a>
                         </li>
-                        <li class="bold">
+                        <li class="active">
                             <a href="products.xhtml" class="waves-effect waves-cyan"><i class="material-icons">style</i> Productos</a>
                         </li>
                         <li class="bold">
-                            <a href="orders.xhtml" class="waves-effect waves-cyan"><i class="material-icons">monetization_on</i> Pedidos</a>
+                            <a href="orders.html" class="waves-effect waves-cyan"><i class="material-icons">monetization_on</i> Pedidos</a>
                         </li>
                         <li class="bold">
-                            <a href="shipments.xhtml" class="waves-effect waves-cyan"><i class="material-icons">local_shipping</i> Envíos</a>
+                            <a href="shipments.html" class="waves-effect waves-cyan"><i class="material-icons">local_shipping</i> Envíos</a>
                         </li>
                         <li class="li-hover">
                             <div class="divider"></div>
                         </li>
-                        <li><a href="profile.xhtml"><i class="material-icons">face</i> Perfil</a>
+                        <li><a href="profile.html"><i class="material-icons">face</i> Perfil</a>
                         </li>
-                        <li><a href="settings.xhtml"><i class="material-icons">settings</i> Configuración</a>
+                        <li><a href="settings.html"><i class="material-icons">settings</i> Configuración</a>
                         </li>
                         <li>
                             <h:commandLink action="#{controladorUsuarios.cerrarSesion()}"><i class="material-icons">exit_to_app</i>Cerrar Sesión</h:commandLink>
@@ -143,68 +144,109 @@ and open the template in the editor.
 
                     <!--Editable Area-->
                     <div class="row">
-                        <!--Cards of graphics-->
-                        <div class="col s12 m6">
-                            <div class="card">
-                                <div class="card-image waves-effect waves-block waves-light">
-                                    <div class="blue-grey darken-2">
-                                        <div id="canvas-holder">
-                                            <canvas id="grafico" class="activator" width="600px" height="300px"></canvas>
+                        <div class="col s12 m9 red-text">
+                            <ul class="tabs">
+                                <li class="tab col s3"><a class="active"  href="#productos">Productos</a></li>
+                                <li class="tab col s3"><a href="#crear">Crear producto</a></li>
+                                <li class="tab col s3 disabled"><a href="#ofertas">Ofertas</a></li>
+                            </ul>
+                        </div>
+                        <div id="productos" class="col s12 m9">
+                            <!--Products List-->
+                            <div class="row">
+                                <c:forEach items="#{controladorProductos.listaProductos()}" var="listaProductos">
+                                    <div class="col s12 m4">
+                                        <div class="card">
+                                            <div class="card-image waves-effect waves-block waves-light">
+                                                <a href="#" class="btn-floating btn-large btn-price waves-effect waves-light  pink accent-2">$#{listaProductos.precio}</a>
+                                                <img class="activator" src="#{listaProductos.foto}"/>
+                                            </div>
+                                            <ul class="card-action-buttons">
+                                                <li><a class="btn-floating waves-effect waves-light green accent-4"><i class="material-icons">add_shopping_cart</i></a>
+                                                </li>
+                                                <li>
+                                                    <a class="btn-floating waves-effect waves-light red accent-2 tooltipped" data-position="top" data-delay="50" data-tooltip="❤ 100">
+                                                        <i class="material-icons">favorite</i>
+                                                    </a>
+                                                </li>
+                                                <li><a class="btn-floating waves-effect waves-light light-blue"><i class="material-icons activator">info</i></a>
+                                                </li>
+                                            </ul>
+                                            <div class="card-content">
+                                                <span class="card-title grey-text text-darken-4">#{listaProductos.nombre}</span>           
+                                            </div>
+                                            <div class="card-reveal">
+                                                <span class="card-title grey-text text-darken-4">#{listaProductos.nombre}<i class="material-icons right">close</i></span>
+                                                <p>#{listaProductos.descripcion}
+                                                    <a href="#">Ver más...</a>
+                                                </p>
+                                            </div>
+                                        </div>
+                                    </div>                                
+                                </c:forEach>
+                            </div>
+                            <!-- end of Products List-->
+                        </div>
+                        <div id="crear" class="col s12 m9">
+                            <div class="row">
+                                <div class="col s12">
+                                    <h3>Crear Producto</h3>
+                                    <div class="row">
+                                        <div class="input-field col s12">
+                                            <i class="material-icons prefix">style</i>
+                                            <input type="text" class="validate" name="nombreP" required=""/>
+                                            <label for="nombreP" data-error="el campo es invalido">Nombre del Producto</label>
                                         </div>
                                     </div>
-                                </div>
-                                <ul class="card-action-buttons">
-                                    <li>
-                                        <a class="btn-floating waves-effect waves-light pink"><i class="material-icons activator">info_outline</i></a>
-                                    </li>
-                                </ul>
-                                <div class="card-content blue-grey darken-4 white-text">
-                                    <span class="card-title">Reporte de Pedidos</span>
-                                    <p><i class="material-icons red-text">brightness_1</i> Pedidos</p>
-                                </div>
-                                <div class="card-reveal blue-grey darken-4 white-text">
-                                    <span class="card-title ">Card Title<i class="material-icons right">close</i></span>
-                                    <p>Here is some more information about this product that is only revealed once clicked on.</p>
-                                </div>
+                                    <div class="row">
+                                        <div class="input-field col s12">
+                                            <i class="material-icons prefix">attach_money</i>
+                                            <input name="precio" type="text" class="validate" required=""/>
+                                            <label for="precio" data-error="El campo es invalido">Precio por Unidad</label>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="input-field col s12">
+                                            <i class="material-icons prefix">description</i>
+                                            <textarea name="descripcion" class="materialize-textarea"></textarea>
+                                            <label for="descripcion">Descripcion</label>
+                                        </div>
+                                    </div>                          
+                                    <div class="row">
+                                        <div class="input-field col s12">
+                                            <i class="material-icons prefix">format_list_numbered</i>
+                                            <input name="cantidad" type="number" class="validate" pattern="[0-9]{1,10}" title="El campo debe ser llenado con menos de 10 digitos" required=""/>
+                                            <label for="cantidad">Cantidad</label>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="file-field input-field">
+                                            <div class="btn">
+                                                <span>Foto</span>
+                                                <input name="foto" type="file"/>
+                                            </div>
+                                            <div class="file-path-wrapper">
+                                                <input class="file-path validate" type="text"/>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col s12 center">
+                                            <h:commandButton class="waves-effect waves-red btn blue accent-4" value="Crear" action="#{controladorProductos.crearProducto()}"></h:commandButton>
+                                            <h:commandLink action="#{controladorProductos.c()}" value="Crear"></h:commandLink>
+                                        </div>
+                                    </div>
+                                    <div class="row inactive #{controladorProductos.tipoMensaje}">
+                                        <div class="chip col s10 red white-text">
+                                            <img src="http://wpwarriors.com/wp-content/uploads/2015/10/c7e54cbbe843e27256fe82466009ab87.png" alt="Contact Person"></img>
+                                            #{controladorProductos.mensaje}
+                                            <i class="material-icons">close</i>
+                                        </div>
+                                    </div>
+                                </div>                                
                             </div>
                         </div>
-                        <div class="col s12 m3">
-                            <div class="card">
-                                <div class="card-image waves-effect waves-block waves-light">
-                                    <div class="teal">
-                                        <div id="canvas-holder">
-                                            <canvas id="grafico2" class="activator" width="300px" height="300px"></canvas>
-                                        </div>
-                                    </div>
-                                </div>
-                                <ul class="card-action-buttons">
-                                    <li>
-                                        <a class="btn-floating waves-effect waves-light pink"><i class="material-icons activator">info_outline</i></a>
-                                    </li>
-                                </ul>
-                                <div class="card-content teal darken-3 white-text">
-                                    <span class="card-title">Stock de Productos</span>
-                                    <div id="canvas-holder">             
-                                        <div class="row">
-                                            <div class="col s7">
-                                                <h6><i class="material-icons red-text">brightness_1</i> Pegante</h6>
-                                                <h6><i class="material-icons indigo-text">brightness_1</i> Vinilo</h6>
-                                                <h6><i class="material-icons orange-text">brightness_1</i> PVA</h6>
-                                                <h6><i class="material-icons white-text">brightness_1</i> Esmalte</h6>
-                                                <h6><i class="material-icons grey-text">brightness_1</i> Estuco</h6>
-                                                <h6><i class="material-icons green-text">brightness_1</i> Anticorrosivo</h6>
-                                            </div>
-                                            <canvas id="grafico3" class="activator right" width="100px" height="200px"></canvas>
-                                        </div>             
-                                    </div>
-                                </div>
-                                <div class="card-reveal teal darken-3 white-text">
-                                    <span class="card-title ">Card Title<i class="material-icons right">close</i></span>
-                                    <p>Here is some more information about this product that is only revealed once clicked on.</p>
-                                </div>
-                            </div>
-                        </div>      
-                        <!--End of Cards of graphics-->
+                        <div id="ofertas" class="col s12 m9">Test 3</div>
                     </div>
                     <!--End of Editable Area-->
                 </div>
