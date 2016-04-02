@@ -6,7 +6,7 @@
       xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
 
     <ui:composition template="template.xhtml">
-        <ui:define name="titulo">Inicio</ui:define>
+        <ui:define name="titulo">#{msg.inicio}</ui:define>
         <!-- edicable Zone-->
         <ui:define name="editableZone">
             <!--paralax-->
@@ -14,12 +14,12 @@
                 <div class="section no-pad-bot">
                     <div class="container">
                         <br></br>
-                        <h1 class="header center white-text ">¿Quiénes  Somos?</h1>
+                        <h1 class="header center white-text ">#{msg.aboutUs}</h1>
                         <div class="row center">
-                            <h5 class="header col s12 white-text">Acerca De ENAR LTDA...</h5>
+                            <h5 class="header col s12 white-text">#{msg.aboutENAR}</h5>
                         </div>
                         <div class="parallax">
-                            <img src="http://photos01.wisgoon.com/media/pin/images/o/2014/9/7/11/1410072745117537.jpg"/>
+                            <img src="#{msg.imgParallax1}"/>
                         </div>
                     </div>
                 </div>
@@ -28,17 +28,17 @@
             <!--Section-->
             <div class="container">
                 <div class="section">
-                    <!--   Icon Section   -->
+                    <!-- Icon Section-->
                     <div class="row">
                         <div class="col s12 center">
                             <div class="icon-block">
                                 <h1 class="center red-text"><i class="material-icons md-10">accessibility</i></h1>
-                                <h4 class="center">ENAR LTDA</h4>
-
+                                <h4 class="center">#{msg.titleSection1}</h4>
                                 <p class="light">
-                                    Empresa Nacional De Adhesivos y Recubrimientos, Es una empresa Colombiana que busca ser líder en la fabricación de productos para la decoración de superficies...</p>
+                                    #{msg.section1}
+                                </p>
                                 <div class="row center">
-                                    <h:link outcome="aboutUs" class="btn-large waves-effect waves-light red lighten-1">Leer más...</h:link>
+                                    <h:link outcome="aboutUs" class="btn-large waves-effect waves-light red lighten-1">#{msg.readMore}</h:link>
                                 </div>
                             </div>
                         </div>
@@ -51,12 +51,12 @@
                 <div class="section no-pad-bot">
                     <div class="container">
                         <br></br>
-                        <h1 class="header center white-text ">Nuestro Catálogo</h1>
+                        <h1 class="header center white-text ">#{msg.parallaxTitle2}</h1>
                         <div class="row center">
-                            <h5 class="header col s12 white-text">Conoce Nuestro Catálogo de Productos.</h5>
+                            <h5 class="header col s12 white-text">#{msg.parallaxText2}</h5>
                         </div>
                         <div class="parallax">
-                            <img src="http://monsterkamer.com/files/2014/09/ZEE_MG_2145.jpg"/>
+                            <img src="#{msg.imgParallax2}"/>
                         </div>
                     </div>
                 </div>
@@ -70,10 +70,10 @@
                         <div class="col s12 center">
                             <div class="icon-block">
                                 <h1 class="center red-text"><i class="material-icons md-10">add_shopping_cart</i></h1>
-                                <h4 class="center">Catálogo</h4>
-                                <p class="ligth">ENAR LTDA En compañía de el sistema SIGPE cuentan con un completo catálogo de productos dirigido directamente para sus clientes.</p>
+                                <h4 class="center">#{msg.titleSection3}</h4>
+                                <p class="ligth">#{msg.section3}</p>
                                 <div class="row center">
-                                    <h:link outcome="products" class="btn-large waves-effect waves-light red lighten-1">Ver más...</h:link>
+                                    <h:link outcome="products" class="btn-large waves-effect waves-light red lighten-1">#{msg.seeMore}</h:link>
                                 </div>
                             </div>
                         </div>
@@ -86,13 +86,14 @@
                 <div class="section no-pad-bot">
                     <div class="container">
                         <br></br>
-                        <h1 class="header center white-text ">Nuestros productos</h1>
+                        <h1 class="header center white-text ">#{msg.parallaxTitle4}</h1>
                         <div class="row center">
-                            <h5 class="header col s12 white-text">Conoce Los Productos ENAR que puedes obtener, con lista de detalles.
+                            <h5 class="header col s12 white-text">
+                                #{msg.parallaxText4}
                             </h5>
                         </div>
                         <div class="parallax">
-                            <img src="http://www.walltor.com/images/wallpaper/mixing-paints--paint-brush--close-up-photo-92746.jpg"/>
+                            <img src="#{msg.imgParallax3}"/>
                         </div>
                     </div>
                 </div>
@@ -106,10 +107,10 @@
                         <div class="col s12 center">
                             <div class="icon-block">
                                 <h1 class="center red-text"><i class="material-icons md-10">format_paint</i></h1>
-                                <h4 class="center">Productos</h4>
-                                <p class="ligth">ENAR LTDA En compañía de el sistema SIGPE cuentan con un completo catálogo de productos dirigido directamente para sus clientes.</p>
+                                <h4 class="center">#{msg.titleSectin5}</h4>
+                                <p class="ligth">#{msg.section5}</p>
                                 <div class="row center">
-                                    <h:link outcome="products" class="btn-large waves-effect waves-light red lighten-1">Ver Todos...</h:link>
+                                    <h:link outcome="products" class="btn-large waves-effect waves-light red lighten-1">#{msg.seeAll}</h:link>
                                 </div>
                             </div>
                         </div>
@@ -122,12 +123,12 @@
                 <div class="section no-pad-bot">
                     <div class="container">
                         <br></br>
-                        <h1 class="header center white-text">Contáctenos </h1>
+                        <h1 class="header center white-text">#{msg.contact}</h1>
                         <div class="row center" >
-                            <h:link outcome="contact" class="btn-large waves-effect waves-light red lighten-1">Ir...</h:link>
+                            <h:link outcome="contact" class="btn-large waves-effect waves-light red lighten-1">#{msg.go}</h:link>
                         </div>
                         <div class="parallax">
-                            <img src="http://www.neontommy.com/sites/default/files/IMG_20140308_144414_0.jpg?1394689869"/>
+                            <img src="#{msg.imgParallax4}"/>
                         </div>
                     </div>
                 </div>

@@ -5,7 +5,7 @@
       xmlns:c="http://xmlns.jcp.org/jsp/jstl/core"
       xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
     <h:head>
-        <title><ui:insert name="titulo">TITULO</ui:insert></title>
+        <title><ui:insert name="titulo">#{msg.titleDefualt}</ui:insert></title>
         <meta charset="UTF-8"/>
         <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
         <!--Favicon-->
@@ -22,20 +22,20 @@
         <h:form>            
             <nav class="red-sigpe">
                 <div class="nav-wrapper container">
-                    <h:link outcome="index" class="brand-logo">SIGPE</h:link>
+                    <h:link outcome="index" class="brand-logo">#{msg.SIGPE}</h:link>
                     <ul id="nav-mobile" class="right hide-on-med-and-down">
                         <li><h:link  outcome="index">Inicio</h:link></li>
                         <li>
-                            <a class='dropdown-button' href='#' data-activates='quienes'>¿Quiénes Somos?</a>
+                            <a class='dropdown-button' href='#' data-activates='quienes'>#{msg.aboutUs}</a>
                             <ul id='quienes' class='dropdown-content'>
-                                <li><h:link outcome="mission">Misión</h:link></li>
-                                <li><h:link outcome="view">Visión</h:link></li>
+                                <li><h:link outcome="mission">#{msg.mission}</h:link></li>
+                                <li><h:link outcome="view">#{msg.view}</h:link></li>
                             </ul>
                         </li>
-                        <li><h:link outcome="products">Productos</h:link></li>
-                        <li><h:link outcome="contact">Contáctenos</h:link></li>
+                        <li><h:link outcome="products">#{msg.products}</h:link></li>
+                        <li><h:link outcome="contact">#{msg.contact}</h:link></li>
                         <li class="#{controladorUsuarios.inactive}">
-                            <a class="modal-trigger" href="#sesion">Iniciar Sesión</a>
+                            <a class="modal-trigger" href="#sesion">#{msg.sigIn}</a>
                         </li>
                         <li class="inactive #{controladorUsuarios.sesionActiva}">
                             <c:forEach var="item" items="#{controladorUsuarios.usuarioSesion}">
@@ -51,12 +51,12 @@
                                             <span class="white-text"><img src="#{item.foto}" class="responsive-img circle user-profile-image"/>  #{item.nombres}</span>
                                         </li>
                                         <li class="divider"></li>
-                                        <li><h:link outcome="user/profile"><i class="material-icons left">face</i> Perfil</h:link></li>
-                                        <li><h:link outcome="user/cart"><i class="material-icons left">shopping_cart</i> Carrito</h:link></li>
-                                        <li><h:link outcome="user/shipments"><i class="material-icons left">monetization_on</i> Pedidos</h:link></li>
+                                        <li><h:link outcome="user/profile"><i class="material-icons left">face</i> #{msg.profile}</h:link></li>
+                                        <li><h:link outcome="user/cart"><i class="material-icons left">shopping_cart</i> #{msg.cart}</h:link></li>
+                                        <li><h:link outcome="user/shipments"><i class="material-icons left">monetization_on</i> #{msg.shipments}</h:link></li>
                                         <li class="divider"></li>
-                                        <li><h:link outcome="user/settings"><i class="material-icons left">settings</i> Configuración</h:link></li>
-                                        <li><h:commandLink action="#{controladorUsuarios.cerrarSesion()}"><i class="material-icons left">exit_to_app</i> Salir</h:commandLink>
+                                        <li><h:link outcome="user/settings"><i class="material-icons left">settings</i> #{msg.settings}</h:link></li>
+                                        <li><h:commandLink action="#{controladorUsuarios.cerrarSesion()}"><i class="material-icons left">exit_to_app</i> #{msg.back}</h:commandLink>
                                         </li>                                
                                     </ul>   
                                 </li>
@@ -67,16 +67,16 @@
                     <ul id="menu" class="side-nav">
                         <li><h:link  outcome="index">Inicio</h:link></li>
                         <li>
-                            <a class='dropdown-button' href='#' data-activates='quienesM'>¿Quiénes Somos?</a>
+                            <a class='dropdown-button' href='#' data-activates='quienesM'>#{msg.aboutUs}</a>
                             <ul id='quienesM' class='dropdown-content'>
-                                <li><h:link outcome="mission">Misión</h:link></li>
-                                <li><h:link outcome="view">Visión</h:link></li>
+                                <li><h:link outcome="mission">#{msg.mission}</h:link></li>
+                                <li><h:link outcome="view">#{msg.view}</h:link></li>
                             </ul>
                         </li>
-                        <li><h:link outcome="products">Productos</h:link></li>
-                        <li><h:link outcome="contact">Contáctenos</h:link></li>
+                        <li><h:link outcome="products">#{msg.products}</h:link></li>
+                        <li><h:link outcome="contact">#{msg.products}</h:link></li>
                         <li class="#{controladorUsuarios.inactive}">
-                            <a class="modal-trigger" href="#sesion">Iniciar Sesión</a>
+                            <a class="modal-trigger" href="#sesion">#{msg.sigIn}</a>
                         </li>                    
                         <li class="inactive #{controladorUsuarios.sesionActiva}">
                             <c:forEach var="item" items="#{controladorUsuarios.usuarioSesion}">
@@ -92,12 +92,12 @@
                                             <span class="white-text"><img src="#{item.foto}" class="responsive-img circle user-profile-image"/>  #{item.nombres}</span>
                                         </li>
                                         <li class="divider"></li>
-                                        <li><h:link outcome="user/profile"><i class="material-icons left">face</i> Perfil</h:link></li>
-                                        <li><h:link outcome="user/cart"><i class="material-icons left">shopping_cart</i> Carrito</h:link></li>
-                                        <li><h:link outcome="user/shipments"><i class="material-icons left">monetization_on</i> Pedidos</h:link></li>
+                                        <li><h:link outcome="user/profile"><i class="material-icons left">face</i> #{msg.profile}</h:link></li>
+                                        <li><h:link outcome="user/cart"><i class="material-icons left">shopping_cart</i> #{msg.cart}</h:link></li>
+                                        <li><h:link outcome="user/shipments"><i class="material-icons left">monetization_on</i> #{msg.shipments}</h:link></li>
                                         <li class="divider"></li>
-                                        <li><h:link outcome="user/settings"><i class="material-icons left">settings</i> Configuración</h:link></li>
-                                        <li><h:commandLink action="#{controladorUsuarios.cerrarSesion()}"><i class="material-icons left">exit_to_app</i> Salir</h:commandLink>
+                                        <li><h:link outcome="user/settings"><i class="material-icons left">settings</i> #{msg.settings}</h:link></li>
+                                        <li><h:commandLink action="#{controladorUsuarios.cerrarSesion()}"><i class="material-icons left">exit_to_app</i> #{msg.back}</h:commandLink>
                                         </li>                                
                                     </ul>   
                                 </li>
@@ -119,54 +119,54 @@
             <div class="container">
                 <div class="row">
                     <div class="col l6 s12">
-                        <h5 class="white-text">SIGPE</h5>
-                        <p class="grey-text text-lighten-4">Es un sistema dedicado a la empresa ENAR LTDA de Colombia.</p>
+                        <h5 class="white-text">#{msg.SIGPE}</h5>
+                        <p class="grey-text text-lighten-4">#{msg.footerText}</p>
                     </div>
                     <div class="col l4 offset-l2 s12">
                         <h5 class="white-text">Links</h5>
                         <ul>
-                            <li><h:link class="grey-text text-lighten-3" outcome="index">Inicio</h:link></li>
-                            <li><h:link class="grey-text text-lighten-3" outcome="aboutUs">¿Quiénes Somos?</h:link></li>
-                            <li><h:link class="grey-text text-lighten-3" outcome="view">Visión</h:link></li>
-                            <li><h:link class="grey-text text-lighten-3" outcome="mission">Misión</h:link></li>
-                            <li><h:link class="grey-text text-lighten-3" outcome="products">Productos</h:link></li>
-                            <li><h:link class="grey-text text-lighten-3" outcome="contact">Contáctenos</h:link></li>
-                            <li><h:link class="grey-text text-lighten-3" outcome="register">Registrarse</h:link></li>
+                            <li><h:link class="grey-text text-lighten-3" outcome="index">#{msg.inicio}</h:link></li>
+                            <li><h:link class="grey-text text-lighten-3" outcome="aboutUs">#{msg.aboutUs}</h:link></li>
+                            <li><h:link class="grey-text text-lighten-3" outcome="view">#{msg.view}</h:link></li>
+                            <li><h:link class="grey-text text-lighten-3" outcome="mission">#{msg.mission}</h:link></li>
+                            <li><h:link class="grey-text text-lighten-3" outcome="products">#{msg.products}</h:link></li>
+                            <li><h:link class="grey-text text-lighten-3" outcome="contact">#{msg.contact}</h:link></li>
+                            <li><h:link class="grey-text text-lighten-3" outcome="register">#{msg.register}</h:link></li>
                         </ul>
                     </div>
                 </div>
             </div>
             <div class="footer-copyright">
                 <div class="container">
-                    Colombia -Copyright © 2015 Diseñado por Yared Nicolas Toro - All Rights Reserved
-                    <a class="grey-text text-lighten-4 right" href="#!">Don't click here </a>
+                    #{msg.copyright}
+                    <h:link class="grey-text text-lighten-4 right">#{msg.dontClick}</h:link>
                 </div>
             </div>
         </footer>
         <!-- Modal Sesion -->
         <div id="sesion" class="modal black-transparent">
             <div class="modal-content">
-                <h4 class="white-text">Iniciar Sesión</h4>
+                <h4 class="white-text">#{msg.sigIn}</h4>
                 <div class="row">
                     <h:form id="login" class="col s12 ">
                         <div class="row white-text center">
                             <div class="input-field col s10">
                                 <i class="material-icons prefix">email</i>
                                 <input id="mail" type="email" class="validate" name="email" required="true"/>
-                                <label for="icon_prefix" id="campo1" data-error="el campo es invalido">E-mail</label>
+                                <label for="icon_prefix" id="campo1" data-error="el campo es invalido">#{msg.mail}</label>
                             </div>
                             <div class="input-field col s10">
                                 <i class="material-icons prefix">lock</i>
                                 <input id="icon_telephone" type="password" class="validate" name="password" required="true"/>
-                                <label for="icon_telephone">Contraseña</label>
+                                <label for="icon_telephone">#{msg.password}</label>
                             </div>
                             <h:commandButton action="#{controladorUsuarios.iniciarSesion()}" type="submit" class="waves-effect waves-purple btn red" value="Entrar "></h:commandButton>
                         </div>
                         <div class="row center white-text">
                             ¿Aún no tienes cuenta?<br/>
-                            <h:link outcome="register">Regístrate Ahora</h:link>
+                            <h:link outcome="register">#{msg.registerNow}</h:link>
                             <br/>
-                            <h:link outcome="resetCount" class="white-text">¿No puees acceder a tu cuenta?</h:link>
+                            <h:link outcome="resetCount" class="white-text">#{msg.dontAccessCount}</h:link>
                         </div>
                         <div class="row inactive #{controladorUsuarios.tipoMensaje}">
                             <div class="chip col s10 red white-text">
