@@ -9,7 +9,7 @@ import javax.persistence.metamodel.CollectionAttribute;
 import javax.persistence.metamodel.SingularAttribute;
 import javax.persistence.metamodel.StaticMetamodel;
 
-@Generated(value="EclipseLink-2.5.2.v20140319-rNA", date="2016-04-02T18:51:06")
+@Generated(value="EclipseLink-2.5.2.v20140319-rNA", date="2016-04-02T21:04:05")
 @StaticMetamodel(Carrito.class)
 public class Carrito_ { 
 

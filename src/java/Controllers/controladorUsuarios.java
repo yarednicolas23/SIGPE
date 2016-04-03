@@ -110,7 +110,7 @@ public class controladorUsuarios implements Serializable {
         return ec;
     }
 
-    //Metodo para autentificar la sesion y los permisos del usuario
+    //Metodo para autentificar la sesion y los permisos del administrador
     public void autentificar() {
         HttpServletRequest sr = (HttpServletRequest) traerDatos().getRequest();
         if (sr.getSession().getAttribute("admin") == null) {
@@ -120,7 +120,16 @@ public class controladorUsuarios implements Serializable {
             }
         }
     }
-
+    //Metodo para autentificar la sesion y los permisos del usuario
+    public void autentificarUser() {
+        HttpServletRequest sr = (HttpServletRequest) traerDatos().getRequest();
+        if (sr.getSession().getAttribute("user") == null) {
+            try {
+                traerDatos().redirect("../index.xhtml");
+            } catch (Exception e) {
+            }
+        }
+    }
     //registro usuario
     public void usuarioNuevo() {
         Map datos = traerDatos().getRequestParameterMap();

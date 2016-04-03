@@ -65,6 +65,30 @@
                     </ul>
 
                     <ul id="menu" class="side-nav">
+                        <div class="inactive #{controladorUsuarios.sesionActiva}">
+                            <c:forEach var="item" items="#{controladorUsuarios.usuarioSesion}">
+                                <li class="admin-details cyan darken-2">
+                                    <div class="row">
+                                        <div class="col col s4 m4 l4">
+                                            <img src="#{item.foto}" alt="" class="circle responsive-img valign admin-profile-image"/>
+                                        </div>
+                                        <div class="col col s8 m8 l8 white-text">                        
+                                            <a class="btn-flat dropdown-button waves-effect waves-light white-text profile-btn" >#{item.nombres}</a>
+                                            <h6>#{item.rol}</h6>
+                                        </div>
+                                    </div>
+                                </li>
+                                <li><h:link outcome="user/profile"><i class="material-icons left">face</i> #{msg.profile}</h:link></li>
+                                <li><h:link outcome="user/cart"><i class="material-icons left">shopping_cart</i> #{msg.cart}</h:link></li>
+                                <li><h:link outcome="user/shipments"><i class="material-icons left">monetization_on</i> #{msg.shipments}</h:link></li>
+                                <li class="divider"></li>
+                                <li><h:link outcome="user/settings"><i class="material-icons left">settings</i> #{msg.settings}</h:link></li>
+                                <li>
+                                    <h:commandLink action="#{controladorUsuarios.cerrarSesion()}"><i class="material-icons left">exit_to_app</i> #{msg.back}</h:commandLink>
+                                </li>
+                                <li class="divider"></li>
+                            </c:forEach>
+                        </div>
                         <li><h:link  outcome="index">Inicio</h:link></li>
                         <li>
                             <a class='dropdown-button' href='#' data-activates='quienesM'>#{msg.aboutUs}</a>
@@ -77,31 +101,6 @@
                         <li><h:link outcome="contact">#{msg.products}</h:link></li>
                         <li class="#{controladorUsuarios.inactive}">
                             <a class="modal-trigger" href="#sesion">#{msg.sigIn}</a>
-                        </li>                    
-                        <li class="inactive #{controladorUsuarios.sesionActiva}">
-                            <c:forEach var="item" items="#{controladorUsuarios.usuarioSesion}">
-                                <li class="activate">            
-                                    <a class='dropdown-button' data-activates='profileM'>                           
-                                        <i class="material-icons md-5">
-                                            <img src="#{item.foto}" class="responsive-img circle user-profile-image"/> 
-                                            arrow_drop_down
-                                        </i>
-                                    </a>
-                                    <ul id='profileM' class='dropdown-content profile'>
-                                        <li class="user-details">
-                                            <span class="white-text"><img src="#{item.foto}" class="responsive-img circle user-profile-image"/>  #{item.nombres}</span>
-                                        </li>
-                                        <li class="divider"></li>
-                                        <li><h:link outcome="user/profile"><i class="material-icons left">face</i> #{msg.profile}</h:link></li>
-                                        <li><h:link outcome="user/cart"><i class="material-icons left">shopping_cart</i> #{msg.cart}</h:link></li>
-                                        <li><h:link outcome="user/shipments"><i class="material-icons left">monetization_on</i> #{msg.shipments}</h:link></li>
-                                        <li class="divider"></li>
-                                        <li><h:link outcome="user/settings"><i class="material-icons left">settings</i> #{msg.settings}</h:link></li>
-                                        <li><h:commandLink action="#{controladorUsuarios.cerrarSesion()}"><i class="material-icons left">exit_to_app</i> #{msg.back}</h:commandLink>
-                                        </li>                                
-                                    </ul>   
-                                </li>
-                            </c:forEach>
                         </li>
                     </ul>
                     <a href="#" data-activates="menu" class="button-collapse"><i class="material-icons">menu</i></a>

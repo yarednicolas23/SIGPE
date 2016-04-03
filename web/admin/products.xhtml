@@ -8,284 +8,117 @@ and open the template in the editor.
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:h="http://xmlns.jcp.org/jsf/html"
       xmlns:c="http://xmlns.jcp.org/jsp/jstl/core"
-      xmlns:f="http://xmlns.jcp.org/jsf/core">
-    <head>
-        <title>Productos</title>
-        <meta charset="UTF-8"/>
-        <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-        <!--Favicon-->
-        <link rel="shortcut icon" href="../img/faviconD.png" />
-        <!--Import Google Icon Font-->
-        <link href="http://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet"/>
-        <!--Import materialize.css-->
-        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.5/css/materialize.min.css" />
-        <link rel="stylesheet" type="text/css" href="../css/estilos.css"/>
-    </head>
-    <style type="text/css">
-        body{
-            margin-right: 0%;
-            margin-left: 0%;
-        }
-    </style>
-    #{controladorUsuarios.autentificar()}
-    <h:body>
-        <h:form>
-            <c:forEach var="item" items="#{controladorUsuarios.usuarioSesion}">
-                <!--Navbar-->
-                <nav class="navbar-fixed blue-grey darken-2">
-                    <div class="nav-wrapper container">
-                        <a href="index.html" class="brand-logo">Panel De Control</a>
-                        <ul id="nav-mobile" class="right hide-on-med-and-down">
-                            <li>            
-                                <a class='dropdown-button' data-activates='notif'>
-                                    <i class="material-icons">notifications_none</i>
-                                </a>
-                                <ul id='notif' class='dropdown-content notification'>              
-                                    <ul class="collection">
-                                        <li class="collection-item avatar">
-                                            <i class="material-icons circle green">assessment</i>
-                                            <span class="title">Title</span>
-                                            <p>First Line <br/> Second Line </p>
-                                            <a href="#!" class="secondary-content"><i class="material-icons">grade</i></a>
-                                        </li>
-                                    </ul>           
-                                </ul>            
-                            </li>
-                            <li>
-                                <a class='dropdown-button' data-activates='message'><i class="material-icons">comment</i>
-                                </a>
-                                <ul id='message' class='dropdown-content notification'>              
-                                    <ul class="collection">
-                                        <li class="collection-item avatar">
-                                            <i class="material-icons circle red">play_arrow</i>
-                                            <span class="title">Title</span>
-                                            <p>First Line <br/> Second Line </p>
-                                            <a href="#!" class="secondary-content"><i class="material-icons">grade</i></a>
-                                        </li>
-                                    </ul>           
-                                </ul>              
-                            </li>
-                        </ul>
-                        <ul id="menu" class="side-nav">
-                            <li class="admin-details cyan darken-2">
-                                <div class="row">
-                                    <div class="col col s4 m4 l4">
-                                        <img src="#{item.foto}" alt="" class="circle responsive-img valign admin-profile-image"/>
-                                    </div>
-                                    <div class="col col s8 m8 l8 white-text">                        
-                                        <a class="btn-flat dropdown-button waves-effect waves-light white-text profile-btn" >#{item.nombres}</a>
-                                        <h6>#{item.rol}</h6>
-                                    </div>
-                                </div>
-                            </li>
-                            <li>
-                                <a href="index.xhtml" class="waves-effect waves-cyan"><i class="material-icons">home</i> Inicio</a>
-                            </li>
-                            <li class="active">
-                                <a href="products.xhtml" class="waves-effect waves-cyan"><i class="material-icons">style</i> Productos</a>
-                            </li>
-                            <li>
-                                <a href="orders.html" class="waves-effect waves-cyan"><i class="material-icons">monetization_on</i> Pedidos</a>
-                            </li>
-                            <li>
-                                <a href="shipments.html" class="waves-effect waves-cyan"><i class="material-icons">local_shipping</i> Envíos</a>
-                            </li>
-                            <li class="li-hover">
-                                <div class="divider"></div>
-                            </li>
-                            <li><a href="profile.html"><i class="material-icons">face</i> Perfil</a>
-                            </li>
-                            <li><a href="settings.html"><i class="material-icons">settings</i> Configuración</a>
-                            </li>
-                            <li><a><i class="material-icons">exit_to_app</i>   Cerrar Sesión</a>
-                            </li>        
-                        </ul>
-                        <a href="#" data-activates="menu" class="button-collapse"><i class="material-icons">menu</i></a>
-                    </div>
-                </nav>
-                <!--end of NavBar-->
-                <!--side navbar-->
-                <div class="row">
-                    <ul id="side-out" class="side-nav inherit hide-on-med-and-down left">
-                        <li class="admin-details cyan darken-2">
-                            <div class="row">
-                                <div class="col col s4 m4 l4">
-                                    <img src="#{item.foto}" alt="" class="circle responsive-img valign admin-profile-image"/>
-                                </div>
-                                <div class="col col s8 m8 l8 white-text">                        
-                                    <a class="btn-flat dropdown-button waves-effect waves-light white-text profile-btn" >#{item.nombres}</a>
-                                    <h6>#{item.rol}</h6>
-                                </div>
-                            </div>
-                        </li>
-                        <li>
-                            <a href="index.xhtml" class="waves-effect waves-cyan"><i class="material-icons">home</i> Inicio</a>
-                        </li>
-                        <li class="active">
-                            <a href="products.xhtml" class="waves-effect waves-cyan"><i class="material-icons">style</i> Productos</a>
-                        </li>
-                        <li class="bold">
-                            <a href="orders.html" class="waves-effect waves-cyan"><i class="material-icons">monetization_on</i> Pedidos</a>
-                        </li>
-                        <li class="bold">
-                            <a href="shipments.html" class="waves-effect waves-cyan"><i class="material-icons">local_shipping</i> Envíos</a>
-                        </li>
-                        <li class="li-hover">
-                            <div class="divider"></div>
-                        </li>
-                        <li><a href="profile.html"><i class="material-icons">face</i> Perfil</a>
-                        </li>
-                        <li><a href="settings.html"><i class="material-icons">settings</i> Configuración</a>
-                        </li>
-                        <li>
-                            <h:commandLink action="#{controladorUsuarios.cerrarSesion()}"><i class="material-icons">exit_to_app</i>Cerrar Sesión</h:commandLink>
-                        </li>
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
+    <ui:composition template="templateAdmin.xhtml">
+        <ui:define name="titulo">#{msg.products}</ui:define>
+        <ui:define name="editableArea">
+            <!--Editable Area-->
+            <div class="row">
+                <div class="col s12 m9 red-text">
+                    <ul class="tabs">
+                        <li class="tab col s3"><a class="active"  href="#productos">#{msg.products}</a></li>
+                        <li class="tab col s3"><a href="#crear">Crear producto</a></li>
+                        <li class="tab col s3 disabled"><a href="#ofertas">Ofertas</a></li>
                     </ul>
-
-                    <!--Editable Area-->
-                    <div class="row">
-                        <div class="col s12 m9 red-text">
-                            <ul class="tabs">
-                                <li class="tab col s3"><a class="active"  href="#productos">Productos</a></li>
-                                <li class="tab col s3"><a href="#crear">Crear producto</a></li>
-                                <li class="tab col s3 disabled"><a href="#ofertas">Ofertas</a></li>
-                            </ul>
-                        </div>
-                        <div id="productos" class="col s12 m9">
-                            <!--Products List-->
-                            <div class="row">
-                                <c:forEach items="#{controladorProductos.listaProductos()}" var="listaProductos">
-                                    <div class="col s12 m4">
-                                        <div class="card">
-                                            <div class="card-image waves-effect waves-block waves-light">
-                                                <a href="#" class="btn-floating btn-large btn-price waves-effect waves-light  pink accent-2">$#{listaProductos.precio}</a>
-                                                <img class="activator" src="#{listaProductos.foto}"/>
-                                            </div>
-                                            <ul class="card-action-buttons">
-                                                <li><a class="btn-floating waves-effect waves-light green accent-4"><i class="material-icons">add_shopping_cart</i></a>
-                                                </li>
-                                                <li>
-                                                    <a class="btn-floating waves-effect waves-light red accent-2 tooltipped" data-position="top" data-delay="50" data-tooltip="❤ 100">
-                                                        <i class="material-icons">favorite</i>
-                                                    </a>
-                                                </li>
-                                                <li><a class="btn-floating waves-effect waves-light light-blue"><i class="material-icons activator">info</i></a>
-                                                </li>
-                                            </ul>
-                                            <div class="card-content">
-                                                <span class="card-title grey-text text-darken-4">#{listaProductos.nombre}</span>           
-                                            </div>
-                                            <div class="card-reveal">
-                                                <span class="card-title grey-text text-darken-4">#{listaProductos.nombre}<i class="material-icons right">close</i></span>
-                                                <p>#{listaProductos.descripcion}
-                                                    <a href="#">Ver más...</a>
-                                                </p>
-                                            </div>
-                                        </div>
-                                    </div>                                
-                                </c:forEach>
-                            </div>
-                            <!-- end of Products List-->
-                        </div>
-                        <div id="crear" class="col s12 m9">
-                            <div class="row">
-                                <div class="col s12">
-                                    <h3>Crear Producto</h3>
-                                    <div class="row">
-                                        <div class="input-field col s12">
-                                            <i class="material-icons prefix">style</i>
-                                            <input type="text" class="validate" name="nombreP" required=""/>
-                                            <label for="nombreP" data-error="el campo es invalido">Nombre del Producto</label>
-                                        </div>
-                                    </div>
-                                    <div class="row">
-                                        <div class="input-field col s12">
-                                            <i class="material-icons prefix">attach_money</i>
-                                            <input name="precio" type="text" class="validate" required=""/>
-                                            <label for="precio" data-error="El campo es invalido">Precio por Unidad</label>
-                                        </div>
-                                    </div>
-                                    <div class="row">
-                                        <div class="input-field col s12">
-                                            <i class="material-icons prefix">description</i>
-                                            <textarea name="descripcion" class="materialize-textarea"></textarea>
-                                            <label for="descripcion">Descripcion</label>
-                                        </div>
-                                    </div>                          
-                                    <div class="row">
-                                        <div class="input-field col s12">
-                                            <i class="material-icons prefix">format_list_numbered</i>
-                                            <input name="cantidad" type="number" class="validate" pattern="[0-9]{1,10}" title="El campo debe ser llenado con menos de 10 digitos" required=""/>
-                                            <label for="cantidad">Cantidad</label>
-                                        </div>
-                                    </div>
-                                    <div class="row">
-                                        <div class="file-field input-field">
-                                            <div class="btn">
-                                                <span>Foto</span>
-                                                <input name="foto" type="file"/>
-                                            </div>
-                                            <div class="file-path-wrapper">
-                                                <input class="file-path validate" type="text"/>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="row">
-                                        <div class="col s12 center">
-                                            <h:commandButton class="waves-effect waves-red btn blue accent-4" value="Crear" action="#{controladorProductos.crearProducto()}"></h:commandButton>
-                                            <h:commandLink action="#{controladorProductos.c()}" value="Crear"></h:commandLink>
-                                        </div>
-                                    </div>
-                                    <div class="row inactive #{controladorProductos.tipoMensaje}">
-                                        <div class="chip col s10 red white-text">
-                                            <img src="http://wpwarriors.com/wp-content/uploads/2015/10/c7e54cbbe843e27256fe82466009ab87.png" alt="Contact Person"></img>
-                                            #{controladorProductos.mensaje}
-                                            <i class="material-icons">close</i>
-                                        </div>
-                                    </div>
-                                </div>                                
-                            </div>
-                        </div>
-                        <div id="ofertas" class="col s12 m9">Test 3</div>
-                    </div>
-                    <!--End of Editable Area-->
                 </div>
-                <!--end of side navbar-->
-                <footer class="page-footer blue-grey darken-2">
-                    <div class="container">
-                        <div class="row">
-                            <div class="col l6 s12">
-                                <h5 class="white-text">SIGPE</h5>
-                                <p class="grey-text text-lighten-4">Es un sistema dedicado a la empresa ENAR LTDA de Colombia.</p>
-                            </div>
-                            <div class="col l4 offset-l2 s12">
-                                <h5 class="white-text">Links</h5>
-                                <ul>
-                                    <li><a class="grey-text text-lighten-3" href="index.html">Inicio</a></li>
-                                    <li><a class="grey-text text-lighten-3" href="products.html">Productos</a></li>
-                                    <li><a class="grey-text text-lighten-3" href="orders.html">Pedidos</a></li>
-                                    <li><a class="grey-text text-lighten-3" href="shipments.html">Envios</a></li>
-                                    <li><a class="grey-text text-lighten-3" href="profile.html">Perfil</a></li>
-                                    <li><a class="grey-text text-lighten-3" href="settings.html">Configuración</a></li>
-                                </ul>
-                            </div>
-                        </div>
+                <div id="productos" class="col s12 m9">
+                    <!--Products List-->
+                    <div class="row">
+                        <c:forEach items="#{controladorProductos.listaProductos()}" var="listaProductos">
+                            <div class="col s12 m4">
+                                <div class="card">
+                                    <div class="card-image waves-effect waves-block waves-light">
+                                        <a href="#" class="btn-floating btn-large btn-price waves-effect waves-light  pink accent-2">$#{listaProductos.precio}</a>
+                                        <img class="activator" src="#{listaProductos.foto}"/>
+                                    </div>
+                                    <ul class="card-action-buttons">
+                                        <li><a class="btn-floating waves-effect waves-light green accent-4"><i class="material-icons">add_shopping_cart</i></a>
+                                        </li>
+                                        <li>
+                                            <a class="btn-floating waves-effect waves-light red accent-2 tooltipped" data-position="top" data-delay="50" data-tooltip="❤ 100">
+                                                <i class="material-icons">favorite</i>
+                                            </a>
+                                        </li>
+                                        <li><a class="btn-floating waves-effect waves-light light-blue"><i class="material-icons activator">info</i></a>
+                                        </li>
+                                    </ul>
+                                    <div class="card-content">
+                                        <span class="card-title grey-text text-darken-4">#{listaProductos.nombre}</span>           
+                                    </div>
+                                    <div class="card-reveal">
+                                        <span class="card-title grey-text text-darken-4">#{listaProductos.nombre}<i class="material-icons right">close</i></span>
+                                        <p>#{listaProductos.descripcion}
+                                            <a href="#">#{msg.seeMore}</a>
+                                        </p>
+                                    </div>
+                                </div>
+                            </div>                                
+                        </c:forEach>
                     </div>
-                    <div class="footer-copyright">
-                        <div class="container">
-                            Colombia -Copyright © 2015 Diseñado por Yared Nicolas Toro - All Rights Reserved
-                            <a class="grey-text text-lighten-4 right" href="#!">Don't click here </a>
-                        </div>
+                    <!-- end of Products List-->
+                </div>
+                <div id="crear" class="col s12 m9">
+                    <div class="row">
+                        <div class="col s12">
+                            <h3>Crear Producto</h3>
+                            <div class="row">
+                                <div class="input-field col s12">
+                                    <i class="material-icons prefix">style</i>
+                                    <input type="text" class="validate" name="nombreP" required=""/>
+                                    <label for="nombreP" data-error="el campo es invalido">Nombre del Producto</label>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="input-field col s12">
+                                    <i class="material-icons prefix">attach_money</i>
+                                    <input name="precio" type="text" class="validate" required=""/>
+                                    <label for="precio" data-error="El campo es invalido">Precio por Unidad</label>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="input-field col s12">
+                                    <i class="material-icons prefix">description</i>
+                                    <textarea name="descripcion" class="materialize-textarea"></textarea>
+                                    <label for="descripcion">Descripcion</label>
+                                </div>
+                            </div>                          
+                            <div class="row">
+                                <div class="input-field col s12">
+                                    <i class="material-icons prefix">format_list_numbered</i>
+                                    <input name="cantidad" type="number" class="validate" pattern="[0-9]{1,10}" title="El campo debe ser llenado con menos de 10 digitos" required=""/>
+                                    <label for="cantidad">Cantidad</label>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="file-field input-field">
+                                    <div class="btn">
+                                        <span>Foto</span>
+                                        <input name="foto" type="file"/>
+                                    </div>
+                                    <div class="file-path-wrapper">
+                                        <input class="file-path validate" type="text"/>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col s12 center">
+                                    <h:commandButton class="waves-effect waves-red btn blue accent-4" value="Crear" action="#{controladorProductos.crearProducto()}"></h:commandButton>
+                                    <h:commandLink action="#{controladorProductos.c()}" value="Crear"></h:commandLink>
+                                </div>
+                            </div>
+                            <div class="row inactive #{controladorProductos.tipoMensaje}">
+                                <div class="chip col s10 red white-text">
+                                    <img src="http://wpwarriors.com/wp-content/uploads/2015/10/c7e54cbbe843e27256fe82466009ab87.png" alt="Contact Person"></img>
+                                    #{controladorProductos.mensaje}
+                                    <i class="material-icons">close</i>
+                                </div>
+                            </div>
+                        </div>                                
                     </div>
-                </footer>
-            </c:forEach>
-        </h:form>
-
-        <!--Import jQuery before materialize.js-->
-        <script type="text/javascript" src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
-        <script type="text/javascript" src="http://materializecss.com/bin/materialize.js"></script>
-        <script type="text/javascript" src="http://www.chartjs.org/assets/Chart.min.js"></script>
-        <script type="text/javascript" src="../js/resources.js"></script>
-        <script type="text/javascript" src="js/graphics.js"></script>
-    </h:body>
+                </div>
+                <div id="ofertas" class="col s12 m9">Test 3</div>
+            </div>
+            <!--End of Editable Area-->
+        </ui:define>
+    </ui:composition>
 </html>

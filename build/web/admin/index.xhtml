@@ -7,243 +7,77 @@ and open the template in the editor.
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:h="http://xmlns.jcp.org/jsf/html"
-      xmlns:c="http://xmlns.jcp.org/jsp/jstl/core">
-    <head>
-        <title>Panel de Control</title>
-        <meta charset="UTF-8"/>
-        <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-        <!--Favicon-->
-        <link rel="shortcut icon" href="../img/faviconD.png" />
-        <!--Import Google Icon Font-->
-        <link href="http://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet"/>
-        <!--Import materialize.css-->
-        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.5/css/materialize.min.css" />
-        <link rel="stylesheet" type="text/css" href="../css/estilos.css"/>
-    </head>
-    <style type="text/css">
-        body{
-            margin-right: 0%;
-            margin-left: 0%;
-        }
-    </style>
-    #{controladorUsuarios.autentificar()}
-    <h:body>
-        <h:form>
-            <c:forEach var="item" items="#{controladorUsuarios.usuarioSesion}">
-                <!--Navbar-->
-                <nav class="navbar-fixed blue-grey darken-2">
-                    <div class="nav-wrapper container">
-                        <a href="index.xhtml" class="brand-logo">Panel De Control</a>
-                        <ul id="nav-mobile" class="right hide-on-med-and-down">
-                            <li>            
-                                <a class='dropdown-button' data-activates='notif'>
-                                    <i class="material-icons">notifications_none</i>
-                                </a>
-                                <ul id='notif' class='dropdown-content notification'>              
-                                    <ul class="collection">
-                                        <li class="collection-item avatar">
-                                            <i class="material-icons circle green">assessment</i>
-                                            <span class="title">Title</span>
-                                            <p>First Line <br/> Second Line </p>
-                                            <a href="#!" class="secondary-content"><i class="material-icons">grade</i></a>
-                                        </li>
-                                    </ul>           
-                                </ul>            
-                            </li>
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
+
+    <ui:composition template="templateAdmin.xhtml">
+        <ui:define name="titulo">#{msg.dashboard}</ui:define>
+        <ui:define name="editableArea">
+            <!--Editable Area-->
+            <div class="row">
+                <!--Cards of graphics-->
+                <div class="col s12 m6">
+                    <div class="card">
+                        <div class="card-image waves-effect waves-block waves-light">
+                            <div class="blue-grey darken-2">
+                                <div id="canvas-holder">
+                                    <canvas id="grafico" class="activator" width="600px" height="300px"></canvas>
+                                </div>
+                            </div>
+                        </div>
+                        <ul class="card-action-buttons">
                             <li>
-                                <a class='dropdown-button' data-activates='message'><i class="material-icons">comment</i>
-                                </a>
-                                <ul id='message' class='dropdown-content notification'>              
-                                    <ul class="collection">
-                                        <li class="collection-item avatar">
-                                            <i class="material-icons circle red">play_arrow</i>
-                                            <span class="title">Title</span>
-                                            <p>First Line <br/> Second Line </p>
-                                            <a href="#!" class="secondary-content"><i class="material-icons">grade</i></a>
-                                        </li>
-                                    </ul>           
-                                </ul>              
+                                <a class="btn-floating waves-effect waves-light pink"><i class="material-icons activator">info_outline</i></a>
                             </li>
                         </ul>
-                        <ul id="menu" class="side-nav">
-                            <li class="admin-details cyan darken-2">
-                                <div class="row">
-                                    <div class="col col s4 m4 l4">
-                                        <img src="#{item.foto}" alt="" class="circle responsive-img valign admin-profile-image"/>
-                                    </div>
-                                    <div class="col col s8 m8 l8 white-text">                        
-                                        <a class="btn-flat dropdown-button waves-effect waves-light white-text profile-btn" >#{item.nombres}</a>
-                                        <h6>#{item.rol}</h6>
-                                    </div>
-                                </div>
-                            </li>
-                            <li class="active">
-                                <a href="index.xhtml" class="waves-effect waves-cyan"><i class="material-icons">home</i> Inicio</a>
-                            </li>
-                            <li class="bold">
-                                <a href="products.xhtml" class="waves-effect waves-cyan"><i class="material-icons">style</i> Productos</a>
-                            </li>
-                            <li class="bold">
-                                <a href="orders.xhtml" class="waves-effect waves-cyan"><i class="material-icons">monetization_on</i> Pedidos</a>
-                            </li>
-                            <li class="bold">
-                                <a href="shipments.xhtml" class="waves-effect waves-cyan"><i class="material-icons">local_shipping</i> Envíos</a>
-                            </li>
-                            <li class="li-hover">
-                                <div class="divider"></div>
-                            </li>
-                            <li><a href="profile.xhtml"><i class="material-icons">face</i> Perfil</a>
-                            </li>
-                            <li><a href="settings.xhtml"><i class="material-icons">settings</i> Configuración</a>
-                            </li>
-                            <li><a><i class="material-icons">exit_to_app</i>   Cerrar Sesión</a>
-                            </li>        
-                        </ul>
-                        <a href="#" data-activates="menu" class="button-collapse"><i class="material-icons">menu</i></a>
-                    </div>
-                </nav>
-                <!--end of NavBar-->
-                <!--side navbar-->
-                <div class="row">
-                    <ul id="side-out" class="side-nav inherit hide-on-med-and-down left">
-                        <li class="admin-details cyan darken-2">
-                            <div class="row">
-                                <div class="col col s4 m4 l4">
-                                    <img src="#{item.foto}" alt="" class="circle responsive-img valign admin-profile-image"/>
-                                </div>
-                                <div class="col col s8 m8 l8 white-text">                        
-                                    <a class="btn-flat dropdown-button waves-effect waves-light white-text profile-btn" >#{item.nombres}</a>
-                                    <h6>#{item.rol}</h6>
-                                </div>
-                            </div>
-                        </li>
-                        <li class="active">
-                            <a href="index.xhtml" class="waves-effect waves-cyan"><i class="material-icons">home</i> Inicio</a>
-                        </li>
-                        <li class="bold">
-                            <a href="products.xhtml" class="waves-effect waves-cyan"><i class="material-icons">style</i> Productos</a>
-                        </li>
-                        <li class="bold">
-                            <a href="orders.xhtml" class="waves-effect waves-cyan"><i class="material-icons">monetization_on</i> Pedidos</a>
-                        </li>
-                        <li class="bold">
-                            <a href="shipments.xhtml" class="waves-effect waves-cyan"><i class="material-icons">local_shipping</i> Envíos</a>
-                        </li>
-                        <li class="li-hover">
-                            <div class="divider"></div>
-                        </li>
-                        <li><a href="profile.xhtml"><i class="material-icons">face</i> Perfil</a>
-                        </li>
-                        <li><a href="settings.xhtml"><i class="material-icons">settings</i> Configuración</a>
-                        </li>
-                        <li>
-                            <h:commandLink action="#{controladorUsuarios.cerrarSesion()}"><i class="material-icons">exit_to_app</i>Cerrar Sesión</h:commandLink>
-                        </li>
-                    </ul>
-
-                    <!--Editable Area-->
-                    <div class="row">
-                        <!--Cards of graphics-->
-                        <div class="col s12 m6">
-                            <div class="card">
-                                <div class="card-image waves-effect waves-block waves-light">
-                                    <div class="blue-grey darken-2">
-                                        <div id="canvas-holder">
-                                            <canvas id="grafico" class="activator" width="600px" height="300px"></canvas>
-                                        </div>
-                                    </div>
-                                </div>
-                                <ul class="card-action-buttons">
-                                    <li>
-                                        <a class="btn-floating waves-effect waves-light pink"><i class="material-icons activator">info_outline</i></a>
-                                    </li>
-                                </ul>
-                                <div class="card-content blue-grey darken-4 white-text">
-                                    <span class="card-title">Reporte de Pedidos</span>
-                                    <p><i class="material-icons red-text">brightness_1</i> Pedidos</p>
-                                </div>
-                                <div class="card-reveal blue-grey darken-4 white-text">
-                                    <span class="card-title ">Card Title<i class="material-icons right">close</i></span>
-                                    <p>Here is some more information about this product that is only revealed once clicked on.</p>
-                                </div>
-                            </div>
+                        <div class="card-content blue-grey darken-4 white-text">
+                            <span class="card-title">#{msg.reportShipments}</span>
+                            <p><i class="material-icons red-text">brightness_1</i> #{msg.shipments}</p>
                         </div>
-                        <div class="col s12 m3">
-                            <div class="card">
-                                <div class="card-image waves-effect waves-block waves-light">
-                                    <div class="teal">
-                                        <div id="canvas-holder">
-                                            <canvas id="grafico2" class="activator" width="300px" height="300px"></canvas>
-                                        </div>
-                                    </div>
-                                </div>
-                                <ul class="card-action-buttons">
-                                    <li>
-                                        <a class="btn-floating waves-effect waves-light pink"><i class="material-icons activator">info_outline</i></a>
-                                    </li>
-                                </ul>
-                                <div class="card-content teal darken-3 white-text">
-                                    <span class="card-title">Stock de Productos</span>
-                                    <div id="canvas-holder">             
-                                        <div class="row">
-                                            <div class="col s7">
-                                                <h6><i class="material-icons red-text">brightness_1</i> Pegante</h6>
-                                                <h6><i class="material-icons indigo-text">brightness_1</i> Vinilo</h6>
-                                                <h6><i class="material-icons orange-text">brightness_1</i> PVA</h6>
-                                                <h6><i class="material-icons white-text">brightness_1</i> Esmalte</h6>
-                                                <h6><i class="material-icons grey-text">brightness_1</i> Estuco</h6>
-                                                <h6><i class="material-icons green-text">brightness_1</i> Anticorrosivo</h6>
-                                            </div>
-                                            <canvas id="grafico3" class="activator right" width="100px" height="200px"></canvas>
-                                        </div>             
-                                    </div>
-                                </div>
-                                <div class="card-reveal teal darken-3 white-text">
-                                    <span class="card-title ">Card Title<i class="material-icons right">close</i></span>
-                                    <p>Here is some more information about this product that is only revealed once clicked on.</p>
-                                </div>
-                            </div>
-                        </div>      
-                        <!--End of Cards of graphics-->
+                        <div class="card-reveal blue-grey darken-4 white-text">
+                            <span class="card-title ">#{msg.reportShipments}<i class="material-icons right">close</i></span>
+                            <p>Here is some more information about this product that is only revealed once clicked on.</p>
+                        </div>
                     </div>
-                    <!--End of Editable Area-->
                 </div>
-                <!--end of side navbar-->
-                <footer class="page-footer blue-grey darken-2">
-                    <div class="container">
-                        <div class="row">
-                            <div class="col l6 s12">
-                                <h5 class="white-text">SIGPE</h5>
-                                <p class="grey-text text-lighten-4">Es un sistema dedicado a la empresa ENAR LTDA de Colombia.</p>
-                            </div>
-                            <div class="col l4 offset-l2 s12">
-                                <h5 class="white-text">Links</h5>
-                                <ul>
-                                    <li><a class="grey-text text-lighten-3" href="index.html">Inicio</a></li>
-                                    <li><a class="grey-text text-lighten-3" href="products.html">Productos</a></li>
-                                    <li><a class="grey-text text-lighten-3" href="orders.html">Pedidos</a></li>
-                                    <li><a class="grey-text text-lighten-3" href="shipments.html">Envios</a></li>
-                                    <li><a class="grey-text text-lighten-3" href="profile.html">Perfil</a></li>
-                                    <li><a class="grey-text text-lighten-3" href="settings.html">Configuración</a></li>
-                                </ul>
+                <div class="col s12 m3">
+                    <div class="card">
+                        <div class="card-image waves-effect waves-block waves-light">
+                            <div class="teal">
+                                <div id="canvas-holder">
+                                    <canvas id="grafico2" class="activator" width="300px" height="300px"></canvas>
+                                </div>
                             </div>
                         </div>
-                    </div>
-                    <div class="footer-copyright">
-                        <div class="container">
-                            Colombia -Copyright © 2015 Diseñado por Yared Nicolas Toro - All Rights Reserved
-                            <a class="grey-text text-lighten-4 right" href="#!">Don't click here </a>
+                        <ul class="card-action-buttons">
+                            <li>
+                                <a class="btn-floating waves-effect waves-light pink"><i class="material-icons activator">info_outline</i></a>
+                            </li>
+                        </ul>
+                        <div class="card-content teal darken-3 white-text">
+                            <span class="card-title">#{msg.stockProducts}</span>
+                            <div id="canvas-holder">             
+                                <div class="row">
+                                    <div class="col s7">
+                                        <h6><i class="material-icons red-text">brightness_1</i> #{msg.pegante}</h6>
+                                        <h6><i class="material-icons indigo-text">brightness_1</i> #{msg.vinilo}</h6>
+                                        <h6><i class="material-icons orange-text">brightness_1</i> #{msg.pva}</h6>
+                                        <h6><i class="material-icons white-text">brightness_1</i> #{msg.esmalte}</h6>
+                                        <h6><i class="material-icons grey-text">brightness_1</i> #{msg.estuco}</h6>
+                                        <h6><i class="material-icons green-text">brightness_1</i> #{msg.anticorrosivo}</h6>
+                                    </div>
+                                    <canvas id="grafico3" class="activator right" width="100px" height="200px"></canvas>
+                                </div>             
+                            </div>
+                        </div>
+                        <div class="card-reveal teal darken-3 white-text">
+                            <span class="card-title ">#{msg.stockProducts}<i class="material-icons right">close</i></span>
+                            <p>Here is some more information about this product that is only revealed once clicked on.</p>
                         </div>
                     </div>
-                </footer>
-            </c:forEach>
-        </h:form>
-
-        <!--Import jQuery before materialize.js-->
-        <script type="text/javascript" src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
-        <script type="text/javascript" src="http://materializecss.com/bin/materialize.js"></script>
-        <script type="text/javascript" src="http://www.chartjs.org/assets/Chart.min.js"></script>
-        <script type="text/javascript" src="../js/resources.js"></script>
-        <script type="text/javascript" src="js/graphics.js"></script>
-    </h:body>
+                </div>      
+                <!--End of Cards of graphics-->
+            </div>
+            <!--End of Editable Area-->
+        </ui:define>
+    </ui:composition>
 </html>

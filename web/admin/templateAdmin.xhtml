@@ -34,7 +34,7 @@ and open the template in the editor.
                 <!--Navbar-->
                 <nav class="navbar-fixed blue-grey darken-2">
                     <div class="nav-wrapper container">
-                        <a href="index.xhtml" class="brand-logo">Panel De Control</a>
+                        <h:link outcome="index" class="brand-logo">#{msg.dashboard}</h:link>
                         <ul id="nav-mobile" class="right hide-on-med-and-down">
                             <li>            
                                 <a class='dropdown-button' data-activates='notif'>
@@ -78,26 +78,29 @@ and open the template in the editor.
                                     </div>
                                 </div>
                             </li>
-                            <li class="active">
-                                <a href="index.xhtml" class="waves-effect waves-cyan"><i class="material-icons">home</i> Inicio</a>
+                            <li>
+                                <h:link outcome="index" class="waves-effect waves-cyan"><i class="material-icons">home</i> #{msg.inicio}</h:link>
                             </li>
-                            <li class="bold">
-                                <a href="products.xhtml" class="waves-effect waves-cyan"><i class="material-icons">style</i> Productos</a>
+                            <li>
+                                <h:link outcome="products" class="waves-effect waves-cyan"><i class="material-icons">style</i> #{msg.products}</h:link>
                             </li>
-                            <li class="bold">
-                                <a href="orders.xhtml" class="waves-effect waves-cyan"><i class="material-icons">monetization_on</i> Pedidos</a>
+                            <li>
+                                <h:link outcome="orders" class="waves-effect waves-cyan"><i class="material-icons">monetization_on</i> #{msg.shipments}</h:link>
                             </li>
-                            <li class="bold">
-                                <a href="shipments.xhtml" class="waves-effect waves-cyan"><i class="material-icons">local_shipping</i> Envíos</a>
+                            <li>
+                                <h:link outcome="shipments" class="waves-effect waves-cyan"><i class="material-icons">local_shipping</i> #{msg.sends}</h:link>
                             </li>
                             <li class="li-hover">
                                 <div class="divider"></div>
                             </li>
-                            <li><a href="profile.xhtml"><i class="material-icons">face</i> Perfil</a>
+                            <li>
+                                <h:link outcome="profile"><i class="material-icons">face</i> #{msg.profile}</h:link>
                             </li>
-                            <li><a href="settings.xhtml"><i class="material-icons">settings</i> Configuración</a>
+                            <li>
+                                <h:link outcome="settings.xhtml"><i class="material-icons">settings</i> #{msg.settings}</h:link>
                             </li>
-                            <li><a><i class="material-icons">exit_to_app</i>   Cerrar Sesión</a>
+                            <li>
+                                <h:commandLink action="#{controladorUsuarios.cerrarSesion()}"><i class="material-icons">exit_to_app</i>#{msg.back}</h:commandLink>>
                             </li>        
                         </ul>
                         <a href="#" data-activates="menu" class="button-collapse"><i class="material-icons">menu</i></a>
@@ -118,95 +121,34 @@ and open the template in the editor.
                                 </div>
                             </div>
                         </li>
-                        <li class="active">
-                            <a href="index.xhtml" class="waves-effect waves-cyan"><i class="material-icons">home</i> Inicio</a>
+                        <li>
+                            <h:link outcome="index" class="waves-effect waves-cyan"><i class="material-icons">home</i> #{msg.inicio}</h:link>
                         </li>
-                        <li class="bold">
-                            <a href="products.xhtml" class="waves-effect waves-cyan"><i class="material-icons">style</i> Productos</a>
+                        <li>
+                            <h:link outcome="products" class="waves-effect waves-cyan"><i class="material-icons">style</i> #{msg.products}</h:link>
                         </li>
-                        <li class="bold">
-                            <a href="orders.xhtml" class="waves-effect waves-cyan"><i class="material-icons">monetization_on</i> Pedidos</a>
+                        <li>
+                            <h:link outcome="orders" class="waves-effect waves-cyan"><i class="material-icons">monetization_on</i> #{msg.shipments}</h:link>
                         </li>
-                        <li class="bold">
-                            <a href="shipments.xhtml" class="waves-effect waves-cyan"><i class="material-icons">local_shipping</i> Envíos</a>
+                        <li>
+                            <h:link outcome="shipments" class="waves-effect waves-cyan"><i class="material-icons">local_shipping</i> #{msg.sends}</h:link>
                         </li>
                         <li class="li-hover">
                             <div class="divider"></div>
                         </li>
-                        <li><a href="profile.xhtml"><i class="material-icons">face</i> Perfil</a>
+                        <li><h:link outcome="profile"><i class="material-icons">face</i> #{msg.profile}</h:link>
                         </li>
-                        <li><a href="settings.xhtml"><i class="material-icons">settings</i> Configuración</a>
+                        <li><h:link outcome="settings"><i class="material-icons">settings</i> #{msg.settings}</h:link>
                         </li>
                         <li>
-                            <h:commandLink action="#{controladorUsuarios.cerrarSesion()}"><i class="material-icons">exit_to_app</i>Cerrar Sesión</h:commandLink>
+                            <h:commandLink action="#{controladorUsuarios.cerrarSesion()}"><i class="material-icons">exit_to_app</i>#{msg.back}</h:commandLink>
                         </li>
                     </ul>
 
                     <!--Editable Area-->
-                    <div class="row">
-                        <!--Cards of graphics-->
-                        <div class="col s12 m6">
-                            <div class="card">
-                                <div class="card-image waves-effect waves-block waves-light">
-                                    <div class="blue-grey darken-2">
-                                        <div id="canvas-holder">
-                                            <canvas id="grafico" class="activator" width="600px" height="300px"></canvas>
-                                        </div>
-                                    </div>
-                                </div>
-                                <ul class="card-action-buttons">
-                                    <li>
-                                        <a class="btn-floating waves-effect waves-light pink"><i class="material-icons activator">info_outline</i></a>
-                                    </li>
-                                </ul>
-                                <div class="card-content blue-grey darken-4 white-text">
-                                    <span class="card-title">Reporte de Pedidos</span>
-                                    <p><i class="material-icons red-text">brightness_1</i> Pedidos</p>
-                                </div>
-                                <div class="card-reveal blue-grey darken-4 white-text">
-                                    <span class="card-title ">Card Title<i class="material-icons right">close</i></span>
-                                    <p>Here is some more information about this product that is only revealed once clicked on.</p>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col s12 m3">
-                            <div class="card">
-                                <div class="card-image waves-effect waves-block waves-light">
-                                    <div class="teal">
-                                        <div id="canvas-holder">
-                                            <canvas id="grafico2" class="activator" width="300px" height="300px"></canvas>
-                                        </div>
-                                    </div>
-                                </div>
-                                <ul class="card-action-buttons">
-                                    <li>
-                                        <a class="btn-floating waves-effect waves-light pink"><i class="material-icons activator">info_outline</i></a>
-                                    </li>
-                                </ul>
-                                <div class="card-content teal darken-3 white-text">
-                                    <span class="card-title">Stock de Productos</span>
-                                    <div id="canvas-holder">             
-                                        <div class="row">
-                                            <div class="col s7">
-                                                <h6><i class="material-icons red-text">brightness_1</i> Pegante</h6>
-                                                <h6><i class="material-icons indigo-text">brightness_1</i> Vinilo</h6>
-                                                <h6><i class="material-icons orange-text">brightness_1</i> PVA</h6>
-                                                <h6><i class="material-icons white-text">brightness_1</i> Esmalte</h6>
-                                                <h6><i class="material-icons grey-text">brightness_1</i> Estuco</h6>
-                                                <h6><i class="material-icons green-text">brightness_1</i> Anticorrosivo</h6>
-                                            </div>
-                                            <canvas id="grafico3" class="activator right" width="100px" height="200px"></canvas>
-                                        </div>             
-                                    </div>
-                                </div>
-                                <div class="card-reveal teal darken-3 white-text">
-                                    <span class="card-title ">Card Title<i class="material-icons right">close</i></span>
-                                    <p>Here is some more information about this product that is only revealed once clicked on.</p>
-                                </div>
-                            </div>
-                        </div>      
-                        <!--End of Cards of graphics-->
-                    </div>
+                    <ui:insert name="editableArea">
+                        
+                    </ui:insert>
                     <!--End of Editable Area-->
                 </div>
                 <!--end of side navbar-->
@@ -214,26 +156,26 @@ and open the template in the editor.
                     <div class="container">
                         <div class="row">
                             <div class="col l6 s12">
-                                <h5 class="white-text">SIGPE</h5>
-                                <p class="grey-text text-lighten-4">Es un sistema dedicado a la empresa ENAR LTDA de Colombia.</p>
+                                <h5 class="white-text">#{msg.SIGPE}</h5>
+                                <p class="grey-text text-lighten-4">#{msg.footerText}</p>
                             </div>
                             <div class="col l4 offset-l2 s12">
                                 <h5 class="white-text">Links</h5>
                                 <ul>
-                                    <li><a class="grey-text text-lighten-3" href="index.html">Inicio</a></li>
-                                    <li><a class="grey-text text-lighten-3" href="products.html">Productos</a></li>
-                                    <li><a class="grey-text text-lighten-3" href="orders.html">Pedidos</a></li>
-                                    <li><a class="grey-text text-lighten-3" href="shipments.html">Envios</a></li>
-                                    <li><a class="grey-text text-lighten-3" href="profile.html">Perfil</a></li>
-                                    <li><a class="grey-text text-lighten-3" href="settings.html">Configuración</a></li>
+                                    <li><h:link class="grey-text text-lighten-3" outcome="index">#{msg.inicio}</h:link></li>
+                                    <li><h:link class="grey-text text-lighten-3" outcome="products">#{msg.products}</h:link></li>
+                                    <li><h:link class="grey-text text-lighten-3" outcome="orders">#{msg.sends}</h:link></li>
+                                    <li><h:link class="grey-text text-lighten-3" outcome="shipments">#{msg.shipments}</h:link></li>
+                                    <li><h:link class="grey-text text-lighten-3" outcome="profile">#{msg.profile}</h:link></li>
+                                    <li><h:link class="grey-text text-lighten-3" outcome="settings">#{msg.settings}</h:link></li>
                                 </ul>
                             </div>
                         </div>
                     </div>
                     <div class="footer-copyright">
                         <div class="container">
-                            Colombia -Copyright © 2015 Diseñado por Yared Nicolas Toro - All Rights Reserved
-                            <a class="grey-text text-lighten-4 right" href="#!">Don't click here </a>
+                            #{msg.copyright}
+                            <h:link class="grey-text text-lighten-4 right">#{msg.dontClick}</h:link>
                         </div>
                     </div>
                 </footer>
@@ -242,7 +184,7 @@ and open the template in the editor.
 
         <!--Import jQuery before materialize.js-->
         <script type="text/javascript" src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
-        <script type="text/javascript" src="http://materializecss.com/bin/materialize.js"></script>
+        <script type="text/javascript" src="../js/materialize.js"></script>
         <script type="text/javascript" src="http://www.chartjs.org/assets/Chart.min.js"></script>
         <script type="text/javascript" src="../js/resources.js"></script>
         <script type="text/javascript" src="js/graphics.js"></script>
