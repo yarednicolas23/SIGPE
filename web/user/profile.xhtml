@@ -12,7 +12,80 @@ and open the template in the editor.
     <ui:composition template="template.xhtml">
         <ui:define name="titulo">#{msg.profile}</ui:define>
         <ui:define name="editableZone">
-            
+            <h:form>
+                <div class="row">
+                    <div class="col s12 m8">
+                        <c:forEach var="user" items="#{controladorUsuarios.usuarioSesion}">
+                            <div id="profile-card" class="card">
+                                <div class="card-image waves-effect waves-block waves-light">
+                                    <img class="card-img-admin" src="https://lh3.googleusercontent.com/-rc9pPa-qxrg/Vfeafd1ZAgI/AAAAAAAAoBY/fHzzJoRDLQA/w1600-h900/sandiegonight.png" alt="user bg"/>
+                                </div>
+                                <div class="card-content">
+                                    <img src="../#{user.foto}" alt="" class="circle responsive-img activator card-profile-image"/>
+
+                                    <a class="btn-floating activator btn-move-up waves-effect waves-light darken-2 right">
+                                        <i class="mdi-editor-mode-edit"></i>
+                                    </a>
+
+                                    <span class="card-title grey-text text-darken-4"><i class="material-icons">face</i> #{user.nombres} #{user.apellidos}</span>
+
+                                </div>
+                                <div class="card-reveal">
+                                    <span class="card-title grey-text text-darken-4">#{auserdmin.rol}
+                                        <a class="btn-floating activator btn-move-up waves-effect waves-light red right">
+                                            <i class="material-icons">close</i>
+                                        </a>
+                                    </span>
+                                    <div class="input-field col s10">
+                                        <i class="material-icons prefix">fingerprint</i>                                    
+                                        <h:inputText class="validate" value="#{user.cedula}" disabled="true"></h:inputText>
+                                        <label for="icon_prefix" data-error="el campo es invalido">Cedula</label>
+                                    </div>                                
+                                    <div class="input-field col s10">
+                                        <i class="material-icons prefix">mail_outline</i>                                    
+                                        <h:inputText class="validate" value="#{user.correo}"></h:inputText>
+                                        <label for="icon_prefix" data-error="el campo es invalido">Correo</label>
+                                    </div>
+                                    <div class="input-field col s10">
+                                        <i class="material-icons prefix">face</i>                                    
+                                        <h:inputText class="validate" value="#{user.nombres}"></h:inputText>
+                                        <label for="icon_prefix" data-error="el campo es invalido">Nombre</label>
+                                    </div>
+                                    <div class="input-field col s10">
+                                        <i class="material-icons prefix">person </i>                                    
+                                        <h:inputText class="validate" value="#{user.apellidos}"></h:inputText>
+                                        <label for="icon_prefix" data-error="el campo es invalido">Apellidos</label>
+                                    </div>
+                                    <div class="input-field col s10">
+                                        <select name="#{user.sexo}">
+                                            <option value="" disabled="" selected="">Choose your option</option>
+                                            <option value="1">Femenino</option>
+                                            <option value="2">Masculino</option>
+                                        </select>
+                                        <label>Sexo</label>
+                                    </div>
+                                    <div class="input-field col s10">
+                                        <i class="material-icons prefix">phone_iphone</i>                                    
+                                        <h:inputText class="validate" value="#{user.telefono}"></h:inputText>
+                                        <label for="icon_prefix" data-error="el campo es invalido">Telefono</label>
+                                    </div>
+                                    <div class="input-field col s10">
+                                        <i class="material-icons prefix">lock</i>
+                                        <h:inputText class="validate" required="" value="#{user.contrasena}"></h:inputText>
+                                        <label for="icon_telephone" data-success="El campo es correcto">Contraseña</label>
+                                    </div>
+                                    <div class="input-field col s10">
+                                        <i class="material-icons prefix">person_outline</i>                                    
+                                        <h:inputText class="validate" value="#{user.rol}" disabled="true"></h:inputText>
+                                        <label for="icon_prefix" data-error="el campo es invalido">Rol</label>
+                                    </div>                                
+                                    <h:commandLink action="#{controladorUsuarios.editarUsuario(user)}" class="waves-effect waves-light btn pink" value="Editar"><i class="material-icons left">edit</i></h:commandLink>
+                                </div>
+                            </div>
+                        </c:forEach>
+                    </div>
+                </div>
+            </h:form>
         </ui:define>
     </ui:composition>
 </html>

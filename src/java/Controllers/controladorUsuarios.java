@@ -7,16 +7,26 @@ package Controllers;
 
 import Entities.Usuario;
 import Facades.UsuarioFacade;
+import java.io.File;
+import java.io.IOException;
 import javax.inject.Named;
 import javax.enterprise.context.SessionScoped;
 import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import javax.ejb.EJB;
 import javax.faces.context.ExternalContext;
 import javax.faces.context.FacesContext;
+import javax.servlet.ServletOutputStream;
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import net.sf.jasperreports.engine.JRException;
+import net.sf.jasperreports.engine.JasperExportManager;
+import net.sf.jasperreports.engine.JasperFillManager;
+import net.sf.jasperreports.engine.JasperPrint;
+import net.sf.jasperreports.engine.data.JRBeanCollectionDataSource;
 
 /**
  *
@@ -120,6 +130,7 @@ public class controladorUsuarios implements Serializable {
             }
         }
     }
+
     //Metodo para autentificar la sesion y los permisos del usuario
     public void autentificarUser() {
         HttpServletRequest sr = (HttpServletRequest) traerDatos().getRequest();
@@ -130,6 +141,7 @@ public class controladorUsuarios implements Serializable {
             }
         }
     }
+
     //registro usuario
     public void usuarioNuevo() {
         Map datos = traerDatos().getRequestParameterMap();
@@ -176,6 +188,7 @@ public class controladorUsuarios implements Serializable {
                 if (listaUser.get(i).getRol().equals("Administrador")) {
                     sr.getSession().setAttribute("admin", listaUser);
                     usuarioSesion = (List<Usuario>) sr.getSession().getAttribute("admin");
+                    scriptMensaje = "";
                     try {
                         traerDatos().redirect("admin/index.xhtml");
                     } catch (Exception e) {
@@ -185,7 +198,8 @@ public class controladorUsuarios implements Serializable {
                     sr.getSession().setAttribute("user", listaUser);
                     usuarioSesion = (List<Usuario>) sr.getSession().getAttribute("user");
                     sesionActiva = "activate";
-                    inactive="inactive";
+                    inactive = "inactive";
+                    scriptMensaje = "";
                     try {
                         traerDatos().redirect("index.xhtml");
                     } catch (Exception e) {
@@ -196,6 +210,14 @@ public class controladorUsuarios implements Serializable {
                 mensaje = "¡Error! La contraseña no coincide";
                 scriptMensaje = "$('#sesion').openModal();";
             }
+        }
+    }
+
+    public void editarUsuario(Usuario u) {
+        userFacade.edit(u);
+        try {
+            traerDatos().redirect("profile.xhtml");
+        } catch (Exception e) {
         }
     }
 
@@ -217,5 +239,23 @@ public class controladorUsuarios implements Serializable {
             } catch (Exception e) {
             }
         }
+    }
+    // Reportes
+
+    public void exportarPDF() throws JRException, IOException {
+        
+        Map<String, Object> parametros = new HashMap<String, Object>();
+        parametros.put("txtA", "Yared");
+        File jasper = new File(FacesContext.getCurrentInstance().getExternalContext().getRealPath("reportes/report1.jasper"));
+        JasperPrint jp = JasperFillManager.fillReport(jasper.getPath(), parametros, new JRBeanCollectionDataSource(userFacade.findAll()));
+
+        HttpServletResponse response = (HttpServletResponse) FacesContext.getCurrentInstance().getExternalContext().getResponse();
+        response.addHeader("Content-disposition", "attachment; filename=reporteUsuarios.pdf");
+        ServletOutputStream stream = response.getOutputStream();
+
+        JasperExportManager.exportReportToPdfStream(jp, stream);
+        stream.flush();
+        stream.close();
+        FacesContext.getCurrentInstance().responseComplete();
     }
 }

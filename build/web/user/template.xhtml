@@ -11,9 +11,9 @@
         <!--Favicon-->
         <link rel="shortcut icon" href="../img/favicon.png" />
         <!--Import Google Icon Font-->
-        <link href="http://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet"/>
+        <link href="../css/icon.css" rel="stylesheet"/>
         <!--Import materialize.css-->
-        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.5/css/materialize.min.css" />
+        <link rel="stylesheet" href="../css/materialize.css" />
         <link rel="stylesheet" type="text/css" href="../css/estilos.css"/>
         <ui:insert name="estilos"></ui:insert>
     </h:head>
@@ -51,12 +51,11 @@
                                         <li class="user-details">
                                             <span class="white-text"><img src="../#{item.foto}" class="responsive-img circle user-profile-image"/>  #{item.nombres}</span>
                                         </li>
-                                        <li class="divider"></li>
-                                        <li><h:link outcome="profile"><i class="material-icons left">face</i> #{msg.profile}</h:link></li>
+                                        <li class="divider"></li>                                        
                                         <li><h:link outcome="cart"><i class="material-icons left">shopping_cart</i> #{msg.cart}</h:link></li>
                                         <li><h:link outcome="shipments"><i class="material-icons left">monetization_on</i> #{msg.shipments}</h:link></li>
                                         <li class="divider"></li>
-                                        <li><h:link outcome="settings"><i class="material-icons left">settings</i> #{msg.settings}</h:link></li>
+                                        <li><h:link outcome="profile"><i class="material-icons left">face</i> #{msg.profile}</h:link></li>                                        
                                         <li><h:commandLink action="#{controladorUsuarios.cerrarSesion()}"><i class="material-icons left">exit_to_app</i> #{msg.back}</h:commandLink>
                                         </li>                                
                                     </ul>   
@@ -79,11 +78,11 @@
                                         </div>
                                     </div>
                                 </li>
-                                <li><h:link outcome="profile"><i class="material-icons left">face</i> #{msg.profile}</h:link></li>
+                                
                                 <li><h:link outcome="cart"><i class="material-icons left">shopping_cart</i> #{msg.cart}</h:link></li>
                                 <li><h:link outcome="shipments"><i class="material-icons left">monetization_on</i> #{msg.shipments}</h:link></li>
                                 <li class="divider"></li>
-                                <li><h:link outcome="settings"><i class="material-icons left">settings</i> #{msg.settings}</h:link></li>
+                                <li><h:link outcome="profile"><i class="material-icons left">face</i> #{msg.profile}</h:link></li>                                
                                 <li>
                                     <h:commandLink action="#{controladorUsuarios.cerrarSesion()}"><i class="material-icons left">exit_to_app</i> #{msg.back}</h:commandLink>
                                 </li>
@@ -216,11 +215,14 @@
         <!--end of collapsible shopping cart-->
 
         <!--Import jQuery before materialize.js-->
-        <script type="text/javascript" src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
+        <script type="text/javascript" src="../js/jquery-2.1.1.min.js"></script>
         <script type="text/javascript" src="../js/materialize.js"></script>
         <script type="text/javascript" src="../js/resources.js"></script>
-        <script type="text/javascript">
+        <script type="text/javascript">            
             #{controladorUsuarios.scriptMensaje}
         </script>
+        <ui:insert name="script">
+            
+        </ui:insert>
     </h:body>
 </html>

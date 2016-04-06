@@ -6,9 +6,12 @@
 package Facades;
 
 import Entities.Carrito;
+import Entities.Usuario;
+import java.util.List;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+import javax.persistence.Query;
 
 /**
  *
@@ -29,4 +32,9 @@ public class CarritoFacade extends AbstractFacade<Carrito> {
         super(Carrito.class);
     }
     
+    public List<Carrito> listaPorCedula(Usuario u){
+        Query q = em.createNativeQuery("select * from carrito where cedula=?", Carrito.class);
+        q.setParameter(1, u.getCedula());
+        return q.getResultList();
+    }
 }
