@@ -272,3 +272,16 @@ footer.page-footer {
 ::-webkit-scrollbar-thumb:window-inactive {
     background: transparent;
 }
+::selection { 
+          background:rgba(238, 52, 52, 0.58); 
+          color:#fff; 
+} 
+::-webkit-selection { 
+          background:rgba(238, 52, 52, 0.58); 
+          color:#fff; 
+}
+
+::-moz-selection {
+          background:rgba(238, 52, 52, 0.58);
+          color:#fff;
+}

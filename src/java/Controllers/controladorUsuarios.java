@@ -5,6 +5,7 @@
  */
 package Controllers;
 
+import Entities.Rol;
 import Entities.Usuario;
 import Facades.UsuarioFacade;
 import java.io.File;
@@ -19,15 +20,7 @@ import java.util.Map;
 import javax.ejb.EJB;
 import javax.faces.context.ExternalContext;
 import javax.faces.context.FacesContext;
-import javax.servlet.ServletOutputStream;
 import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
-import net.sf.jasperreports.engine.JRException;
-import net.sf.jasperreports.engine.JasperExportManager;
-import net.sf.jasperreports.engine.JasperFillManager;
-import net.sf.jasperreports.engine.JasperPrint;
-import net.sf.jasperreports.engine.data.JRBeanCollectionDataSource;
-
 /**
  *
  * @author HP PAVILION X360
@@ -37,6 +30,7 @@ import net.sf.jasperreports.engine.data.JRBeanCollectionDataSource;
 public class controladorUsuarios implements Serializable {
 
     Usuario user = new Usuario();
+    Rol rol = new Rol();
 
     List<Usuario> listaUser = new ArrayList<>();
     List<Usuario> usuarioSesion = new ArrayList<>();
@@ -113,6 +107,16 @@ public class controladorUsuarios implements Serializable {
         this.inactive = inactive;
     }
 
+    public Usuario getUser() {
+        return user;
+    }
+
+    public void setUser(Usuario user) {
+        this.user = user;
+    }
+    
+    
+
     //Metodo para traer el ExternalContext y Mapear los datos.
     public ExternalContext traerDatos() {
         FacesContext fc = FacesContext.getCurrentInstance();
@@ -153,7 +157,8 @@ public class controladorUsuarios implements Serializable {
         user.setSexo("" + datos.get("sexo"));
         user.setTelefono(Long.parseLong("" + datos.get("telefono")));
         user.setContrasena("" + datos.get("clave"));
-        user.setRol("1");
+        rol.setIdRol(1);
+        user.setRol(rol);
         user.setFoto("img/profile/avatar.png");
         userFacade.create(user);
     }
@@ -185,7 +190,7 @@ public class controladorUsuarios implements Serializable {
         }
         for (int i = 0; i < listaUser.size(); i++) {
             if (listaUser.get(i).getContrasena().equals("" + d.get("password"))) {
-                if (listaUser.get(i).getRol().equals("Administrador")) {
+                if (listaUser.get(i).getRol().getIdRol() == 2) {
                     sr.getSession().setAttribute("admin", listaUser);
                     usuarioSesion = (List<Usuario>) sr.getSession().getAttribute("admin");
                     scriptMensaje = "";
@@ -194,7 +199,7 @@ public class controladorUsuarios implements Serializable {
                     } catch (Exception e) {
                     }
                 }
-                if (listaUser.get(i).getRol().equals("Cliente")) {
+                if (listaUser.get(i).getRol().getIdRol() == 1) {
                     sr.getSession().setAttribute("user", listaUser);
                     usuarioSesion = (List<Usuario>) sr.getSession().getAttribute("user");
                     sesionActiva = "activate";
@@ -210,6 +215,14 @@ public class controladorUsuarios implements Serializable {
                 mensaje = "¡Error! La contraseña no coincide";
                 scriptMensaje = "$('#sesion').openModal();";
             }
+        }
+    }
+    
+    public void idUsuarioEdit(int id){
+        user= userFacade.find(id);
+        try {
+            
+        } catch (Exception e) {
         }
     }
 
@@ -240,22 +253,10 @@ public class controladorUsuarios implements Serializable {
             }
         }
     }
-    // Reportes
-
-    public void exportarPDF() throws JRException, IOException {
-        
-        Map<String, Object> parametros = new HashMap<String, Object>();
-        parametros.put("txtA", "Yared");
-        File jasper = new File(FacesContext.getCurrentInstance().getExternalContext().getRealPath("reportes/report1.jasper"));
-        JasperPrint jp = JasperFillManager.fillReport(jasper.getPath(), parametros, new JRBeanCollectionDataSource(userFacade.findAll()));
-
-        HttpServletResponse response = (HttpServletResponse) FacesContext.getCurrentInstance().getExternalContext().getResponse();
-        response.addHeader("Content-disposition", "attachment; filename=reporteUsuarios.pdf");
-        ServletOutputStream stream = response.getOutputStream();
-
-        JasperExportManager.exportReportToPdfStream(jp, stream);
-        stream.flush();
-        stream.close();
-        FacesContext.getCurrentInstance().responseComplete();
+    
+    
+    public List<Usuario> listaUsersAll(){
+        return userFacade.findAll();
     }
+    
 }

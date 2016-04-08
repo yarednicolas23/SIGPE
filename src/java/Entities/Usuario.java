@@ -6,16 +6,22 @@
 package Entities;
 
 import java.io.Serializable;
+import java.math.BigInteger;
+import java.util.Collection;
 import javax.persistence.Basic;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 import javax.xml.bind.annotation.XmlRootElement;
+import javax.xml.bind.annotation.XmlTransient;
 
 /**
  *
@@ -33,7 +39,6 @@ import javax.xml.bind.annotation.XmlRootElement;
     @NamedQuery(name = "Usuario.findBySexo", query = "SELECT u FROM Usuario u WHERE u.sexo = :sexo"),
     @NamedQuery(name = "Usuario.findByTelefono", query = "SELECT u FROM Usuario u WHERE u.telefono = :telefono"),
     @NamedQuery(name = "Usuario.findByContrasena", query = "SELECT u FROM Usuario u WHERE u.contrasena = :contrasena"),
-    @NamedQuery(name = "Usuario.findByRol", query = "SELECT u FROM Usuario u WHERE u.rol = :rol"),
     @NamedQuery(name = "Usuario.findByFoto", query = "SELECT u FROM Usuario u WHERE u.foto = :foto")})
 public class Usuario implements Serializable {
 
@@ -46,39 +51,34 @@ public class Usuario implements Serializable {
     @Size(max = 40)
     @Column(name = "correo")
     private String correo;
-    @Size(max = 80)
+    @Size(max = 40)
     @Column(name = "Nombres")
     private String nombres;
-    @Size(max = 80)
+    @Size(max = 40)
     @Column(name = "Apellidos")
     private String apellidos;
     @Size(max = 9)
     @Column(name = "sexo")
     private String sexo;
-    @Basic(optional = false)
-    @NotNull
     @Column(name = "telefono")
     private long telefono;
     @Size(max = 40)
     @Column(name = "contrasena")
     private String contrasena;
-    @Size(max = 13)
-    @Column(name = "Rol")
-    private String rol;
     @Size(max = 40)
     @Column(name = "foto")
     private String foto;
+    @JoinColumn(name = "Rol", referencedColumnName = "idRol")
+    @ManyToOne
+    private Rol rol;
+    @OneToMany(mappedBy = "cedula")
+    private Collection<Carrito> carritoCollection;
 
     public Usuario() {
     }
 
     public Usuario(Long cedula) {
         this.cedula = cedula;
-    }
-
-    public Usuario(Long cedula, long telefono) {
-        this.cedula = cedula;
-        this.telefono = telefono;
     }
 
     public Long getCedula() {
@@ -137,20 +137,29 @@ public class Usuario implements Serializable {
         this.contrasena = contrasena;
     }
 
-    public String getRol() {
-        return rol;
-    }
-
-    public void setRol(String rol) {
-        this.rol = rol;
-    }
-
     public String getFoto() {
         return foto;
     }
 
     public void setFoto(String foto) {
         this.foto = foto;
+    }
+
+    public Rol getRol() {
+        return rol;
+    }
+
+    public void setRol(Rol rol) {
+        this.rol = rol;
+    }
+
+    @XmlTransient
+    public Collection<Carrito> getCarritoCollection() {
+        return carritoCollection;
+    }
+
+    public void setCarritoCollection(Collection<Carrito> carritoCollection) {
+        this.carritoCollection = carritoCollection;
     }
 
     @Override

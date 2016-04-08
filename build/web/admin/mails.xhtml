@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:c="http://xmlns.jcp.org/jsp/jstl/core"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+    <head>
+        <title>TODO supply a title</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    </head>
+    <ui:composition template="templateAdmin.xhtml">
+        <ui:define name="titulo">Correos Masivos</ui:define>
+        <ui:define name="editableArea">
+
+            <div id="crear" class="col s12 m9">
+                <div class="row">
+                    <div class="col s12">
+                        <h3>Correo</h3>
+                       
+                        <div class="row">
+                            <div class="input-field col s12">
+                                <i class="material-icons prefix">comment</i>
+                                <h:inputText class="validate" required="" id="asunto" value="#{correo.subject}"/>
+                                <label for="asunto" data-error="el campo es invalido">Asunto</label>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="input-field col s12">
+                                <i class="material-icons prefix">mode_edit</i>
+                                <h:inputTextarea class="materialize-textarea" id="mensaje" value="#{correo.message}"></h:inputTextarea>
+                                <label for="mensaje">Mensaje</label>
+                            </div>
+                        </div>  
+
+                     
+                        <div class="row">
+                            <div class="col s12 center">
+                                <h:commandButton class="waves-effect waves-red btn blue accent-4" value="Enviar Correo" action="#{correo.send()}"></h:commandButton>
+
+                            </div>
+                        </div>
+                    </div>                                
+                </div>
+            </div>
+        </ui:define>
+    </ui:composition>    
+</html>

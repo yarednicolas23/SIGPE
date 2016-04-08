@@ -1,79 +1,105 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="null" pageWidth="842" pageHeight="595" orientation="Landscape" columnWidth="802" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="21b6509a-d228-48af-a718-4832a5a6790d">
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="null" pageWidth="842" pageHeight="595" orientation="Landscape" columnWidth="802" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="eafc0901-00ef-4807-aa0e-a1714cbc1abb">
 	<property name="ireport.zoom" value="1.0"/>
 	<property name="ireport.x" value="0"/>
 	<property name="ireport.y" value="0"/>
-	<field name="cedula" class="java.lang.Long"/>
-	<field name="correo" class="java.lang.String"/>
-	<field name="nombres" class="java.lang.String"/>
-	<field name="apellidos" class="java.lang.String"/>
-	<field name="sexo" class="java.lang.String"/>
-	<field name="telefono" class="java.lang.Long"/>
-	<field name="contrasena" class="java.lang.String"/>
-	<field name="rol" class="java.lang.String"/>
-	<field name="foto" class="java.lang.String"/>
+	<queryString language="SQL">
+		<![CDATA[SELECT
+     usuario.`cedula` AS usuario_cedula,
+     usuario.`correo` AS usuario_correo,
+     usuario.`Nombres` AS usuario_Nombres,
+     usuario.`Apellidos` AS usuario_Apellidos,
+     usuario.`sexo` AS usuario_sexo,
+     usuario.`telefono` AS usuario_telefono,
+     usuario.`contrasena` AS usuario_contrasena,
+     usuario.`Rol` AS usuario_Rol,
+     usuario.`foto` AS usuario_foto,
+     rol.`idRol` AS rol_idRol,
+     rol.`rol` AS rol_rol
+FROM
+     `rol` rol INNER JOIN `usuario` usuario ON rol.`idRol` = usuario.`Rol`]]>
+	</queryString>
+	<field name="usuario_cedula" class="java.lang.Long"/>
+	<field name="usuario_correo" class="java.lang.String"/>
+	<field name="usuario_Nombres" class="java.lang.String"/>
+	<field name="usuario_Apellidos" class="java.lang.String"/>
+	<field name="usuario_sexo" class="java.lang.String"/>
+	<field name="usuario_telefono" class="java.lang.Long"/>
+	<field name="usuario_contrasena" class="java.lang.String"/>
+	<field name="usuario_Rol" class="java.lang.Integer"/>
+	<field name="usuario_foto" class="java.lang.String"/>
+	<field name="rol_idRol" class="java.lang.Integer"/>
+	<field name="rol_rol" class="java.lang.String"/>
 	<background>
 		<band splitType="Stretch"/>
 	</background>
 	<title>
-		<band height="65" splitType="Stretch"/>
+		<band height="79" splitType="Stretch">
+			<staticText>
+				<reportElement mode="Opaque" x="12" y="12" width="761" height="52" forecolor="#FFFFFF" backcolor="#FF3333" uuid="c42fbb69-64d0-446b-824a-66e20ae7478e"/>
+				<textElement>
+					<font size="18"/>
+				</textElement>
+				<text><![CDATA[Sistema de Información de Pedidos y Envíos SIPGE- Reporte Usuarios registrados]]></text>
+			</staticText>
+		</band>
 	</title>
 	<pageHeader>
-		<band height="22" splitType="Stretch"/>
+		<band height="6" splitType="Stretch"/>
 	</pageHeader>
 	<columnHeader>
-		<band height="33" splitType="Stretch">
+		<band height="40" splitType="Stretch">
 			<staticText>
-				<reportElement x="51" y="2" width="100" height="20" uuid="f35865ab-b793-4d9b-9694-ddcd9d8670f0"/>
-				<text><![CDATA[cedula]]></text>
+				<reportElement x="24" y="2" width="100" height="20" uuid="5bbab201-728f-4236-bb7d-354421fbbcf9"/>
+				<text><![CDATA[usuario_cedula]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="121" y="2" width="100" height="20" uuid="c1f9b817-0dc9-4311-8846-09ab7f8b1445"/>
-				<text><![CDATA[correo]]></text>
+				<reportElement x="141" y="2" width="100" height="20" uuid="22113c40-5270-4387-8cdc-d571892f0206"/>
+				<text><![CDATA[usuario_correo]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="187" y="2" width="100" height="20" uuid="f9ef0dbe-ace5-4631-bc40-e58e0ce94911"/>
-				<text><![CDATA[nombres]]></text>
+				<reportElement x="253" y="2" width="100" height="20" uuid="e67bb4be-a832-45af-8b57-08f42eea073f"/>
+				<text><![CDATA[usuario_Nombres]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="265" y="2" width="100" height="20" uuid="e17d7bce-0e13-45ab-9a45-53686e278329"/>
-				<text><![CDATA[apellidos]]></text>
+				<reportElement x="367" y="2" width="100" height="20" uuid="26ac8ea1-4f38-4778-b039-3699ed547187"/>
+				<text><![CDATA[usuario_Apellidos]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="339" y="2" width="100" height="20" uuid="751461af-0eb2-4e1a-b8f1-b7fbb9ef2353"/>
-				<text><![CDATA[contrasena]]></text>
+				<reportElement x="494" y="2" width="100" height="20" uuid="ec82e881-56f9-4ca9-9c19-5473c426fa2d"/>
+				<text><![CDATA[usuario_telefono]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="421" y="2" width="100" height="20" uuid="4e27b71a-d6f9-4ecb-9e22-3d40439b9799"/>
-				<text><![CDATA[rol]]></text>
+				<reportElement x="622" y="2" width="100" height="20" uuid="cc395de5-9259-4510-b965-b5ada8552498"/>
+				<text><![CDATA[rol_rol]]></text>
 			</staticText>
 		</band>
 	</columnHeader>
 	<detail>
-		<band height="32" splitType="Stretch">
+		<band height="29" splitType="Stretch">
 			<textField>
-				<reportElement x="51" y="12" width="100" height="20" uuid="033f83ca-152c-4a2b-bf06-62cbbbfdf070"/>
-				<textFieldExpression><![CDATA[$F{cedula}]]></textFieldExpression>
+				<reportElement x="24" y="9" width="100" height="20" uuid="552f3362-adf5-4517-aaac-dde6f3a57540"/>
+				<textFieldExpression><![CDATA[$F{usuario_cedula}]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement x="121" y="12" width="100" height="20" uuid="8759d9c4-358d-48d8-87ff-1feb5df7c0c6"/>
-				<textFieldExpression><![CDATA[$F{correo}]]></textFieldExpression>
+				<reportElement x="141" y="7" width="100" height="20" uuid="a67d40cf-f4bd-4c0b-9389-6d3b7b0c60f9"/>
+				<textFieldExpression><![CDATA[$F{usuario_correo}]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement x="187" y="12" width="100" height="20" uuid="51ac6824-c1b4-4838-9765-0b10f880e7b3"/>
-				<textFieldExpression><![CDATA[$F{nombres}]]></textFieldExpression>
+				<reportElement x="253" y="8" width="100" height="20" uuid="373543f9-510e-4b9f-917a-629c8576ecb4"/>
+				<textFieldExpression><![CDATA[$F{usuario_Nombres}]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement x="265" y="12" width="100" height="20" uuid="e4145ca7-521a-4175-89a0-b83986ede01e"/>
-				<textFieldExpression><![CDATA[$F{apellidos}]]></textFieldExpression>
+				<reportElement x="367" y="8" width="100" height="20" uuid="d77f6bcf-9bf3-4ba1-9959-8f004f859545"/>
+				<textFieldExpression><![CDATA[$F{usuario_Apellidos}]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement x="339" y="12" width="100" height="20" uuid="70b86aac-5d08-478f-b6d7-8444e6378b18"/>
-				<textFieldExpression><![CDATA[$F{contrasena}]]></textFieldExpression>
+				<reportElement x="494" y="3" width="100" height="20" uuid="ac355387-993d-4232-b4e0-60475ec0ca65"/>
+				<textFieldExpression><![CDATA[$F{usuario_telefono}]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement x="421" y="12" width="100" height="20" uuid="a439a358-8378-4803-aaeb-120b1cf199ca"/>
-				<textFieldExpression><![CDATA[$F{rol}]]></textFieldExpression>
+				<reportElement x="622" y="5" width="100" height="20" uuid="9f23d9a9-b6ad-43d6-8d44-08eaf33ee4b1"/>
+				<textFieldExpression><![CDATA[$F{rol_rol}]]></textFieldExpression>
 			</textField>
 		</band>
 	</detail>

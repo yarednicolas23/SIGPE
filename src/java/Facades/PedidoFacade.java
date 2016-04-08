@@ -6,9 +6,12 @@
 package Facades;
 
 import Entities.Pedido;
+import Entities.Usuario;
+import java.util.List;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+import javax.persistence.Query;
 
 /**
  *
@@ -29,4 +32,9 @@ public class PedidoFacade extends AbstractFacade<Pedido> {
         super(Pedido.class);
     }
     
+     public List<Pedido> listaPorCedula(Usuario u){
+        Query q = em.createNativeQuery("select * from pedido where cedula=?", Pedido.class);
+        q.setParameter(1, u.getCedula());
+        return q.getResultList();
+    }
 }

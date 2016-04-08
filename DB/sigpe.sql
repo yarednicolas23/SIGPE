@@ -3,6 +3,10 @@ create database sigpe;
 
 use sigpe;
 
+create table rol(
+	idRol int PRIMARY KEY,
+	rol varchar(40)
+)ENGINE=InnoDB;
 
 create table usuario(
 	cedula bigint PRIMARY KEY not null,
@@ -11,11 +15,13 @@ create table usuario(
 	Apellidos varchar(40),
 	sexo enum ('Femenino ','Maculino'),
 	telefono bigint,
-	clave varchar(40),
-	Rol	enum ('Cliente','Administrador'),
-	foto varchar (40)
-)ENGINE=InnoDB;
+	constrasena varchar(40),
+	Rol	int,
+	foto varchar (40),
+	FOREIGN KEY (rol) REFERENCES rol(idRol)
+    ON DELETE NO ACTION ON UPDATE CASCADE
 
+)ENGINE=InnoDB;
 
 create table producto(
 	referecia int PRIMARY KEY not null auto_increment,

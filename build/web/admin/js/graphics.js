@@ -23,29 +23,6 @@ var myLineChart = new Chart(algo).Line(ventas, {
     scaleGridLineColor: "rgba(255,255,255,0.4)"
 });
 
-
-var productos = {
-    labels: ["Pegante", "Vinilo", "Anticorrosivo", "PVA", "Esmalte", "Estuco"],
-    datasets: [
-        {
-            label: "My First dataset",
-            fillColor: "rgba(220,220,220,0.2)",
-            strokeColor: "rgba(220,220,220,1)",
-            pointColor: "rgba(220,220,220,1)",
-            pointStrokeColor: "#fff",
-            pointHighlightFill: "#fff",
-            pointHighlightStroke: "rgba(220,220,220,1)",
-            data: [10, 15, 12, 19, 3, 25]
-        },
-    ]
-};
-var ctx2 = document.getElementById("grafico2").getContext("2d");
-var myRadarChart2 = new Chart(ctx2).Radar(productos, {
-    pointLabelFontColor: "#fff",
-    pointDot: true,
-    angleLineColor: "#fff"
-});
-
 var barras = [
     {
         value: 10,

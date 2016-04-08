@@ -6,7 +6,6 @@
 package Entities;
 
 import java.io.Serializable;
-import java.util.Collection;
 import javax.persistence.Basic;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -15,12 +14,10 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
-import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 import javax.xml.bind.annotation.XmlRootElement;
-import javax.xml.bind.annotation.XmlTransient;
 
 /**
  *
@@ -37,7 +34,8 @@ import javax.xml.bind.annotation.XmlTransient;
     @NamedQuery(name = "Producto.findByDescripcion", query = "SELECT p FROM Producto p WHERE p.descripcion = :descripcion"),
     @NamedQuery(name = "Producto.findByFoto", query = "SELECT p FROM Producto p WHERE p.foto = :foto"),
     @NamedQuery(name = "Producto.findByCantidadDisponible", query = "SELECT p FROM Producto p WHERE p.cantidadDisponible = :cantidadDisponible"),
-    @NamedQuery(name = "Producto.findByEstadoProducto", query = "SELECT p FROM Producto p WHERE p.estadoProducto = :estadoProducto")})
+    @NamedQuery(name = "Producto.findByEstadoProducto", query = "SELECT p FROM Producto p WHERE p.estadoProducto = :estadoProducto"),
+    @NamedQuery(name = "Producto.findByFavoritos", query = "SELECT p FROM Producto p WHERE p.favoritos = :favoritos")})
 public class Producto implements Serializable {
 
     private static final long serialVersionUID = 1L;
@@ -64,8 +62,10 @@ public class Producto implements Serializable {
     @Size(max = 12)
     @Column(name = "estadoProducto")
     private String estadoProducto;
-    @OneToMany(mappedBy = "referecia")
-    private Collection<Pedido> pedidoCollection;
+    @Basic(optional = false)
+    @NotNull
+    @Column(name = "Favoritos")
+    private int favoritos;
 
     public Producto() {
     }
@@ -74,9 +74,10 @@ public class Producto implements Serializable {
         this.referecia = referecia;
     }
 
-    public Producto(Integer referecia, int cantidadDisponible) {
+    public Producto(Integer referecia, int cantidadDisponible, int favoritos) {
         this.referecia = referecia;
         this.cantidadDisponible = cantidadDisponible;
+        this.favoritos = favoritos;
     }
 
     public Integer getReferecia() {
@@ -135,13 +136,12 @@ public class Producto implements Serializable {
         this.estadoProducto = estadoProducto;
     }
 
-    @XmlTransient
-    public Collection<Pedido> getPedidoCollection() {
-        return pedidoCollection;
+    public int getFavoritos() {
+        return favoritos;
     }
 
-    public void setPedidoCollection(Collection<Pedido> pedidoCollection) {
-        this.pedidoCollection = pedidoCollection;
+    public void setFavoritos(int favoritos) {
+        this.favoritos = favoritos;
     }
 
     @Override

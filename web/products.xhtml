@@ -28,9 +28,9 @@ and open the template in the editor.
                                         <h:commandLink class="btn-floating waves-effect waves-light green accent-4" action="#{controladorCarrito.agregarAlCarrito(listaProductos)}"><i class="material-icons">add_shopping_cart</i></h:commandLink>
                                     </li>
                                     <li>
-                                        <a class="btn-floating waves-effect waves-light red accent-2 tooltipped" data-position="top" data-delay="50" data-tooltip="❤ 100">
-                                            <i class="material-icons">favorite</i>
-                                        </a>
+                                        <h:commandLink class="btn-floating waves-effect waves-light red accent-2" action="#{controladorProductos.favorito(listaProductos.referecia)}">
+                                            <i data-tooltip="❤ #{listaProductos.favoritos}" data-position="top"  class="material-icons tooltipped">favorite</i>
+                                        </h:commandLink>
                                     </li>
                                     <li><a class="btn-floating waves-effect waves-light light-blue"><i class="material-icons activator">info</i></a>
                                     </li>
