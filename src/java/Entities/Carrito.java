@@ -58,11 +58,13 @@ public class Carrito implements Serializable {
     private String estadoPedido;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "codigoCarrito")
     private Collection<Envio> envioCollection;
-    @OneToMany(mappedBy = "codigoPedido")
+    @OneToMany(mappedBy = "codigoCarrito")
     private Collection<Pedido> pedidoCollection;
     @JoinColumn(name = "cedula", referencedColumnName = "cedula")
     @ManyToOne
     private Usuario cedula;
+    @OneToMany(mappedBy = "codCarrito")
+    private Collection<Productosencarrito> productosencarritoCollection;
 
     public Carrito() {
     }
@@ -124,6 +126,15 @@ public class Carrito implements Serializable {
 
     public void setCedula(Usuario cedula) {
         this.cedula = cedula;
+    }
+
+    @XmlTransient
+    public Collection<Productosencarrito> getProductosencarritoCollection() {
+        return productosencarritoCollection;
+    }
+
+    public void setProductosencarritoCollection(Collection<Productosencarrito> productosencarritoCollection) {
+        this.productosencarritoCollection = productosencarritoCollection;
     }
 
     @Override

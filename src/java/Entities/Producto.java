@@ -6,6 +6,7 @@
 package Entities;
 
 import java.io.Serializable;
+import java.util.Collection;
 import javax.persistence.Basic;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -14,10 +15,12 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 import javax.xml.bind.annotation.XmlRootElement;
+import javax.xml.bind.annotation.XmlTransient;
 
 /**
  *
@@ -66,6 +69,8 @@ public class Producto implements Serializable {
     @NotNull
     @Column(name = "Favoritos")
     private int favoritos;
+    @OneToMany(mappedBy = "refereciaProducto")
+    private Collection<Productosencarrito> productosencarritoCollection;
 
     public Producto() {
     }
@@ -142,6 +147,15 @@ public class Producto implements Serializable {
 
     public void setFavoritos(int favoritos) {
         this.favoritos = favoritos;
+    }
+
+    @XmlTransient
+    public Collection<Productosencarrito> getProductosencarritoCollection() {
+        return productosencarritoCollection;
+    }
+
+    public void setProductosencarritoCollection(Collection<Productosencarrito> productosencarritoCollection) {
+        this.productosencarritoCollection = productosencarritoCollection;
     }
 
     @Override

@@ -92,5 +92,5 @@ public class MailService {
     private static final int PORT = 465;
     private static final String USER = "sistemagestiondepedidos@gmail.com";     // Must be valid user in d.umn.edu domain, e.g. "smit0012"
     private static final String PASSWORD = "sistemasadsi"; // Must be valid password for smit0012
-    private static final String FROM = "Sistema SIGPE <sistemagestiondepedidos@gmail.com>";     // Full info for user, e.g. "Fred Smith <smit0012@d.umn.edu>"
+    private static final String FROM = "stiven lozano <sistemagestiondepedidos@gmail.com>";     // Full info for user, e.g. "Fred Smith <smit0012@d.umn.edu>"
 }

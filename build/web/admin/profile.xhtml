@@ -80,7 +80,7 @@ and open the template in the editor.
                                         <h:inputText class="validate" value="#{user.rol}" disabled="true"></h:inputText>
                                         <label for="icon_prefix" data-error="el campo es invalido">Rol</label>
                                     </div>                                
-                                    <h:commandLink action="#{controladorUsuarios.editarUsuario(user)}" class="waves-effect waves-light btn pink" value="Editar"><i class="material-icons left">edit</i></h:commandLink>
+                                    <h:commandButton action="#{controladorUsuarios.editarUsuario(user)}" class="waves-effect waves-light btn pink" value="Editar"></h:commandButton>
                                 </div>
                             </div>
                         </c:forEach>

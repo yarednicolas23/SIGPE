@@ -15,50 +15,46 @@ and open the template in the editor.
         <ui:define name="editableArea">
             <h:form>
                 <div class="row">
-                    <div class="col s8">
-
+                    <div class="col s12 m9">
                         <div id="profile-card" class="card">
                             <div class="card-image waves-effect waves-block waves-light">
                                 <img class="card-img-admin" src="https://lh3.googleusercontent.com/-rc9pPa-qxrg/Vfeafd1ZAgI/AAAAAAAAoBY/fHzzJoRDLQA/w1600-h900/sandiegonight.png" alt="user bg"/>
                             </div>
                             <div class="card-content">
-                                <img src="#{controladorUsuarios.user.foto}" alt="" class="circle responsive-img activator card-profile-image"/>
-
+                                <img src="../#{controladorUsuarios.user.foto}" alt="" class="circle responsive-img activator card-profile-image"/>
                                 <a class="btn-floating activator btn-move-up waves-effect waves-light darken-2 right">
                                     <i class="mdi-editor-mode-edit"></i>
                                 </a>
-
-                                <span class="card-title grey-text text-darken-4"><i class="material-icons">face</i> #{user.nombres} #{user.apellidos}</span>
-
+                                <span class="card-title grey-text text-darken-4"><i class="material-icons">face</i> #{controladorUsuarios.user.nombres} #{controladorUsuarios.user.apellidos}</span>
                             </div>
                             <div class="card-reveal">
-                                <span class="card-title grey-text text-darken-4">#{user.rol}
+                                <span class="card-title grey-text text-darken-4">#{controladorUsuarios.user.rol}
                                     <a class="btn-floating activator btn-move-up waves-effect waves-light red right">
                                         <i class="material-icons">close</i>
                                     </a>
                                 </span>
                                 <div class="input-field col s10">
                                     <i class="material-icons prefix">fingerprint</i>                                    
-                                    <h:inputText class="validate" value="#{user.cedula}" disabled="true"></h:inputText>
+                                    <h:inputText class="validate" value="#{controladorUsuarios.user.cedula}" disabled="true"></h:inputText>
                                     <label for="icon_prefix" data-error="el campo es invalido">Cedula</label>
                                 </div>                                
                                 <div class="input-field col s10">
                                     <i class="material-icons prefix">mail_outline</i>                                    
-                                    <h:inputText class="validate" value="#{user.correo}"></h:inputText>
+                                    <h:inputText class="validate" value="#{controladorUsuarios.user.correo}"></h:inputText>
                                     <label for="icon_prefix" data-error="el campo es invalido">Correo</label>
                                 </div>
                                 <div class="input-field col s10">
                                     <i class="material-icons prefix">face</i>                                    
-                                    <h:inputText class="validate" value="#{user.nombres}"></h:inputText>
+                                    <h:inputText class="validate" value="#{controladorUsuarios.user.nombres}"></h:inputText>
                                     <label for="icon_prefix" data-error="el campo es invalido">Nombre</label>
                                 </div>
                                 <div class="input-field col s10">
                                     <i class="material-icons prefix">person </i>                                    
-                                    <h:inputText class="validate" value="#{user.apellidos}"></h:inputText>
+                                    <h:inputText class="validate" value="#{controladorUsuarios.user.apellidos}"></h:inputText>
                                     <label for="icon_prefix" data-error="el campo es invalido">Apellidos</label>
                                 </div>
                                 <div class="input-field col s10">
-                                    <select name="#{user.sexo}">
+                                    <select name="#{controladorUsuarios.user.sexo}">
                                         <option value="" disabled="" selected="">Choose your option</option>
                                         <option value="1">Femenino</option>
                                         <option value="2">Masculino</option>
@@ -67,20 +63,20 @@ and open the template in the editor.
                                 </div>
                                 <div class="input-field col s10">
                                     <i class="material-icons prefix">phone_iphone</i>                                    
-                                    <h:inputText class="validate" value="#{user.telefono}"></h:inputText>
+                                    <h:inputText class="validate" value="#{controladorUsuarios.user.telefono}"></h:inputText>
                                     <label for="icon_prefix" data-error="el campo es invalido">Telefono</label>
                                 </div>
                                 <div class="input-field col s10">
                                     <i class="material-icons prefix">lock</i>
-                                    <h:inputText class="validate" required="" value="#{user.contrasena}"></h:inputText>
+                                    <h:inputText class="validate" required="" value="#{controladorUsuarios.user.contrasena}"></h:inputText>
                                     <label for="icon_telephone" data-success="El campo es correcto">Contraseña</label>
                                 </div>
                                 <div class="input-field col s10">
                                     <i class="material-icons prefix">person_outline</i>                                    
-                                    <h:inputText class="validate" value="#{user.rol}" disabled="true"></h:inputText>
+                                    <h:inputText class="validate" value="#{controladorUsuarios.user.rol.rol}"></h:inputText>
                                     <label for="icon_prefix" data-error="el campo es invalido">Rol</label>
                                 </div>                                
-                                <h:commandLink action="#{controladorUsuarios.editarUsuario(user)}" class="waves-effect waves-light btn pink" value="Editar"><i class="material-icons left">edit</i></h:commandLink>
+                                <h:commandButton action="#{controladorUsuarios.editarUsuario(controladorUsuarios.user)}" class="waves-effect waves-light btn pink" value="Editar"></h:commandButton>
                             </div>
                         </div>
                     </div>

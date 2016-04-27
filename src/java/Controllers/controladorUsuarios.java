@@ -8,13 +8,10 @@ package Controllers;
 import Entities.Rol;
 import Entities.Usuario;
 import Facades.UsuarioFacade;
-import java.io.File;
-import java.io.IOException;
 import javax.inject.Named;
 import javax.enterprise.context.SessionScoped;
 import java.io.Serializable;
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import javax.ejb.EJB;
@@ -105,7 +102,7 @@ public class controladorUsuarios implements Serializable {
 
     public void setInactive(String inactive) {
         this.inactive = inactive;
-    }
+    }    
 
     public Usuario getUser() {
         return user;
@@ -218,10 +215,10 @@ public class controladorUsuarios implements Serializable {
         }
     }
     
-    public void idUsuarioEdit(int id){
+    public void idUsuarioEdit(long id){
         user= userFacade.find(id);
         try {
-            
+            traerDatos().redirect("editUser.xhtml");
         } catch (Exception e) {
         }
     }
@@ -229,7 +226,7 @@ public class controladorUsuarios implements Serializable {
     public void editarUsuario(Usuario u) {
         userFacade.edit(u);
         try {
-            traerDatos().redirect("profile.xhtml");
+            traerDatos().responseReset();
         } catch (Exception e) {
         }
     }

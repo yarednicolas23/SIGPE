@@ -14,7 +14,7 @@ create table usuario(
 	Nombres varchar (40),
 	Apellidos varchar(40),
 	sexo enum ('Femenino ','Maculino'),
-	telefono bigint,
+	telefono bigint, 
 	constrasena varchar(40),
 	Rol	int,
 	foto varchar (40),
@@ -46,14 +46,22 @@ create table carrito(
  
 create table pedido(
 	id int not null PRIMARY KEY auto_increment,
-	codigoPedido int,
+	codigoCarrito int,
 	fechaPedido datetime NOT NULL,
-	referecia int,
 
-	FOREIGN KEY (codigoPedido) REFERENCES carrito(codigoCarrito),
-	FOREIGN KEY (referecia) REFERENCES producto(referecia)
+	FOREIGN KEY (codigoCarrito) REFERENCES carrito(codigoCarrito)
     ON DELETE NO ACTION ON UPDATE CASCADE
 )ENGINE=InnoDB;
+
+
+
+CREATE TABLE productosencarrito(
+  id int(11) PRIMARY KEY AUTO_INCREMENT,
+  codCarrito int(11),
+  refereciaProducto int(11),
+  FOREIGN KEY (codCarrito) REFERENCES carrito (codigoCarrito),
+  FOREIGN KEY (refereciaProducto) REFERENCES producto (referecia) ON DELETE NO ACTION ON UPDATE CASCADE
+) ENGINE=InnoDB;
 
 
 create table Empresa(
@@ -130,10 +138,4 @@ FOR EACH ROW
 BEGIN
 SET NEW.fechaEnvio = NOW();
 END//
-DELIMITER ; 
-
-
-
-
-
-
+DELIMITER ;

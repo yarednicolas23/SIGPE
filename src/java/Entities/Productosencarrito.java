@@ -6,7 +6,6 @@
 package Entities;
 
 import java.io.Serializable;
-import java.util.Date;
 import javax.persistence.Basic;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -18,9 +17,6 @@ import javax.persistence.ManyToOne;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.Table;
-import javax.persistence.Temporal;
-import javax.persistence.TemporalType;
-import javax.validation.constraints.NotNull;
 import javax.xml.bind.annotation.XmlRootElement;
 
 /**
@@ -28,13 +24,12 @@ import javax.xml.bind.annotation.XmlRootElement;
  * @author HP PAVILION X360
  */
 @Entity
-@Table(name = "pedido")
+@Table(name = "productosencarrito")
 @XmlRootElement
 @NamedQueries({
-    @NamedQuery(name = "Pedido.findAll", query = "SELECT p FROM Pedido p"),
-    @NamedQuery(name = "Pedido.findById", query = "SELECT p FROM Pedido p WHERE p.id = :id"),
-    @NamedQuery(name = "Pedido.findByFechaPedido", query = "SELECT p FROM Pedido p WHERE p.fechaPedido = :fechaPedido")})
-public class Pedido implements Serializable {
+    @NamedQuery(name = "Productosencarrito.findAll", query = "SELECT p FROM Productosencarrito p"),
+    @NamedQuery(name = "Productosencarrito.findById", query = "SELECT p FROM Productosencarrito p WHERE p.id = :id")})
+public class Productosencarrito implements Serializable {
 
     private static final long serialVersionUID = 1L;
     @Id
@@ -42,25 +37,18 @@ public class Pedido implements Serializable {
     @Basic(optional = false)
     @Column(name = "id")
     private Integer id;
-    @Basic(optional = false)
-    @NotNull
-    @Column(name = "fechaPedido")
-    @Temporal(TemporalType.TIMESTAMP)
-    private Date fechaPedido;
-    @JoinColumn(name = "codigoCarrito", referencedColumnName = "codigoCarrito")
+    @JoinColumn(name = "codCarrito", referencedColumnName = "codigoCarrito")
     @ManyToOne
-    private Carrito codigoCarrito;
+    private Carrito codCarrito;
+    @JoinColumn(name = "refereciaProducto", referencedColumnName = "referecia")
+    @ManyToOne
+    private Producto refereciaProducto;
 
-    public Pedido() {
+    public Productosencarrito() {
     }
 
-    public Pedido(Integer id) {
+    public Productosencarrito(Integer id) {
         this.id = id;
-    }
-
-    public Pedido(Integer id, Date fechaPedido) {
-        this.id = id;
-        this.fechaPedido = fechaPedido;
     }
 
     public Integer getId() {
@@ -71,20 +59,20 @@ public class Pedido implements Serializable {
         this.id = id;
     }
 
-    public Date getFechaPedido() {
-        return fechaPedido;
+    public Carrito getCodCarrito() {
+        return codCarrito;
     }
 
-    public void setFechaPedido(Date fechaPedido) {
-        this.fechaPedido = fechaPedido;
+    public void setCodCarrito(Carrito codCarrito) {
+        this.codCarrito = codCarrito;
     }
 
-    public Carrito getCodigoCarrito() {
-        return codigoCarrito;
+    public Producto getRefereciaProducto() {
+        return refereciaProducto;
     }
 
-    public void setCodigoCarrito(Carrito codigoCarrito) {
-        this.codigoCarrito = codigoCarrito;
+    public void setRefereciaProducto(Producto refereciaProducto) {
+        this.refereciaProducto = refereciaProducto;
     }
 
     @Override
@@ -97,10 +85,10 @@ public class Pedido implements Serializable {
     @Override
     public boolean equals(Object object) {
         // TODO: Warning - this method won't work in the case the id fields are not set
-        if (!(object instanceof Pedido)) {
+        if (!(object instanceof Productosencarrito)) {
             return false;
         }
-        Pedido other = (Pedido) object;
+        Productosencarrito other = (Productosencarrito) object;
         if ((this.id == null && other.id != null) || (this.id != null && !this.id.equals(other.id))) {
             return false;
         }
@@ -109,7 +97,7 @@ public class Pedido implements Serializable {
 
     @Override
     public String toString() {
-        return "Entities.Pedido[ id=" + id + " ]";
+        return "Entities.Productosencarrito[ id=" + id + " ]";
     }
     
 }

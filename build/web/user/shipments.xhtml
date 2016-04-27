@@ -7,7 +7,6 @@ and open the template in the editor.
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:h="http://xmlns.jcp.org/jsf/html"
-      xmlns:c="http://xmlns.jcp.org/jsp/jstl/core"
       xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
       xmlns:f="http://xmlns.jcp.org/jsf/core">
     <ui:composition template="template.xhtml">
@@ -16,8 +15,10 @@ and open the template in the editor.
             <f:view>
 
 
+
+
                 <h:form>
-                    <h1><h:outputText value="Lista de Pedidos del Cliente"/></h1>
+                    <h1><h:outputText value="List"/></h1>
                     <h:dataTable value="#{controladorPedidos.listaPedidosUser()}" var="item">
                         <h:column>
                             <f:facet name="header">
@@ -35,44 +36,13 @@ and open the template in the editor.
                         </h:column>
                         <h:column>
                             <f:facet name="header">
-                                <h:outputText value="Codigo Del Carrito"/>
+                                <h:outputText value="CodigoCarrito"/>
                             </f:facet>
-                            <h:outputText value="#{item.codigoPedido.codigoCarrito}"/>
+                            <h:outputText value="#{item.codigoCarrito}"/>
                         </h:column>
-                        <h:column>
-                            <f:facet name="header">
-                                <h:outputText value="Cedula Cliente"/>
-                            </f:facet>
-                            <h:outputText value="#{item.codigoPedido.cedula.cedula}"/>
-                        </h:column>
-                        <h:column>
-                            <f:facet name="header">
-                                <h:outputText value="Nombre Cliente"/>
-                            </f:facet>
-                            <h:outputText value="#{item.codigoPedido.cedula.nombres}"/>
-                        </h:column>
-                        <h:column>
-                            <f:facet name="header">
-                                <h:outputText value="Referecia Producto"/>
-                            </f:facet>
-                            <h:outputText value="#{item.referecia.referecia}"/>
-                        </h:column>
-                        <h:column>
-                            <f:facet name="header">
-                                <h:outputText value="Nombre Producto "/>
-                            </f:facet>
-                            <h:outputText value="#{item.referecia.nombre}"/>
-                        </h:column>
-                        <h:column>
-                                <f:facet name="header">
-                                    <h:outputText value="Eliminar Pedido"/>
-                                </f:facet>
-                                <h:commandLink class="btn btn-red" action="#{controladorPedidos.eliminarPedido(pedido)}">
-                                    <i class="material-icons">delete</i>
-                                </h:commandLink>
-                            </h:column>
                     </h:dataTable>
                 </h:form>
+
             </f:view>
 
         </ui:define>
