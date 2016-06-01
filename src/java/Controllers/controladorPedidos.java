@@ -5,13 +5,17 @@
  */
 package Controllers;
 
+import Entities.Carrito;
 import Entities.Pedido;
+import Entities.Productosencarrito;
 import Entities.Usuario;
 import Facades.PedidoFacade;
+import Facades.ProductosencarritoFacade;
 import javax.inject.Named;
 import javax.enterprise.context.SessionScoped;
 import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 import javax.ejb.EJB;
 import javax.faces.context.ExternalContext;
@@ -29,8 +33,12 @@ public class controladorPedidos implements Serializable {
     
     Usuario user = new Usuario();
     Pedido pedido = new Pedido();
+    Productosencarrito pec = new Productosencarrito();
+    
     @EJB
     PedidoFacade pedidosFacade= new PedidoFacade();
+    @EJB
+    ProductosencarritoFacade pecFacade= new ProductosencarritoFacade();
     
     public controladorPedidos() {
     }
@@ -69,8 +77,21 @@ public class controladorPedidos implements Serializable {
         return pedidosFacade.listaPorCedula(user);
     }
     
-    public void crearPedido(){
+    public void prePedido(){
+        pec.setId(null);
         
+        
+    }
+    
+    public void crearPedido(Carrito carrito, Productosencarrito pec){
+        pecFacade.create(pec);
+        
+        Pedido pe = new Pedido();
+        pe.setId(null);
+        Date ahora = new Date();
+        pe.setFechaPedido(ahora);
+        pe.setCodigoCarrito(carrito);
+        pedidosFacade.create(pe);
     }
     
     public void idPedido(int id){

@@ -110,9 +110,7 @@ public class controladorUsuarios implements Serializable {
 
     public void setUser(Usuario user) {
         this.user = user;
-    }
-    
-    
+    }   
 
     //Metodo para traer el ExternalContext y Mapear los datos.
     public ExternalContext traerDatos() {
@@ -142,7 +140,7 @@ public class controladorUsuarios implements Serializable {
             }
         }
     }
-
+    
     //registro usuario
     public void usuarioNuevo() {
         Map datos = traerDatos().getRequestParameterMap();
@@ -250,7 +248,6 @@ public class controladorUsuarios implements Serializable {
             }
         }
     }
-    
     
     public List<Usuario> listaUsersAll(){
         return userFacade.findAll();

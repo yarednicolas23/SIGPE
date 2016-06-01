@@ -6,6 +6,7 @@
 package Entities;
 
 import java.io.Serializable;
+import java.math.BigInteger;
 import java.util.Date;
 import javax.persistence.Basic;
 import javax.persistence.Column;
@@ -33,6 +34,7 @@ import javax.xml.bind.annotation.XmlRootElement;
 @NamedQueries({
     @NamedQuery(name = "Pedido.findAll", query = "SELECT p FROM Pedido p"),
     @NamedQuery(name = "Pedido.findById", query = "SELECT p FROM Pedido p WHERE p.id = :id"),
+    @NamedQuery(name = "Pedido.findByMontoTotal", query = "SELECT p FROM Pedido p WHERE p.montoTotal = :montoTotal"),
     @NamedQuery(name = "Pedido.findByFechaPedido", query = "SELECT p FROM Pedido p WHERE p.fechaPedido = :fechaPedido")})
 public class Pedido implements Serializable {
 
@@ -42,6 +44,8 @@ public class Pedido implements Serializable {
     @Basic(optional = false)
     @Column(name = "id")
     private Integer id;
+    @Column(name = "montoTotal")
+    private BigInteger montoTotal;
     @Basic(optional = false)
     @NotNull
     @Column(name = "fechaPedido")
@@ -69,6 +73,14 @@ public class Pedido implements Serializable {
 
     public void setId(Integer id) {
         this.id = id;
+    }
+
+    public BigInteger getMontoTotal() {
+        return montoTotal;
+    }
+
+    public void setMontoTotal(BigInteger montoTotal) {
+        this.montoTotal = montoTotal;
     }
 
     public Date getFechaPedido() {

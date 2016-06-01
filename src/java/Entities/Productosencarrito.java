@@ -28,7 +28,8 @@ import javax.xml.bind.annotation.XmlRootElement;
 @XmlRootElement
 @NamedQueries({
     @NamedQuery(name = "Productosencarrito.findAll", query = "SELECT p FROM Productosencarrito p"),
-    @NamedQuery(name = "Productosencarrito.findById", query = "SELECT p FROM Productosencarrito p WHERE p.id = :id")})
+    @NamedQuery(name = "Productosencarrito.findById", query = "SELECT p FROM Productosencarrito p WHERE p.id = :id"),
+    @NamedQuery(name = "Productosencarrito.findByCantidad", query = "SELECT p FROM Productosencarrito p WHERE p.cantidad = :cantidad")})
 public class Productosencarrito implements Serializable {
 
     private static final long serialVersionUID = 1L;
@@ -37,6 +38,8 @@ public class Productosencarrito implements Serializable {
     @Basic(optional = false)
     @Column(name = "id")
     private Integer id;
+    @Column(name = "cantidad")
+    private Integer cantidad;
     @JoinColumn(name = "codCarrito", referencedColumnName = "codigoCarrito")
     @ManyToOne
     private Carrito codCarrito;
@@ -57,6 +60,14 @@ public class Productosencarrito implements Serializable {
 
     public void setId(Integer id) {
         this.id = id;
+    }
+
+    public Integer getCantidad() {
+        return cantidad;
+    }
+
+    public void setCantidad(Integer cantidad) {
+        this.cantidad = cantidad;
     }
 
     public Carrito getCodCarrito() {

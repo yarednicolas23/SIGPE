@@ -108,12 +108,11 @@
                 </div>
             </nav>
         </h:form>
-        <!--end of NavBar-->
+        <!--end of NavBar-->        
         <ui:insert name="editableZone">
             <!--editable Zone-->
             <!--End of editable Zone-->
         </ui:insert>
-
 
         <footer class="page-footer red-sigpe">
             <div class="container">
@@ -190,26 +189,46 @@
                 <i class="material-icons">add_shopping_cart</i>
             </a>
         </div>
-        <!--end of Button Floating-->        
-        <div id="shop" class="modal bottom-sheet">
-            <div class="modal-content">
-                <h4><b>Carrito de Compras</b></h4>
-                <ul class="collection">                 
-                    <c:forEach items="#{controladorCarrito.traerListaP()}" var="listP">
-                        <li class="collection-item avatar">
-
-                            <img src="#{listP.foto}" alt="" class="circle"/>
-                            <span class="title">#{listP.descripcion}</span>
-                            <p>$ #{listP.precio} <br/> #{listP.nombre} </p>
-                            <a href="#!" class="secondary-content"><i class="material-icons">favorite</i></a>                        
-                        </li>                    
-                    </c:forEach>
-                </ul>
+        <h:form>
+            <!--end of Button Floating-->
+            <div id="shop" class="modal bottom-sheet">
+                <div class="modal-content">
+                    <div class="row">
+                        <div class="col s12 m6">
+                            <h4>
+                                <b>Carrito de Compras</b>
+                                <br/>
+                                <b class="blue-text">Total: $#{controladorCarrito.total}</b>                                
+                            </h4>
+                        </div>                    
+                        <div class="input-field col s12 m6">
+                            <select class="icons">
+                                <option value="" disabled="true" selected="true">Choose your option</option>                            
+                                <c:forEach items="#{controladorCarrito.listaCarritosUser()}" var="carritos">
+                                    <option value="#{carritos.codigoCarrito}">#{carritos.codigoCarrito}</option>
+                                </c:forEach>
+                            </select>
+                            <label class="red-text"><b>¡Seleccione el carrito!</b></label>
+                        </div>
+                    </div>
+                    <ul class="collection">                 
+                        <c:forEach items="#{controladorCarrito.listOfProducts()}" var="lp">
+                            <li class="collection-item avatar">
+                                <img src="#{lp.refereciaProducto.foto}" alt="" class="circle"/>
+                                <span class="title">#{lp.refereciaProducto.descripcion}</span>
+                                <p>$ #{lp.refereciaProducto.precio} <br/> #{lp.refereciaProducto.nombre}</p>
+                                <span class="red-text secondary-content">Cantidad: #{lp.cantidad}</span>
+                            </li>                    
+                        </c:forEach>
+                    </ul>
+                </div>
+                <div class="modal-footer">                
+                    <a href="#!" class=" modal-action modal-close waves-effect waves-green red btn btn-redo"><i class="material-icons right">close</i>Cerrar</a>                    
+                    <h:commandButton action="#{controladorPedidos.crearPedido(carritos, lp)}" class="purple darken-1 btn" value="¡Crear Pedido!"></h:commandButton>
+                </div>
             </div>
-            <div class="modal-footer">
-                <a href="#!" class=" modal-action modal-close waves-effect waves-green btn btn-redo">Aceptar</a>
-            </div>
-        </div>
+            <div id="precio" value="#{controladorCarrito.total}"></div>
+        </h:form>
         <!--end of collapsible shopping cart-->
 
         <!--Import jQuery before materialize.js-->

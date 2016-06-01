@@ -47,6 +47,7 @@ create table carrito(
 create table pedido(
 	id int not null PRIMARY KEY auto_increment,
 	codigoCarrito int,
+	montoTotal bigint,
 	fechaPedido datetime NOT NULL,
 
 	FOREIGN KEY (codigoCarrito) REFERENCES carrito(codigoCarrito)
@@ -54,11 +55,11 @@ create table pedido(
 )ENGINE=InnoDB;
 
 
-
 CREATE TABLE productosencarrito(
   id int(11) PRIMARY KEY AUTO_INCREMENT,
   codCarrito int(11),
   refereciaProducto int(11),
+  cantidad int(11),
   FOREIGN KEY (codCarrito) REFERENCES carrito (codigoCarrito),
   FOREIGN KEY (refereciaProducto) REFERENCES producto (referecia) ON DELETE NO ACTION ON UPDATE CASCADE
 ) ENGINE=InnoDB;

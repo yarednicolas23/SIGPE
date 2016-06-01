@@ -12,38 +12,7 @@ and open the template in the editor.
     <ui:composition template="template.xhtml">
         <ui:define name="titulo">#{msg.shipments}</ui:define>
         <ui:define name="editableZone">
-            <f:view>
-
-
-
-
-                <h:form>
-                    <h1><h:outputText value="List"/></h1>
-                    <h:dataTable value="#{controladorPedidos.listaPedidosUser()}" var="item">
-                        <h:column>
-                            <f:facet name="header">
-                                <h:outputText value="Id"/>
-                            </f:facet>
-                            <h:outputText value="#{item.id}"/>
-                        </h:column>
-                        <h:column>
-                            <f:facet name="header">
-                                <h:outputText value="FechaPedido"/>
-                            </f:facet>
-                            <h:outputText value="#{item.fechaPedido}">
-                                <f:convertDateTime pattern="MM/dd/yyyy HH:mm:ss" />
-                            </h:outputText>
-                        </h:column>
-                        <h:column>
-                            <f:facet name="header">
-                                <h:outputText value="CodigoCarrito"/>
-                            </f:facet>
-                            <h:outputText value="#{item.codigoCarrito}"/>
-                        </h:column>
-                    </h:dataTable>
-                </h:form>
-
-            </f:view>
+            
 
         </ui:define>
     </ui:composition>

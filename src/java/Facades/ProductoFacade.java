@@ -39,5 +39,4 @@ public class ProductoFacade extends AbstractFacade<Producto> {
         lista=q.getResultList();
         return lista.isEmpty();
     }
-    
 }

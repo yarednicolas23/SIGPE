@@ -33,7 +33,7 @@ public class PedidoFacade extends AbstractFacade<Pedido> {
         super(Pedido.class);
     }
     
-     public List<Pedido> listaPorCedula(Usuario u){
+    public List<Pedido> listaPorCedula(Usuario u){
         Query q = em.createNativeQuery("select * from pedido where cedula=?");
         long ced= u.getCedula();
         q.setParameter(1,ced);
@@ -41,4 +41,5 @@ public class PedidoFacade extends AbstractFacade<Pedido> {
         lis= q.getResultList();
         return q.getResultList();
     }
+    
 }

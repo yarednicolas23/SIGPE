@@ -23,6 +23,7 @@ var myLineChart = new Chart(algo).Line(ventas, {
     scaleGridLineColor: "rgba(255,255,255,0.4)"
 });
 
+
 var barras = [
     {
         value: 10,

@@ -37,4 +37,5 @@ public class CarritoFacade extends AbstractFacade<Carrito> {
         q.setParameter(1, u.getCedula());
         return q.getResultList();
     }
+    
 }

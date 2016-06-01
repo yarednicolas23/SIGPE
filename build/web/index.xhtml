@@ -134,30 +134,14 @@
                     </div>
                 </div>
             </div>
-            <!--paralax end-->
+            <!--paralax end-->  
+            
+            <h:form  enctype="multipart/form-data">
+                Archivo:
+                <h:inputFile value="#{fileUpload.arch}"></h:inputFile>
+                <h:commandButton action="#{fileUpload.subir()}" value="Subir"></h:commandButton>
+            </h:form>
 
-
-            <h:form enctype="multipart/form-data">
-                <h:panelGrid columns="2">
-                    <h:outputLabel value="Cargar archivo" for="fileUpload" />
-                    <br/>
-                    <h:inputFile value="#{fileUploadFormBean.fileUpload}" id="fileUpload" />
-                    <br/>
-                    <h:commandButton value="Cargar"/>
-                </h:panelGrid>
-            </h:form> 
-
-            <h:panelGrid rendered="#{not empty(fileUploadFormBean.fileUpload)}" columns="2"  >
-
-                <h:outputText value="fileName:" />
-                <h:outputText value="#{fileUploadFormBean.fileUpload.submittedFileName}" />
-
-                <h:outputText value="contentType:" />
-                <h:outputText value="#{fileUploadFormBean.fileUpload.contentType}" />
-
-                <h:outputText value="size:" />
-                <h:outputText value="#{fileUploadFormBean.fileUpload.size}" />
-            </h:panelGrid>
         </ui:define>
     </ui:composition>
 

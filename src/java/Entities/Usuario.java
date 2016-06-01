@@ -42,6 +42,9 @@ import javax.xml.bind.annotation.XmlTransient;
     @NamedQuery(name = "Usuario.findByFoto", query = "SELECT u FROM Usuario u WHERE u.foto = :foto")})
 public class Usuario implements Serializable {
 
+    @Column(name = "telefono")
+    private long telefono;
+
     private static final long serialVersionUID = 1L;
     @Id
     @Basic(optional = false)
@@ -60,8 +63,6 @@ public class Usuario implements Serializable {
     @Size(max = 9)
     @Column(name = "sexo")
     private String sexo;
-    @Column(name = "telefono")
-    private long telefono;
     @Size(max = 40)
     @Column(name = "contrasena")
     private String contrasena;
@@ -121,14 +122,6 @@ public class Usuario implements Serializable {
         this.sexo = sexo;
     }
 
-    public long getTelefono() {
-        return telefono;
-    }
-
-    public void setTelefono(long telefono) {
-        this.telefono = telefono;
-    }
-
     public String getContrasena() {
         return contrasena;
     }
@@ -185,6 +178,14 @@ public class Usuario implements Serializable {
     @Override
     public String toString() {
         return "Entities.Usuario[ cedula=" + cedula + " ]";
+    }
+
+    public long getTelefono() {
+        return telefono;
+    }
+
+    public void setTelefono(long telefono) {
+        this.telefono = telefono;
     }
     
 }
