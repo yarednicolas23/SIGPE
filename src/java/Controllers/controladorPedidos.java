@@ -29,7 +29,6 @@ import javax.servlet.http.HttpServletRequest;
 @Named(value = "controladorPedidos")
 @SessionScoped
 public class controladorPedidos implements Serializable {
-
     
     Usuario user = new Usuario();
     Pedido pedido = new Pedido();

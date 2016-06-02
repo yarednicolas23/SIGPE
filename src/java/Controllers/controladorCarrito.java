@@ -165,7 +165,7 @@ public class controladorCarrito implements Serializable {
             productoInicial = true;
         }
         if (productoInicial == false) {
-            for (int i = 0; i < pcl.size(); i++) {
+                for (int i = 0; i < pcl.size(); i++) {
                 int ref = pcl.get(i).getRefereciaProducto().getReferecia();
                 int cantid = pcl.get(i).getCantidad();
                 if (ref == pd.getReferecia()) {
