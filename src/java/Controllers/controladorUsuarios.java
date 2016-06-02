@@ -5,13 +5,16 @@
  */
 package Controllers;
 
+import Entities.Carrito;
 import Entities.Rol;
 import Entities.Usuario;
+import Facades.CarritoFacade;
 import Facades.UsuarioFacade;
 import javax.inject.Named;
 import javax.enterprise.context.SessionScoped;
 import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 import java.util.Map;
 import javax.ejb.EJB;
@@ -28,12 +31,15 @@ public class controladorUsuarios implements Serializable {
 
     Usuario user = new Usuario();
     Rol rol = new Rol();
+    Carrito carrito= new Carrito();
 
     List<Usuario> listaUser = new ArrayList<>();
     List<Usuario> usuarioSesion = new ArrayList<>();
 
     @EJB
     UsuarioFacade userFacade = new UsuarioFacade();
+    @EJB
+    CarritoFacade carritoFacade= new CarritoFacade();
 
     //Variable para mensajes emergentes de validación
     private String mensaje;
@@ -141,8 +147,10 @@ public class controladorUsuarios implements Serializable {
         }
     }
     
-    //registro usuario
+    //Registro usuario nuevo
     public void usuarioNuevo() {
+        controladorCarrito cc = new controladorCarrito();
+        
         Map datos = traerDatos().getRequestParameterMap();
 
         user.setCedula(Long.parseLong("" + datos.get("cedula")));
@@ -156,6 +164,14 @@ public class controladorUsuarios implements Serializable {
         user.setRol(rol);
         user.setFoto("img/profile/avatar.png");
         userFacade.create(user);
+        
+        carrito.setCodigoCarrito(null);
+        Date ahora = new Date();
+        carrito.setFechaCarrito(ahora);
+        carrito.setEstadoPedido("1");
+        carrito.setCedula(user);
+        carritoFacade.create(carrito);
+        
     }
 
     public void registrarse() {

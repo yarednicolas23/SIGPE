@@ -20,7 +20,7 @@
     </h:head>
     <h:body>
         <!--Navbar-->
-        <h:form>            
+        <h:form>
             <nav class="red-sigpe">
                 <div class="nav-wrapper container">
                     <h:link outcome="index" class="brand-logo">#{msg.SIGPE}</h:link>
@@ -202,10 +202,9 @@
                             </h4>
                         </div>                    
                         <div class="input-field col s12 m6">
-                            <select class="icons">
-                                <option value="" disabled="true" selected="true">Choose your option</option>                            
+                            <select class="icons">                           
                                 <c:forEach items="#{controladorCarrito.listaCarritosUser()}" var="carritos">
-                                    <option value="#{carritos.codigoCarrito}">#{carritos.codigoCarrito}</option>
+                                    <option value="#{carritos.codigoCarrito}">Codigo: # #{carritos.codigoCarrito}</option>
                                 </c:forEach>
                             </select>
                             <label class="red-text"><b>¡Seleccione el carrito!</b></label>

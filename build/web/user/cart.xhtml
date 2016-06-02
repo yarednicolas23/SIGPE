@@ -15,41 +15,32 @@ and open the template in the editor.
         <ui:define name="editableZone">
 
             <h:form>
-                <h1>Crear Carrito</h1>
-                <br/>
-                <h1><h:outputText value="List"/></h1>
-                <h:dataTable value="#{controladorCarrito.listaCarritosUser()}" var="item">
+                <h1><h:outputText value="Carrito: # #{item.codCarrito.codigoCarrito}"/></h1>
+                <h:dataTable value="#{controladorCarrito.listOfProducts()}" var="pec">
+                    <h1>#{pec.codCarrito.codigoCarrito}</h1>
                     <h:column>
                         <f:facet name="header">
-                            <h:outputText value="CodigoCarrito"/>
+                            <h:outputText value="Referencia del Producto"/>
                         </f:facet>
-                        <h:outputText value="#{item.codigoCarrito}"/>
+                        <h:outputText value="#{pec.refereciaProducto.referecia}"/>
                     </h:column>
                     <h:column>
                         <f:facet name="header">
-                            <h:outputText value="FechaCarrito"/>
+                            <h:outputText value="Producto"/>
                         </f:facet>
-                        <h:outputText value="#{item.fechaCarrito}">
-                            <f:convertDateTime pattern="MM/dd/yyyy HH:mm:ss" />
-                        </h:outputText>
+                        <h:outputText value="#{pec.refereciaProducto.nombre}"/>
                     </h:column>
                     <h:column>
                         <f:facet name="header">
-                            <h:outputText value="EstadoPedido"/>
+                            <h:outputText value="Cantidad"/>
                         </f:facet>
-                        <h:outputText value="#{item.estadoPedido}"/>
+                        <h:outputText value="#{pec.cantidad}"/>
                     </h:column>
                     <h:column>
                         <f:facet name="header">
-                            <h:outputText value="Cedula Cliente"/>
+                            <h:outputText value="Precio por Unidad"/>
                         </f:facet>
-                        <h:outputText value="#{item.cedula.cedula}"/>
-                    </h:column>
-                    <h:column>
-                        <f:facet name="header">
-                            <h:outputText value="Nombre Cliente"/>
-                        </f:facet>
-                        <h:outputText value="#{item.cedula.nombres}"/>
+                        <h:outputText value="$ #{pec.refereciaProducto.precio}"/>
                     </h:column>
                     <h:column>
                         <f:facet name="header">

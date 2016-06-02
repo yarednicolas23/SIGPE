@@ -30,6 +30,7 @@ import javax.servlet.http.HttpServletRequest;
 @SessionScoped
 
 public class controladorCarrito implements Serializable {
+
     int total;
 
     controladorUsuarios cUser = new controladorUsuarios();
@@ -85,15 +86,12 @@ public class controladorCarrito implements Serializable {
         HttpServletRequest sr = (HttpServletRequest) traerDatos().getRequest();
         if (sr.getSession().getAttribute("user") == null) {
             return false;
+        } else {
+            return true;
         }
-        if (sr.getSession().getAttribute("admin") == null) {
-            return false;
-        }
-        return true;
     }
 
     public void crearCarrito() {
-        asignarUsuarioSesion();
         carrito.setCodigoCarrito(null);
         Date ahora = new Date();
         carrito.setFechaCarrito(ahora);
@@ -106,13 +104,18 @@ public class controladorCarrito implements Serializable {
         List<Carrito> lc = new ArrayList<>();
         if (userSession() == true) {
             asignarUsuarioSesion();
-        }
-        if (user.getCedula() == null) {
+            return carritoFacade.listaPorCedula(user);
+        } else if (user.getCedula() == null) {
             lc.add(carritoFacade.find(1));
             return lc;
-        } else {
-            return carritoFacade.listaPorCedula(user);
         }
+        return null;
+    }
+    
+    public List<Productosencarrito> listProductsInCart() {
+        pec=pecFacade.find(1);
+        pcl= pecFacade.listaPorCedula(pec.getCodCarrito());
+        return pcl;
     }
 
     public void traerID(int id) {
@@ -141,17 +144,16 @@ public class controladorCarrito implements Serializable {
         total = total + p.getPrecio();
         pcl.add(pec);
     }
-    
-    public boolean productIsInCar(Producto pr){
+
+    public boolean productIsInCar(Producto pr) {
         int ref;
         for (int i = 0; i < pcl.size(); i++) {
             ref = pcl.get(i).getRefereciaProducto().getReferecia();
-            if (ref== pr.getReferecia()) {
+            if (ref == pr.getReferecia()) {
                 pec = pcl.get(i);
                 return true;
             }
         }
-        
         return false;
     }
 
@@ -159,7 +161,7 @@ public class controladorCarrito implements Serializable {
 
         boolean productoInicial = false;
         if (pcl.isEmpty()) {
-            addToList(pd,car);
+            addToList(pd, car);
             productoInicial = true;
         }
         if (productoInicial == false) {
