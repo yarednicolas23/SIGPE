@@ -31,11 +31,21 @@ public class CarritoFacade extends AbstractFacade<Carrito> {
     public CarritoFacade() {
         super(Carrito.class);
     }
-    
-    public List<Carrito> listaPorCedula(Usuario u){
+
+    public List<Carrito> listaPorCedula(Usuario u) {
         Query q = em.createNativeQuery("select * from carrito where cedula=?", Carrito.class);
         q.setParameter(1, u.getCedula());
         return q.getResultList();
     }
-    
+
+    public Carrito listCartUser(Usuario u) {
+        Carrito c = new Carrito();
+        Query q = em.createNativeQuery("select * from carrito where cedula=? and estadoPedido=1", Carrito.class);
+        q.setParameter(1, u.getCedula());
+        for (int i = 0; i < q.getResultList().size(); i++) {
+            c = (Carrito) q.getResultList().get(i);
+            return c;
+        }
+        return c;
+    }
 }

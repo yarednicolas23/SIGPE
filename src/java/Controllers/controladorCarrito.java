@@ -15,6 +15,7 @@ import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+import java.util.Objects;
 import javax.ejb.EJB;
 import javax.inject.Named;
 import javax.enterprise.context.SessionScoped;
@@ -32,6 +33,7 @@ import javax.servlet.http.HttpServletRequest;
 public class controladorCarrito implements Serializable {
 
     int total;
+    int posicion;
 
     controladorUsuarios cUser = new controladorUsuarios();
     List<Producto> listaProductos = new ArrayList<>();
@@ -111,11 +113,84 @@ public class controladorCarrito implements Serializable {
         }
         return null;
     }
-    
-    public List<Productosencarrito> listProductsInCart() {
-        pec=pecFacade.find(1);
-        pcl= pecFacade.listaPorCedula(pec.getCodCarrito());
-        return pcl;
+
+    public void addToList(Producto p, Carrito car) {
+        Productosencarrito pec2 = new Productosencarrito();
+        int identificador = 0;
+        if (pec.getId() != null) {
+            identificador = pec.getId();
+        }
+        if (identificador == 0) {
+            pec2.setId(1);
+        } else if (identificador >= 1) {
+            pec2.setId(identificador + 1);
+        }
+        pec2.setCantidad(1);
+        pec2.setCodCarrito(car);
+        pec2.setRefereciaProducto(p);
+        total = total + p.getPrecio();
+        pcl.add(pec2);
+    }
+
+    public boolean productIsInCar(Producto pr) {
+        int ref;
+        for (int i = 0; i < pcl.size(); i++) {
+            ref = pcl.get(i).getRefereciaProducto().getReferecia();
+            if (ref == pr.getReferecia()) {
+                pec = pcl.get(i);
+                posicion = i;
+                return true;
+            }
+        }
+        return false;
+    }
+
+    public void addToCart(Producto pd) {
+        if (user.getCedula() != null) {
+            carrito = carritoFacade.listCartUser(user);
+        } else {
+            carrito = carritoFacade.find(1);
+        }
+        boolean productoInicial = false;
+        if (pcl.isEmpty()) {
+            addToList(pd, carrito);
+            productoInicial = true;
+        }
+        if (productoInicial == false) {
+            if (productIsInCar(pd)) {
+                int cantidad = pcl.get(posicion).getCantidad();
+                pcl.get(posicion).setCantidad(cantidad + 1);
+                total = total + pd.getPrecio();
+            } else if (productIsInCar(pd) == false) {
+                addToList(pd, carrito);
+            }
+        }
+    }
+
+    public List<Productosencarrito> listOfProducts() {
+        List<Productosencarrito> pcl2 = new ArrayList<>();
+        if (user.getCedula() == null) {
+            return pcl;
+        } else {
+            for (int i = 0; i < pcl.size(); i++) {
+                long ced = pcl.get(i).getCodCarrito().getCedula().getCedula();
+                if (Objects.equals(ced, user.getCedula())) {
+                    pcl2.add(pcl.get(i));
+                }
+            }
+        }
+        return pcl2;
+    }
+
+    public void createShipment() {
+        controladorPedidos cp = new controladorPedidos();
+        if (user.getCedula() != null) {
+            carrito = carritoFacade.listCartUser(user);
+            int car = carrito.getCodigoCarrito();
+            cp.crearPedido(car,total);
+        } else {
+            
+        }
     }
 
     public void traerID(int id) {
@@ -134,50 +209,4 @@ public class controladorCarrito implements Serializable {
     public List<Producto> traerListaP() {
         return listaProductos;
     }
-
-    public void addToList(Producto p, int car) {
-        carrito = carritoFacade.find(car);
-        pec.setId(1);
-        pec.setCantidad(1);
-        pec.setCodCarrito(carrito);
-        pec.setRefereciaProducto(p);
-        total = total + p.getPrecio();
-        pcl.add(pec);
-    }
-
-    public boolean productIsInCar(Producto pr) {
-        int ref;
-        for (int i = 0; i < pcl.size(); i++) {
-            ref = pcl.get(i).getRefereciaProducto().getReferecia();
-            if (ref == pr.getReferecia()) {
-                pec = pcl.get(i);
-                return true;
-            }
-        }
-        return false;
-    }
-
-    public void addToCart(Producto pd, int car) {
-
-        boolean productoInicial = false;
-        if (pcl.isEmpty()) {
-            addToList(pd, car);
-            productoInicial = true;
-        }
-        if (productoInicial == false) {
-                for (int i = 0; i < pcl.size(); i++) {
-                int ref = pcl.get(i).getRefereciaProducto().getReferecia();
-                int cantid = pcl.get(i).getCantidad();
-                if (ref == pd.getReferecia()) {
-                    pcl.get(i).setCantidad(cantid + 1);
-                    total = total + pd.getPrecio();
-                }
-            }
-        }
-    }
-
-    public List<Productosencarrito> listOfProducts() {
-        return pcl;
-    }
-
 }

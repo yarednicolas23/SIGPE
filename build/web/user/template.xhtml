@@ -73,12 +73,10 @@
                                             <img src="../#{item.foto}" alt="" class="circle responsive-img valign admin-profile-image"/>
                                         </div>
                                         <div class="col col s8 m8 l8 white-text">                        
-                                            <a class="btn-flat dropdown-button waves-effect waves-light white-text profile-btn" >#{item.nombres}</a>
-                                            <h6>#{item.rol.rol}</h6>
+                                            <a class="btn-flat dropdown-button waves-effect waves-light white-text profile-btn" >#{item.nombres}</a>                                            
                                         </div>
                                     </div>
-                                </li>
-                                
+                                </li>                                
                                 <li><h:link outcome="cart"><i class="material-icons left">shopping_cart</i> #{msg.cart}</h:link></li>
                                 <li><h:link outcome="shipments"><i class="material-icons left">monetization_on</i> #{msg.shipments}</h:link></li>
                                 <li class="divider"></li>
@@ -190,28 +188,43 @@
             </a>
         </div>
         <!--end of Button Floating-->
-        <div id="shop" class="modal bottom-sheet">
-            <div class="modal-content">
-                <h4><b>Carrito de Compras</b></h4>
-                <ul class="collection">
-                    <li class="collection-item avatar">
-                        <img src="https://www.c7creative.com/wp-content/uploads/2015/05/Brian-Avatar.png" alt="" class="circle"/>
-                        <span class="title">Title</span>
-                        <p>First Line <br/> Second Line </p>
-                        <a href="#!" class="secondary-content"><i class="material-icons">grade</i></a>
-                    </li>
-                    <li class="collection-item avatar">
-                        <i class="material-icons circle">folder</i>
-                        <span class="title">Title</span>
-                        <p>First Line <br/> Second Line </p>
-                        <a href="#!" class="secondary-content"><i class="material-icons">grade</i></a>
-                    </li>
-                </ul>
+        <h:form>            
+            <div id="shop" class="modal bottom-sheet">
+                <div class="modal-content">
+                    <div class="row">
+                        <div class="col s12 m6">
+                            <h4>
+                                <b>Carrito de Compras</b>
+                                <br/>
+                                <span class="blue-text">Total: $</span> <b class="red-text">#{controladorCarrito.total}</b>                                
+                            </h4>
+                        </div>                    
+                        <div class="input-field col s12 m6">
+                            <h4>
+                                <c:forEach items="#{controladorCarrito.listaCarritosUser()}" var="carritos">
+                                    <b>Carrito: # #{carritos.codigoCarrito}</b>
+                                </c:forEach>                                
+                            </h4>                      
+                        </div>
+                    </div>
+                    <ul class="collection">                 
+                        <c:forEach items="#{controladorCarrito.listOfProducts()}" var="lp">
+                            <li class="collection-item avatar">
+                                <img src="#{lp.refereciaProducto.foto}" alt="" class="circle"/>
+                                <span class="title">#{lp.refereciaProducto.descripcion}</span>
+                                <p>$ #{lp.refereciaProducto.precio} <br/> #{lp.refereciaProducto.nombre}</p>
+                                <span class="red-text secondary-content">Cantidad: #{lp.cantidad}</span>
+                            </li>                    
+                        </c:forEach>
+                    </ul>
+                </div>
+                <div class="modal-footer">                
+                    <a href="#!" class=" modal-action modal-close waves-effect waves-green red btn btn-redo"><i class="material-icons right">close</i>Cerrar</a>                    
+                    <h:commandButton action="#{controladorCarrito.createShipment()}" class="purple darken-1 btn" value="¡Crear Pedido!"></h:commandButton>
+                </div>
             </div>
-            <div class="modal-footer">
-                <a href="#!" class=" modal-action modal-close waves-effect waves-green btn btn-redo">Aceptar</a>
-            </div>
-        </div>
+
+        </h:form>
         <!--end of collapsible shopping cart-->
 
         <!--Import jQuery before materialize.js-->

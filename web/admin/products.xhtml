@@ -32,40 +32,19 @@ and open the template in the editor.
                                         <img class="activator" src="#{listaProductos.foto}"/>
                                     </div>
                                     <ul class="card-action-buttons">
-                                        <li><a class="btn-floating waves-effect waves-light green accent-4"><i class="material-icons">add_shopping_cart</i></a>
-                                        </li>
                                         <li>
                                             <h:commandLink class="btn-floating waves-effect waves-light red accent-2" action="#{controladorProductos.favorito(listaProductos.referecia)}">
                                                 <i data-tooltip="❤ #{listaProductos.favoritos}" data-position="top"  class="material-icons tooltipped">favorite</i>
                                             </h:commandLink>
                                         </li>
-                                        <li><a class="btn-floating waves-effect waves-light light-blue"><i class="material-icons activator">info</i></a>
+                                        <li>
+                                            <h:commandLink class="btn-floating waves-effect waves-light light-blue" action="#{controladorProductos.idProducto(listaProductos.referecia,1)}">
+                                                <i class="material-icons">info</i>
+                                            </h:commandLink>
                                         </li>
                                     </ul>
                                     <div class="card-content">
-                                        <span class="card-title grey-text text-darken-4">#{listaProductos.nombre}</span>           
-                                    </div>                                   
-                                    <div class="card-reveal">
-                                        <span class="card-title grey-text text-darken-4">#{listaProductos.nombre}<i class="material-icons right">close</i></span>
-
-                                        <p><i class="material-icons left red-text">style</i> Nombre del Producto: #{listaProductos.nombre}</p>
-                                        <br/>
-                                        <p><i class="material-icons left red-text">attach_money</i> Precio del Producto: #{listaProductos.precio}</p>
-                                        <br/>
-                                        <p><i class="material-icons left red-text">description</i> Description: #{listaProductos.descripcion}</p>
-                                        <br/>
-                                        <p><i class="material-icons left red-text">format_list_numbered</i> Cantidad disponible: #{listaProductos.cantidadDisponible}</p>
-                                        <br/>
-                                        <div class="row">
-                                            <div class="col s12">
-                                                <div class="row">
-                                                    <div class="col s12 center">
-                                                        <h:commandLink class="waves-effect waves-red btn blue accent-4" value="editar" action="#{controladorProductos.idProducto(listaProductos.referecia,1)}"></h:commandLink>
-                                                        <h:commandLink class="waves-effect waves-red btn red" action="#{controladorProductos.eliminarProducto(listaProductos)}" value="Eliminar Producto"></h:commandLink>
-                                                    </div>
-                                                </div>                                
-                                            </div>
-                                        </div>                                        
+                                        <span class="card-title activator grey-text text-darken-4">#{listaProductos.nombre}</span>
                                     </div>
                                 </div>
                             </div>

@@ -13,6 +13,8 @@ import java.util.List;
 import javax.ejb.EJB;
 import javax.inject.Named;
 import javax.enterprise.context.RequestScoped;
+import javax.faces.context.ExternalContext;
+import javax.faces.context.FacesContext;
 import javax.mail.MessagingException;
 
 /**
@@ -82,11 +84,16 @@ public class correo {
         return statusMessage;
     }
 
-    public String send() throws IOException {
+    public ExternalContext traerDatos() {
+        FacesContext fc = FacesContext.getCurrentInstance();
+        ExternalContext ec = fc.getExternalContext();
+        return ec;
+    }
+
+    public void send() throws IOException {
         String correo;
         for (int i = 0; i < usucarioFacade.findAll().size(); i++) {
             correo = usucarioFacade.findAll().get(i).getCorreo();
-
             try {
                 MailService.sendMessage(correo, subject, message);
 
@@ -95,7 +102,6 @@ public class correo {
             }
         }
 
-        return "mails";  // redisplay page with status message
     }
 
     private String recipient;

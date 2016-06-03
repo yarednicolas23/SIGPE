@@ -27,7 +27,7 @@ and open the template in the editor.
                         <p class="range-field">
                             <input value="1" type="range" id="test5" min="1" max="20" />
                         </p>
-                        <h:commandLink class="btn waves-effect waves-light green accent-3" action="#{controladorCarrito.addToCart(controladorProductos.producto ,1)}">
+                        <h:commandLink class="btn waves-effect waves-light green accent-3" action="#{controladorCarrito.addToCart(controladorProductos.producto)}">
                             <i class="material-icons left md-5">add_shopping_cart</i> Añadir al Carrito
                         </h:commandLink> 
                         <h:commandLink class="btn waves-effect waves-light red accent-2" action="#{controladorProductos.favorito(controladorProductos.producto.referecia)}">

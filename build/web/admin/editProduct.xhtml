@@ -56,7 +56,12 @@ and open the template in the editor.
                     </div>
                     <div class="row">
                         <div class="col s12 center">
-                            <h:commandLink class="waves-effect waves-red btn blue accent-4" value="editar" action="#{controladorProductos.editarProducto(controladorProductos.producto)}"></h:commandLink>
+                            <h:commandLink class="waves-effect waves-red btn blue accent-4" value="editar" action="#{controladorProductos.editarProducto(controladorProductos.producto)}">
+                                <i class="material-icons left md-5">edit</i>
+                            </h:commandLink>
+                            <h:commandLink class="waves-effect waves-red btn red" action="#{controladorProductos.eliminarProducto(controladorProductos.producto)}" value="Eliminar Producto">
+                                <i class="material-icons left md-5">delete</i>
+                            </h:commandLink>
                         </div>
                     </div>                                
                 </div>

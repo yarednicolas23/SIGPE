@@ -3,8 +3,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:h="http://xmlns.jcp.org/jsf/html"
       xmlns:c="http://xmlns.jcp.org/jsp/jstl/core"
-      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
-      xmlns:f="http://xmlns.jcp.org/jsf/core">
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
     <h:head>
         <title><ui:insert name="titulo">#{msg.titleDefualt}</ui:insert></title>
         <meta charset="UTF-8"/>
@@ -74,8 +73,7 @@
                                             <img src="#{item.foto}" alt="" class="circle responsive-img valign admin-profile-image"/>
                                         </div>
                                         <div class="col col s8 m8 l8 white-text">                        
-                                            <a class="btn-flat dropdown-button waves-effect waves-light white-text profile-btn" >#{item.nombres}</a>
-                                            <h6>#{item.rol}</h6>
+                                            <a class="btn-flat dropdown-button waves-effect waves-light white-text profile-btn" >#{item.nombres}</a>                                            
                                         </div>
                                     </div>
                                 </li>
@@ -169,7 +167,7 @@
                         </div>
                         <div class="row inactive #{controladorUsuarios.tipoMensaje}">
                             <div class="chip col s10 red white-text">
-                                <img src="http://wpwarriors.com/wp-content/uploads/2015/10/c7e54cbbe843e27256fe82466009ab87.png" alt="Contact Person"></img>
+                                <img src="img/profile/avatar.png" alt="Contact Person"></img>
                                 #{controladorUsuarios.mensaje}
                                 <i class="material-icons">close</i>
                             </div>
@@ -189,8 +187,8 @@
                 <i class="material-icons">add_shopping_cart</i>
             </a>
         </div>
-        <h:form>
-            <!--end of Button Floating-->
+        <!--end of Button Floating-->
+        <h:form>            
             <div id="shop" class="modal bottom-sheet">
                 <div class="modal-content">
                     <div class="row">
@@ -198,16 +196,15 @@
                             <h4>
                                 <b>Carrito de Compras</b>
                                 <br/>
-                                <b class="blue-text">Total: $#{controladorCarrito.total}</b>                                
+                                <span class="blue-text">Total: $</span> <b class="red-text">#{controladorCarrito.total}</b>                                
                             </h4>
                         </div>                    
                         <div class="input-field col s12 m6">
-                            <select class="icons">                           
+                            <h4>
                                 <c:forEach items="#{controladorCarrito.listaCarritosUser()}" var="carritos">
-                                    <option value="#{carritos.codigoCarrito}">Codigo: # #{carritos.codigoCarrito}</option>
-                                </c:forEach>
-                            </select>
-                            <label class="red-text"><b>¡Seleccione el carrito!</b></label>
+                                    <b>Carrito: # #{carritos.codigoCarrito}</b>
+                                </c:forEach>                                
+                            </h4>                      
                         </div>
                     </div>
                     <ul class="collection">                 
@@ -223,10 +220,10 @@
                 </div>
                 <div class="modal-footer">                
                     <a href="#!" class=" modal-action modal-close waves-effect waves-green red btn btn-redo"><i class="material-icons right">close</i>Cerrar</a>                    
-                    <h:commandButton action="#{controladorPedidos.crearPedido(carritos, lp)}" class="purple darken-1 btn" value="¡Crear Pedido!"></h:commandButton>
+                    <h:commandButton action="#{controladorCarrito.createShipment()}" class="purple darken-1 btn" value="¡Crear Pedido!"></h:commandButton>
                 </div>
             </div>
-            <div id="precio" value="#{controladorCarrito.total}"></div>
+
         </h:form>
         <!--end of collapsible shopping cart-->
 

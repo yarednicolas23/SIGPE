@@ -122,6 +122,10 @@ public class controladorProductos implements Serializable {
     }
     public void eliminarProducto(Producto pro) {
         productoFacade.remove(pro);
+        try {
+            traerDatos().redirect("products.xhtml");
+        } catch (Exception e) {
+        }
     }
 
 }
