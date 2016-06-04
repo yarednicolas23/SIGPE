@@ -36,31 +36,19 @@ and open the template in the editor.
                                 <f:facet name="header">
                                     <h:outputText value="Codigo Carrito"/>
                                 </f:facet>
-                                <h:outputText value="#{pedido.codigoPedido.codigoCarrito}"/>
+                                <h:outputText value="#{pedido.codigoCarrito.codigoCarrito}"/>
                             </h:column>
                             <h:column>
                                 <f:facet name="header">
                                     <h:outputText value="Cedula Comprador"/>
                                 </f:facet>
-                                <h:outputText value="#{pedido.codigoPedido.cedula.cedula}"/>
+                                <h:outputText value="#{pedido.codigoCarrito.cedula.cedula}"/>
                             </h:column>
                             <h:column>
                                 <f:facet name="header">
                                     <h:outputText value="Nombre Comprador"/>
                                 </f:facet>
-                                <h:outputText value="#{pedido.codigoPedido.cedula.nombres}"/>
-                            </h:column>
-                            <h:column>
-                                <f:facet name="header">
-                                    <h:outputText value="Referecia Producto"/>
-                                </f:facet>
-                                <h:outputText value="#{pedido.referecia.referecia}"/>
-                            </h:column>                    
-                            <h:column>
-                                <f:facet name="header">
-                                    <h:outputText value="Nombre Producto"/>
-                                </f:facet>
-                                <h:outputText value="#{pedido.referecia.nombre}"/>
+                                <h:outputText value="#{pedido.codigoCarrito.cedula.nombres}"/>
                             </h:column>
                             <h:column>
                                 <f:facet name="header">

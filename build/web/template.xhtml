@@ -177,6 +177,23 @@
             </div>
         </div>
         <!--end Modal Session-->
+        <!-- Modal Structure -->
+        <h:form>
+            <div id="pedidoNull" class="modal black2-transparent">
+                <div class="modal-content white-text">
+                    <h4 class="red-text">¡Error!</h4>
+                    <p>
+                        ¡No se puedes crear un pedido si no has iniciado sesión!
+                        <br/>
+                        ¿Aún no te has registrado? puedes hacerlo dando click <h:link outcome="register">aquí</h:link>
+                    </p>
+                </div>
+                <div class="modal-footer black2-transparent">                    
+                    <h:commandLink class="white-text modal-action modal-close waves-effect waves-red btn-flat" value="Cerrar" action="#{controladorCarrito.resetMessaje()}"></h:commandLink>
+                </div>
+            </div>
+        </h:form>
+
 
 
         <!--collapsible shopping cart-->
@@ -233,6 +250,7 @@
         <script type="text/javascript" src="js/resources.js"></script>
         <script type="text/javascript">
             #{controladorUsuarios.scriptMensaje}
+            #{controladorCarrito.mensajeScript}
         </script>
     </h:body>
 </html>

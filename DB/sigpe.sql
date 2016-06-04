@@ -140,3 +140,13 @@ BEGIN
 SET NEW.fechaEnvio = NOW();
 END//
 DELIMITER ;
+
+select pedido.id, pedido.codigoCarrito, pedido.montoTotal,pedido.fechaPedido from usuario,pedido where pedido.codigoCarrito=2 and usuario.cedula=
+
+
+select pedido.id, pedido.codigoCarrito, pedido.montoTotal,pedido.fechaPedido from usuario,pedido,carrito where pedido.codigoCarrito=carrito.cedula=98082352922
+
+select pedido.id, pedido.codigoCarrito, pedido.montoTotal,pedido.fechaPedido from usuario,pedido,carrito where usuario.cedula=98082352922;
+
+
+select * from pedido where codigoCarrito=2;

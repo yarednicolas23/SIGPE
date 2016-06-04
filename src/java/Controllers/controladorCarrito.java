@@ -6,12 +6,15 @@
 package Controllers;
 
 import Entities.Carrito;
+import Entities.Pedido;
 import Entities.Producto;
 import Entities.Productosencarrito;
 import Entities.Usuario;
 import Facades.CarritoFacade;
+import Facades.PedidoFacade;
 import Facades.ProductosencarritoFacade;
 import java.io.Serializable;
+import java.math.BigInteger;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -34,6 +37,7 @@ public class controladorCarrito implements Serializable {
 
     int total;
     int posicion;
+    String mensajeScript="";
 
     controladorUsuarios cUser = new controladorUsuarios();
     List<Producto> listaProductos = new ArrayList<>();
@@ -46,6 +50,8 @@ public class controladorCarrito implements Serializable {
 
     @EJB
     CarritoFacade carritoFacade;
+    @EJB
+    PedidoFacade pedidosFacade = new PedidoFacade();
     @EJB
     ProductosencarritoFacade pecFacade = new ProductosencarritoFacade();
 
@@ -66,6 +72,14 @@ public class controladorCarrito implements Serializable {
 
     public void setTotal(int total) {
         this.total = total;
+    }
+
+    public String getMensajeScript() {
+        return mensajeScript;
+    }
+
+    public void setMensajeScript(String mensajeScript) {
+        this.mensajeScript = mensajeScript;
     }
 
     public ExternalContext traerDatos() {
@@ -181,16 +195,37 @@ public class controladorCarrito implements Serializable {
         }
         return pcl2;
     }
+    
+    public void deleteProductOfList(Producto pro){
+        productIsInCar(pro);
+        
+    }
+
+    public void createShip(Carrito ca, int monto) {
+        Pedido pe = new Pedido();
+        BigInteger mt = BigInteger.valueOf(monto);
+        pe.setId(null);
+        pe.setMontoTotal(mt);
+        Date ahora = new Date();
+        pe.setFechaPedido(ahora);
+        pe.setCodigoCarrito(ca);
+        pedidosFacade.create(pe);
+        for (Productosencarrito listOfProduct : listOfProducts()) {
+            pec = listOfProduct;
+            pecFacade.create(pec);
+        }
+    }
 
     public void createShipment() {
-        controladorPedidos cp = new controladorPedidos();
         if (user.getCedula() != null) {
             carrito = carritoFacade.listCartUser(user);
-            int car = carrito.getCodigoCarrito();
-            cp.crearPedido(car,total);
+            createShip(carrito, total);
         } else {
-            
+            mensajeScript="$('#pedidoNull').openModal();" ;
         }
+    }
+    public void resetMessaje(){
+        mensajeScript="" ;
     }
 
     public void traerID(int id) {

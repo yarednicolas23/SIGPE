@@ -38,5 +38,5 @@ public class ProductosencarritoFacade extends AbstractFacade<Productosencarrito>
         q.setParameter(1, c.getCodigoCarrito());
         return q.getResultList();
     }
-    
+        
 }

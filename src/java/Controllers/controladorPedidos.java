@@ -81,10 +81,15 @@ public class controladorPedidos implements Serializable {
         return pedidosFacade.listaPorCedula(user);
     }
     
-    public void prePedido(){
-        pec.setId(null);
+    public void idPEC(){
         
+    }
+    
+    public List<Productosencarrito> listPEC(Carrito car){
+        List<Productosencarrito> pecList = new ArrayList<>();
+        pecList= pecFacade.listaPorCedula(car);
         
+        return pecList;
     }
     
     public void crearPedido(int carrito, int monto){

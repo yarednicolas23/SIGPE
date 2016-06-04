@@ -34,11 +34,7 @@ public class PedidoFacade extends AbstractFacade<Pedido> {
     }
     
     public List<Pedido> listaPorCedula(Usuario u){
-        Query q = em.createNativeQuery("select * from pedido where cedula=?");
-        long ced= u.getCedula();
-        q.setParameter(1,ced);
-        List<Pedido> lis = new ArrayList<>();
-        lis= q.getResultList();
+        Query q = em.createNativeQuery("select * from pedido where codigoCarrito=2;", Pedido.class);
         return q.getResultList();
     }
     
