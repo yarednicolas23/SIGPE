@@ -150,3 +150,5 @@ select pedido.id, pedido.codigoCarrito, pedido.montoTotal,pedido.fechaPedido fro
 
 
 select * from pedido where codigoCarrito=2;
+
+select * from producto order By favoritos DESC;

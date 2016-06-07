@@ -50,15 +50,14 @@
                                         <li class="user-details">
                                             <span class="white-text"><img src="#{item.foto}" class="responsive-img circle user-profile-image"/>  #{item.nombres}</span>
                                         </li>
-                                        <li class="divider"></li>
-                                        <li><h:link outcome="user/profile"><i class="material-icons left">face</i> #{msg.profile}</h:link></li>
+                                        <li class="divider"></li>                                        
                                         <li><h:link outcome="user/cart"><i class="material-icons left">shopping_cart</i> #{msg.cart}</h:link></li>
                                         <li><h:link outcome="user/shipments"><i class="material-icons left">monetization_on</i> #{msg.shipments}</h:link></li>
                                         <li class="divider"></li>
-                                        <li><h:link outcome="user/settings"><i class="material-icons left">settings</i> #{msg.settings}</h:link></li>
+                                        <li><h:link outcome="user/profile"><i class="material-icons left">face</i> #{msg.profile}</h:link></li>
                                         <li><h:commandLink action="#{controladorUsuarios.cerrarSesion()}"><i class="material-icons left">exit_to_app</i> #{msg.back}</h:commandLink>
                                         </li>                                
-                                    </ul>   
+                                    </ul>
                                 </li>
                             </c:forEach>
                         </li>
@@ -229,8 +228,12 @@
                             <li class="collection-item avatar">
                                 <img src="#{lp.refereciaProducto.foto}" alt="" class="circle"/>
                                 <span class="title">#{lp.refereciaProducto.descripcion}</span>
-                                <p>$ #{lp.refereciaProducto.precio} <br/> #{lp.refereciaProducto.nombre}</p>
-                                <span class="red-text secondary-content">Cantidad: #{lp.cantidad}</span>
+                                <p>$ #{lp.refereciaProducto.precio} <br/> #{lp.refereciaProducto.nombre} </p>
+                                <span class="red-text secondary-content">Cantidad: #{lp.cantidad}
+                                    <h:commandLink action="#{controladorCarrito.deleteProductOfList(lp.refereciaProducto,2)}" class="btn-floating btn-large waves-effect waves-light red">
+                                        <i class="material-icons">delete_forever</i>
+                                    </h:commandLink>
+                                </span>
                             </li>                    
                         </c:forEach>
                     </ul>

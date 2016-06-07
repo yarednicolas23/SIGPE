@@ -13,46 +13,40 @@ and open the template in the editor.
     <ui:composition template="template.xhtml">
         <ui:define name="titulo">#{msg.cart}</ui:define>
         <ui:define name="editableZone">
-
-            <h:form>
-                <h1><h:outputText value="Carrito: # #{item.codCarrito.codigoCarrito}"/></h1>
-                <h:dataTable value="#{controladorCarrito.listOfProducts()}" var="pec">
-                    <h1>#{pec.codCarrito.codigoCarrito}</h1>
-                    <h:column>
-                        <f:facet name="header">
-                            <h:outputText value="Referencia del Producto"/>
-                        </f:facet>
-                        <h:outputText value="#{pec.refereciaProducto.referecia}"/>
-                    </h:column>
-                    <h:column>
-                        <f:facet name="header">
-                            <h:outputText value="Producto"/>
-                        </f:facet>
-                        <h:outputText value="#{pec.refereciaProducto.nombre}"/>
-                    </h:column>
-                    <h:column>
-                        <f:facet name="header">
-                            <h:outputText value="Cantidad"/>
-                        </f:facet>
-                        <h:outputText value="#{pec.cantidad}"/>
-                    </h:column>
-                    <h:column>
-                        <f:facet name="header">
-                            <h:outputText value="Precio por Unidad"/>
-                        </f:facet>
-                        <h:outputText value="$ #{pec.refereciaProducto.precio}"/>
-                    </h:column>
-                    <h:column>
-                        <f:facet name="header">
-                            <h:outputText value="Eliminar"/>
-                        </f:facet>
-                        <h:commandLink action="#{controladorCarrito.eleminarCarrito(item)}" class="btn-floating btn-large waves-effect waves-light red">
-                            <i class="material-icons">delete_forever</i>
-                        </h:commandLink>   
-                    </h:column>
-                </h:dataTable>
-                <label>#{controladorCarrito.total}</label>
-            </h:form>
+            <div class="row">
+                <div class="col s12 m6 l12">
+                    <h:form>
+                        <h1><h:outputText value="Carrito #{pec.codCarrito.codigoCarrito}"/>
+                            <span class="blue-text right">Total: 
+                                <b class="red-text">$#{controladorCarrito.total}</b>
+                            </span>
+                        </h1>
+                        <div clasS="divider"></div>
+                        <c:forEach items="#{controladorCarrito.listOfProducts()}" var="pec2">
+                            <div class="col s12 m3">
+                                <div class="card">
+                                    <div class="card-image waves-effect black-transparent">
+                                        <h:commandLink action="#{controladorCarrito.deleteProductOfList(pec2.refereciaProducto,1)}" class="btn-floating btn-large btn-price waves-effect waves-light red accent-2">
+                                            <i class="material-icons">delete_forever</i>
+                                        </h:commandLink>
+                                        <img src="#{pec2.refereciaProducto.foto}"/>
+                                        <span class="card-title">
+                                            <i class="material-icons">style</i> 
+                                            #{pec2.refereciaProducto.nombre}
+                                            <br/>
+                                            <i class="material-icons">format_list_numbered</i> 
+                                            #{pec2.cantidad}
+                                            <br/>
+                                            <i class="material-icons">monetization_on</i> 
+                                            #{pec2.refereciaProducto.precio}
+                                        </span>
+                                    </div>
+                                </div>
+                            </div>
+                        </c:forEach>                        
+                    </h:form>
+                </div>                
+            </div>
         </ui:define>
     </ui:composition>
 </html>

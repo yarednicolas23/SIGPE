@@ -37,7 +37,7 @@ public class controladorCarrito implements Serializable {
 
     int total;
     int posicion;
-    String mensajeScript="";
+    String mensajeScript = "";
 
     controladorUsuarios cUser = new controladorUsuarios();
     List<Producto> listaProductos = new ArrayList<>();
@@ -195,10 +195,30 @@ public class controladorCarrito implements Serializable {
         }
         return pcl2;
     }
-    
-    public void deleteProductOfList(Producto pro){
-        productIsInCar(pro);
-        
+
+    public void deleteProductOfList(Producto pro, int tipo) {
+        if (productIsInCar(pro)) {
+            if (pcl.get(posicion).getCantidad() == 1) {
+                total = total - pcl.get(posicion).getRefereciaProducto().getPrecio();
+                pcl.remove(posicion);
+                if (tipo == 1) {
+                    try {
+                        traerDatos().redirect("cart.xhtml");
+                    } catch (Exception e) {
+                    }
+                }if (tipo == 2) {
+                    try {
+                        traerDatos().redirect("products.xhtml");
+                    } catch (Exception e) {
+                    }
+                }
+
+            }
+            if (pcl.get(posicion).getCantidad() > 1) {
+                total = total - pcl.get(posicion).getRefereciaProducto().getPrecio();
+                pcl.get(posicion).setCantidad(pcl.get(posicion).getCantidad() - 1);
+            }
+        }
     }
 
     public void createShip(Carrito ca, int monto) {
@@ -221,11 +241,12 @@ public class controladorCarrito implements Serializable {
             carrito = carritoFacade.listCartUser(user);
             createShip(carrito, total);
         } else {
-            mensajeScript="$('#pedidoNull').openModal();" ;
+            mensajeScript = "$('#pedidoNull').openModal();";
         }
     }
-    public void resetMessaje(){
-        mensajeScript="" ;
+
+    public void resetMessaje() {
+        mensajeScript = "";
     }
 
     public void traerID(int id) {
