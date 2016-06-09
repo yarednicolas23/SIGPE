@@ -191,11 +191,12 @@ footer.page-footer {
     overflow: hidden;
 }
 .card-profile-image {
-    width: 70px;
+    width: 200px;
     position: absolute;
     top: 110px;
     z-index: 1;
-    cursor: pointer;
+    margin-left:25%;
+    margin-right:25%;
 }
 /* 6.1 Edition of tabs indicators*/
 .indicator{
@@ -203,6 +204,13 @@ footer.page-footer {
 }
 .tab a{
     color:#455a64 !important;
+}
+.tab-profile .tab a{
+    background-color:#3f51b5 !important;
+    color: white !important;
+}
+.tab-profile .indicator{
+    background-color: white !important;
 }
 /* 6.2 Card profile*/
 .img-card-profile{

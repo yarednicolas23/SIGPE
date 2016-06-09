@@ -37,6 +37,7 @@ public class controladorCarrito implements Serializable {
 
     int total;
     int posicion;
+    int cantidad=1;
     String mensajeScript = "";
 
     controladorUsuarios cUser = new controladorUsuarios();
@@ -80,6 +81,14 @@ public class controladorCarrito implements Serializable {
 
     public void setMensajeScript(String mensajeScript) {
         this.mensajeScript = mensajeScript;
+    }
+
+    public int getCantidad() {
+        return cantidad;
+    }
+
+    public void setCantidad(int cantidad) {
+        this.cantidad = cantidad;
     }
 
     public ExternalContext traerDatos() {
@@ -139,11 +148,12 @@ public class controladorCarrito implements Serializable {
         } else if (identificador >= 1) {
             pec2.setId(identificador + 1);
         }
-        pec2.setCantidad(1);
+        pec2.setCantidad(cantidad);
         pec2.setCodCarrito(car);
         pec2.setRefereciaProducto(p);
-        total = total + p.getPrecio();
+        total = total + (p.getPrecio()*cantidad);
         pcl.add(pec2);
+        cantidad=1;
     }
 
     public boolean productIsInCar(Producto pr) {
@@ -172,8 +182,8 @@ public class controladorCarrito implements Serializable {
         }
         if (productoInicial == false) {
             if (productIsInCar(pd)) {
-                int cantidad = pcl.get(posicion).getCantidad();
-                pcl.get(posicion).setCantidad(cantidad + 1);
+                int cant = pcl.get(posicion).getCantidad();
+                pcl.get(posicion).setCantidad(cant + 1);
                 total = total + pd.getPrecio();
             } else if (productIsInCar(pd) == false) {
                 addToList(pd, carrito);

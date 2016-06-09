@@ -8,7 +8,8 @@ and open the template in the editor.
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:h="http://xmlns.jcp.org/jsf/html"
       xmlns:c="http://xmlns.jcp.org/jsp/jstl/core"
-      xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:p="http://xmlns.jcp.org/jsf/passthrough">
     <ui:composition template="template.xhtml">
         <ui:define name="titulo">Detalle del Producto</ui:define>
 
@@ -24,8 +25,8 @@ and open the template in the editor.
                         <h5>Descripción:</h5>
                         <p>#{controladorProductos.producto.descripcion}</p>
                         <h5>Cantidad:</h5>
-                        <p class="range-field">
-                            <input value="1" type="range" id="test5" min="1" max="20" />
+                        <p class="range-field">                            
+                            <h:inputText value="#{controladorCarrito.cantidad}" p:type="range" p:min="1" p:max="15"></h:inputText>
                         </p>
                         <h:commandLink class="btn waves-effect waves-light green accent-3" action="#{controladorCarrito.addToCart(controladorProductos.producto)}">
                             <i class="material-icons left md-5">add_shopping_cart</i> Añadir al Carrito

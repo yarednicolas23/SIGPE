@@ -9,7 +9,6 @@ import java.io.Serializable;
 import java.util.Collection;
 import java.util.Date;
 import javax.persistence.Basic;
-import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -56,8 +55,6 @@ public class Carrito implements Serializable {
     @Size(max = 11)
     @Column(name = "estadoPedido")
     private String estadoPedido;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "codigoCarrito")
-    private Collection<Envio> envioCollection;
     @OneToMany(mappedBy = "codigoCarrito")
     private Collection<Pedido> pedidoCollection;
     @JoinColumn(name = "cedula", referencedColumnName = "cedula")
@@ -100,15 +97,6 @@ public class Carrito implements Serializable {
 
     public void setEstadoPedido(String estadoPedido) {
         this.estadoPedido = estadoPedido;
-    }
-
-    @XmlTransient
-    public Collection<Envio> getEnvioCollection() {
-        return envioCollection;
-    }
-
-    public void setEnvioCollection(Collection<Envio> envioCollection) {
-        this.envioCollection = envioCollection;
     }
 
     @XmlTransient

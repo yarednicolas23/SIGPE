@@ -8,8 +8,7 @@ and open the template in the editor.
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:h="http://xmlns.jcp.org/jsf/html"
       xmlns:c="http://xmlns.jcp.org/jsp/jstl/core"
-      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
-      xmlns:f="http://xmlns.jcp.org/jsf/core">
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
     <ui:composition template="template.xhtml">
         <ui:define name="titulo">#{msg.cart}</ui:define>
         <ui:define name="editableZone">
@@ -31,13 +30,13 @@ and open the template in the editor.
                                         </h:commandLink>
                                         <img src="#{pec2.refereciaProducto.foto}"/>
                                         <span class="card-title">
-                                            <i class="material-icons">style</i> 
+                                            <i class="material-icons tooltipped" data-position="top" data-delay="50" data-tooltip="Nombre Del Producto">style</i> 
                                             #{pec2.refereciaProducto.nombre}
-                                            <br/>
-                                            <i class="material-icons">format_list_numbered</i> 
+                                            <br/>                                            
+                                            <i class="material-icons tooltipped" data-position="top" data-delay="50" data-tooltip="Cantidad Seleccionada">format_list_numbered</i> 
                                             #{pec2.cantidad}
-                                            <br/>
-                                            <i class="material-icons">monetization_on</i> 
+                                            <br/>                                            
+                                            <i class="material-icons tooltipped" data-position="top" data-delay="50" data-tooltip="Precio por unidad">monetization_on</i> 
                                             #{pec2.refereciaProducto.precio}
                                         </span>
                                     </div>
@@ -47,6 +46,18 @@ and open the template in the editor.
                     </h:form>
                 </div>                
             </div>
+        </ui:define>
+        <ui:define name="script">
+            <script>
+                var $toastContent = $('<h5>¿No entiendes los signos como este?\n\
+            <i class="material-icons">monetization_on</i> </h5> ');
+                var $toastContent2 = $('<h5>¿Eres nuevo en el sistema?, puedes aprender más</h5> ');
+                var $toastContent3 = $('<h5>Dando Click <h:link outcome="shipments" value="Aquí"></h:link></h5> ');
+                Materialize.toast($toastContent, 8000);
+                Materialize.toast($toastContent2, 8000);
+                Materialize.toast($toastContent3, 8000);
+            </script>
+
         </ui:define>
     </ui:composition>
 </html>

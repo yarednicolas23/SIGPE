@@ -47,9 +47,9 @@ public class Envio implements Serializable {
     @Column(name = "fechaEnvio")
     @Temporal(TemporalType.TIMESTAMP)
     private Date fechaEnvio;
-    @JoinColumn(name = "codigoCarrito", referencedColumnName = "codigoCarrito")
+    @JoinColumn(name = "codigoPedido", referencedColumnName = "id")
     @ManyToOne(optional = false)
-    private Carrito codigoCarrito;
+    private Pedido codigoPedido;
     @JoinColumn(name = "empresa", referencedColumnName = "codigoEmpresa")
     @ManyToOne(optional = false)
     private Empresa empresa;
@@ -82,12 +82,12 @@ public class Envio implements Serializable {
         this.fechaEnvio = fechaEnvio;
     }
 
-    public Carrito getCodigoCarrito() {
-        return codigoCarrito;
+    public Pedido getCodigoPedido() {
+        return codigoPedido;
     }
 
-    public void setCodigoCarrito(Carrito codigoCarrito) {
-        this.codigoCarrito = codigoCarrito;
+    public void setCodigoPedido(Pedido codigoPedido) {
+        this.codigoPedido = codigoPedido;
     }
 
     public Empresa getEmpresa() {

@@ -7,8 +7,10 @@ package Entities;
 
 import java.io.Serializable;
 import java.math.BigInteger;
+import java.util.Collection;
 import java.util.Date;
 import javax.persistence.Basic;
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -18,11 +20,13 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 import javax.validation.constraints.NotNull;
 import javax.xml.bind.annotation.XmlRootElement;
+import javax.xml.bind.annotation.XmlTransient;
 
 /**
  *
@@ -51,6 +55,8 @@ public class Pedido implements Serializable {
     @Column(name = "fechaPedido")
     @Temporal(TemporalType.TIMESTAMP)
     private Date fechaPedido;
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "codigoPedido")
+    private Collection<Envio> envioCollection;
     @JoinColumn(name = "codigoCarrito", referencedColumnName = "codigoCarrito")
     @ManyToOne
     private Carrito codigoCarrito;
@@ -89,6 +95,15 @@ public class Pedido implements Serializable {
 
     public void setFechaPedido(Date fechaPedido) {
         this.fechaPedido = fechaPedido;
+    }
+
+    @XmlTransient
+    public Collection<Envio> getEnvioCollection() {
+        return envioCollection;
+    }
+
+    public void setEnvioCollection(Collection<Envio> envioCollection) {
+        this.envioCollection = envioCollection;
     }
 
     public Carrito getCodigoCarrito() {

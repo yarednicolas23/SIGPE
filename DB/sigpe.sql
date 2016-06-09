@@ -73,11 +73,11 @@ create table Empresa(
 
 create table Envio(
 	codigoEnvio			int NOT NULL auto_increment primary key,
-	codigoCarrito		int NOT NULL,
+	codigoPedido		int NOT NULL,
 	fechaEnvio		datetime NOT NULL,
 	empresa			int NOT NULL,
 
-	FOREIGN KEY (codigoCarrito) REFERENCES Carrito(codigoCarrito)
+	FOREIGN KEY (codigoPedido) REFERENCES pedido(id)
     ON DELETE NO ACTION ON UPDATE CASCADE,
 
     FOREIGN KEY (empresa) REFERENCES Empresa(codigoEmpresa)
@@ -141,14 +141,3 @@ SET NEW.fechaEnvio = NOW();
 END//
 DELIMITER ;
 
-select pedido.id, pedido.codigoCarrito, pedido.montoTotal,pedido.fechaPedido from usuario,pedido where pedido.codigoCarrito=2 and usuario.cedula=
-
-
-select pedido.id, pedido.codigoCarrito, pedido.montoTotal,pedido.fechaPedido from usuario,pedido,carrito where pedido.codigoCarrito=carrito.cedula=98082352922
-
-select pedido.id, pedido.codigoCarrito, pedido.montoTotal,pedido.fechaPedido from usuario,pedido,carrito where usuario.cedula=98082352922;
-
-
-select * from pedido where codigoCarrito=2;
-
-select * from producto order By favoritos DESC;
