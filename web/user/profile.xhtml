@@ -75,7 +75,7 @@ and open the template in the editor.
                                         <label for="icon_telephone" data-success="El campo es correcto">Contraseña</label>
                                     </div>
                                     <div class="input-field col s10">
-                                        <i class="material-icons prefix">person_outline</i>                                    
+                                        <i class="material-icons prefix">person_outline</i>
                                         <h:inputText class="validate" value="#{user.rol.rol}" disabled="true"></h:inputText>
                                         <label for="icon_prefix" data-error="el campo es invalido">Rol</label>
                                     </div>                                
@@ -113,11 +113,41 @@ and open the template in the editor.
                                 </ul>
                             </div>
                             <div id="1" class="indigo white-text col s12">
-                                Test 1
-                                <div class="divider"></div>
-                                Hellow Word
+                                <div class="col s12 m12 l6 offset-l3">
+                                    <h1>Perfil</h1>
+                                    <div class="divider"></div>
+                                    <h5>
+                                        <i class="material-icons md-10">face</i>
+                                        #{user.nombres} #{user.apellidos}
+                                    </h5>
+                                    <h5>
+                                        <i class="material-icons md-10">person_outline</i>
+                                        #{user.rol.rol}
+                                    </h5>
+                                    <h5>
+                                        <i class="material-icons md-10">wc</i>
+                                        #{user.sexo}
+                                    </h5>
+                                </div>
                             </div>
-                            <div id="2" class="col s12">Test 2</div>
+                            <div id="2" class=" indigo white-text col s12">
+                                <div class="col s12 m12 l6 offset-l3">
+                                    <h1>Datos Personales</h1>
+                                    <div class="divider"></div>
+                                    <h4>
+                                        <i class="material-icons md-10">fingerprint</i>
+                                        #{user.cedula}
+                                    </h4>
+                                    <h4>
+                                        <i class="material-icons md-10">mail_outline</i>
+                                        #{user.correo}
+                                    </h4>
+                                    <h4>
+                                        <i class="material-icons md-10">phone_iphone</i>
+                                        #{user.telefono}
+                                    </h4>
+                                </div>
+                            </div>
                             <div id="3" class="col s12">Test 3</div>
 
                         </c:forEach>
