@@ -25,6 +25,7 @@ import javax.servlet.http.Part;
 public class fileUpload implements Serializable {
 
     private Part arch;
+    String ruta;
 
     public fileUpload() {
     }
@@ -37,6 +38,14 @@ public class fileUpload implements Serializable {
         this.arch = arch;
     }
 
+    public String getRuta() {
+        return ruta;
+    }
+
+    public void setRuta(String ruta) {
+        this.ruta = ruta;
+    }
+    
     public ExternalContext traerDatos() {
         FacesContext fc = FacesContext.getCurrentInstance();
         ExternalContext ec = fc.getExternalContext();
@@ -54,13 +63,15 @@ public class fileUpload implements Serializable {
         }
         try {
             //lectura del archivo en el servidor
-            InputStream inputS = arch.getInputStream();            
+            InputStream inputS = arch.getInputStream();
             //nombre del archivo
             String name = arch.getSubmittedFileName();
             //ruta del almacenamiento y nombre del archivo
             String filePath = uploadPath + File.separator + name;
             //ruta final más el archivo en cuestión
             File storeFile = new File(filePath);
+            
+            ruta=storeFile.toString();
             //salida final del archivo
             FileOutputStream ous2 = new FileOutputStream(storeFile);
             //velocidad a la que se procesa el archivo en bytes

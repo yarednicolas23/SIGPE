@@ -14,10 +14,10 @@ and open the template in the editor.
         <ui:define name="titulo">#{msg.shipments}</ui:define>
         <ui:define name="editableArea">
             <div class="row">
-                <div class="col s12 m9">
+                <div class="col s12 m12 l9">
                     <h:form>
                         <h1><h:outputText value="Pedidos"/></h1>
-                        <h:dataTable value="#{controladorPedidos.listaPedidos()}" var="pedido">
+                        <h:dataTable class="highlight responsive-table centered" value="#{controladorPedidos.listaPedidos()}" var="pedido">
                             <h:column>
                                 <f:facet name="header">
                                     <h:outputText value="Codigo Pedido"/>
@@ -34,29 +34,43 @@ and open the template in the editor.
                             </h:column>
                             <h:column>
                                 <f:facet name="header">
-                                    <h:outputText value="Codigo Carrito"/>
+                                    <h:outputText value="Estado del pedido"/>
                                 </f:facet>
-                                <h:outputText value="#{pedido.codigoCarrito.codigoCarrito}"/>
-                            </h:column>
-                            <h:column>
-                                <f:facet name="header">
-                                    <h:outputText value="Cedula Comprador"/>
-                                </f:facet>
-                                <h:outputText value="#{pedido.codigoCarrito.cedula.cedula}"/>
+                                <h:outputText value="#{pedido.codigoCarrito.estadoPedido}"/>
                             </h:column>
                             <h:column>
                                 <f:facet name="header">
                                     <h:outputText value="Nombre Comprador"/>
                                 </f:facet>
-                                <h:outputText value="#{pedido.codigoCarrito.cedula.nombres}"/>
+                                <h:outputText value="#{pedido.codigoCarrito.cedula.nombres}"/>                                
                             </h:column>
                             <h:column>
                                 <f:facet name="header">
-                                    <h:outputText value="Eliminar Pedido"/>
+                                    <h:outputText value="Detalles del Carrito"/>
                                 </f:facet>
-                                <h:commandLink class="btn btn-red" action="#{controladorPedidos.eliminarPedido(pedido)}">
-                                    <i class="material-icons">delete</i>
-                                </h:commandLink>
+                                <h:commandButton value="Ver" action="#{controladorPedidos.idPEC(pedido.codigoCarrito)}" class="waves-effect waves-red btn blue ">
+                                </h:commandButton>
+                            </h:column>
+                            <h:column>
+                                <f:facet name="header">
+                                    <h:outputText value="Aprobar Pedido"/>
+                                </f:facet>
+                                <h:commandButton value="Aprobar" action="#{controladorPedidos.aprobarPedido(pedido.codigoCarrito)}" class="waves-effect waves-red btn green">
+                                </h:commandButton>
+                            </h:column>
+                            <h:column>
+                                <f:facet name="header">
+                                    <h:outputText value="Cancelar Pedido"/>
+                                </f:facet>
+                                <h:commandButton value="Cancelar" action="#{controladorPedidos.cancelarPedido(pedido.codigoCarrito)}" class="waves-effect waves-red btn red">
+                                </h:commandButton>
+                            </h:column>
+                            <h:column>
+                                <f:facet name="header">
+                                    <h:outputText value="Generar Envio"/>
+                                </f:facet>
+                                <h:commandButton value="ok" action="#{controladorPedidos.idPedido(pedido.id)}" class="waves-effect waves-red btn indigo">
+                                </h:commandButton>
                             </h:column>
                         </h:dataTable>
                     </h:form>

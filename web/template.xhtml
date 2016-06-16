@@ -11,7 +11,7 @@
         <!--Favicon-->
         <link rel="shortcut icon" href="img/favicon.png" />
         <!--Import Google Icon Font-->
-        <link href="css/icon.css" rel="stylesheet"/>
+        <link rel="stylesheet" href="css/icon.css"/>
         <!--Import materialize.css-->
         <link rel="stylesheet" href="css/materialize.css" />
         <link rel="stylesheet" type="text/css" href="css/estilos.css"/>
@@ -239,8 +239,8 @@
                     </ul>
                 </div>
                 <div class="modal-footer">                
-                    <a href="#!" class=" modal-action modal-close waves-effect waves-green red btn btn-redo"><i class="material-icons right">close</i>Cerrar</a>                    
-                    <h:commandButton action="#{controladorCarrito.createShipment()}" class="purple darken-1 btn" value="¡Crear Pedido!"></h:commandButton>
+                    <a href="#!" class=" modal-action modal-close waves-effect waves-green red btn btn-redo"><i class="material-icons right">close</i>Cerrar</a>
+                    <h:link outcome="user/cart" class="purple darken-1 btn" value="¡Crear Pedido!"></h:link>
                 </div>
             </div>
 

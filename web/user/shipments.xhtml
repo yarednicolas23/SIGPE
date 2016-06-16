@@ -47,7 +47,13 @@ and open the template in the editor.
                                 <h:outputText value="Estado del Pedido"/>
                             </f:facet>
                             <h:outputText value="#{item.codigoCarrito.estadoPedido}"/>
-                        </h:column>                        
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="Imprimir Factura"/>
+                            </f:facet>
+                            <h:commandButton class="btn red" value="imprimir PDF" action="#{controladorReportes.pdfFactura(item.codigoCarrito.cedula.cedula, item.id)}"></h:commandButton>
+                        </h:column>
                     </h:dataTable>
                 </h:form>
             </f:view>

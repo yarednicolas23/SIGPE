@@ -15,7 +15,7 @@ create table usuario(
 	Apellidos varchar(40),
 	sexo enum ('Femenino ','Maculino'),
 	telefono bigint, 
-	constrasena varchar(40),
+	contrasena varchar(40),
 	Rol	int,
 	foto varchar (40),
 	FOREIGN KEY (rol) REFERENCES rol(idRol)
@@ -30,7 +30,8 @@ create table producto(
 	descripcion	varchar(300),
 	foto varchar(45),
 	cantidadDisponible int NOT NULL, 
-	estadoProducto enum('Disponible', 'Por agotarse', 'Agotado')
+	estadoProducto enum('Disponible', 'Por agotarse', 'Agotado'),
+	Favoritos int
 )ENGINE=InnoDB;
 
 create table carrito(
@@ -102,6 +103,10 @@ fecha				datetime,
 proceso				varchar(25)not null,
 referecia			int
 )ENGINE=InnoDB;
+
+
+insert into rol values(1,'Cliente');
+insert into rol values(2,'Administrador');
 
 
 DELIMITER //

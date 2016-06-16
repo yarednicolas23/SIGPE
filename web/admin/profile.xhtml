@@ -15,40 +15,91 @@ and open the template in the editor.
         <ui:define name="editableArea">
             <h:form>
                 <div class="row">
-                    <div class="col s8">
+                    <div class="col s9 m12 l9">
                         <c:forEach var="user" items="#{controladorUsuarios.usuarioSesion}">
-                            <div id="profile-card" class="card">
-                                <div class="card-image waves-effect waves-block waves-light">
-                                    <img class="card-img-admin" src="https://lh3.googleusercontent.com/-rc9pPa-qxrg/Vfeafd1ZAgI/AAAAAAAAoBY/fHzzJoRDLQA/w1600-h900/sandiegonight.png" alt="user bg"/>
+                            <div class="parallax-container black-transparent">
+                                <div class="section no-pad-bot">
+                                    <div class="container">                                        
+                                        <img src="../#{user.foto}" class="circle responsive-img card-profile-image"/>
+                                        <div class="parallax">
+                                            <img src="../img/sections/desktop2.jpg"/>
+                                        </div>
+                                    </div>
                                 </div>
-                                <div class="card-content">
-                                    <img src="#{user.foto}" alt="" class="circle responsive-img activator card-profile-image"/>
-
-                                    <a class="btn-floating activator btn-move-up waves-effect waves-light darken-2 right">
-                                        <i class="mdi-editor-mode-edit"></i>
-                                    </a>
-
-                                    <span class="card-title grey-text text-darken-4"><i class="material-icons">face</i> #{user.nombres} #{user.apellidos}</span>
-
-                                </div>
-                                <div class="card-reveal">
-                                    <span class="card-title grey-text text-darken-4">#{user.rol}
-                                        <a class="btn-floating activator btn-move-up waves-effect waves-light red right">
-                                            <i class="material-icons">close</i>
+                            </div>
+                            <div class="col s12 indigo darken-3 tab-profile">
+                                <ul class="tabs">
+                                    <li class="tab col s3">
+                                        <a class="active" href="#1">
+                                            <i class="material-icons prefix">face</i> Perfil
                                         </a>
-                                    </span>
-                                    <div class="input-field col s10">
-                                        <i class="material-icons prefix">fingerprint</i>                                    
-                                        <h:inputText class="validate" value="#{user.cedula}" disabled="true"></h:inputText>
-                                        <label for="icon_prefix" data-error="el campo es invalido">Cedula</label>
-                                    </div>                                
+                                    </li>
+                                    <li class="tab col s3">
+                                        <a href="#2">
+                                            <i class="material-icons prefix">fingerprint</i> Datos Personales
+                                        </a>
+                                    </li>
+                                    <li class="tab col s3">
+                                        <a class="active" href="#3">
+                                            <i class="material-icons prefix">edit</i> Editar Perfil
+                                        </a>
+                                    </li>
+                                    <div class="indicator" style="right: 820px; left: 0px;"></div>
+                                </ul>
+                            </div>
+                            <div id="1" class="indigo darken-3 white-text col s12">
+                                <div class="col s12 m12 l6 offset-l3">
+                                    <h1>Perfil</h1>
+                                    <div class="divider"></div>
+                                    <h5>
+                                        <i class="material-icons md-10">face</i>
+                                        #{user.nombres} #{user.apellidos}
+                                    </h5>
+                                    <h5>
+                                        <i class="material-icons md-10">person_outline</i>
+                                        #{user.rol.rol}
+                                    </h5>
+                                    <h5>
+                                        <i class="material-icons md-10">wc</i>
+                                        #{user.sexo}
+                                    </h5>
+                                </div>
+                            </div>
+                            <div id="2" class="indigo darken-3 white-text col s12">
+                                <div class="col s12 m12 l6 offset-l3">
+                                    <h1>Datos Personales</h1>
+                                    <div class="divider"></div>
+                                    <h5>
+                                        <i class="material-icons md-10">fingerprint</i>
+                                        #{user.cedula}
+                                    </h5>
+                                    <h5>
+                                        <i class="material-icons md-10">mail_outline</i>
+                                        #{user.correo}
+                                    </h5>
+                                    <h5>
+                                        <i class="material-icons md-10">phone_iphone</i>
+                                        #{user.telefono}
+                                    </h5>
+                                </div>
+                            </div>
+                            <div id="3" class="col s12 indigo darken-3 white-text profile-user">
+                                <div class="col s12 m12 l6 offset-l3">
+                                    <h1>Editar Perfil</h1>
+                                    <div class="divider"></div>
+                                    <br/>
+                                    <div class="input-field col s10 ">
+                                        <i class="material-icons prefix">fingerprint</i>
+                                        <h:inputText class="validate grey-text" value="#{user.cedula}" disabled="true"></h:inputText>
+                                        <label class="white-text" for="icon_prefix" data-error="el campo es invalido">Cedula</label>
+                                    </div>
                                     <div class="input-field col s10">
                                         <i class="material-icons prefix">mail_outline</i>                                    
                                         <h:inputText class="validate" value="#{user.correo}"></h:inputText>
-                                        <label for="icon_prefix" data-error="el campo es invalido">Correo</label>
+                                        <label class="white-text" for="icon_prefix" data-error="el campo es invalido">Correo</label>
                                     </div>
                                     <div class="input-field col s10">
-                                        <i class="material-icons prefix">face</i>                                    
+                                        <i class="material-icons prefix">face</i>
                                         <h:inputText class="validate" value="#{user.nombres}"></h:inputText>
                                         <label for="icon_prefix" data-error="el campo es invalido">Nombre</label>
                                     </div>
@@ -76,11 +127,13 @@ and open the template in the editor.
                                         <label for="icon_telephone" data-success="El campo es correcto">Contraseña</label>
                                     </div>
                                     <div class="input-field col s10">
-                                        <i class="material-icons prefix">person_outline</i>                                    
-                                        <h:inputText class="validate" value="#{user.rol}" disabled="true"></h:inputText>
-                                        <label for="icon_prefix" data-error="el campo es invalido">Rol</label>
-                                    </div>                                
-                                    <h:commandButton action="#{controladorUsuarios.editarUsuario(user)}" class="waves-effect waves-light btn pink" value="Editar"></h:commandButton>
+                                        <i class="material-icons prefix">person_outline</i>
+                                        <h:inputText class="validate grey-text" value="#{user.rol.rol}" disabled="true"></h:inputText>
+                                        <label class="white-text" for="icon_prefix" data-error="el campo es invalido">Rol</label>
+                                    </div>
+                                    <div class="input-field col s10">
+                                        <h:commandLink action="#{controladorUsuarios.editarUsuario(user)}" class="col s12 waves-effect waves-light btn pink" value="Editar"><i class="material-icons left">edit</i></h:commandLink>
+                                    </div>                                    
                                 </div>
                             </div>
                         </c:forEach>

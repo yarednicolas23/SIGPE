@@ -40,12 +40,12 @@ public class CarritoFacade extends AbstractFacade<Carrito> {
 
     public Carrito listCartUser(Usuario u) {
         Carrito c = new Carrito();
-        Query q = em.createNativeQuery("select * from carrito where cedula=? and estadoPedido=1", Carrito.class);
+        Query q = em.createNativeQuery("select * from carrito where cedula=?", Carrito.class);
         q.setParameter(1, u.getCedula());
         for (int i = 0; i < q.getResultList().size(); i++) {
             c = (Carrito) q.getResultList().get(i);
             return c;
         }
-        return c;
+        return (Carrito) q.getResultList().get(0);
     }
 }

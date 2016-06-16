@@ -8,69 +8,38 @@ and open the template in the editor.
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:h="http://xmlns.jcp.org/jsf/html"
       xmlns:c="http://xmlns.jcp.org/jsp/jstl/core"
-      xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
     <ui:composition template="templateAdmin.xhtml">
         <ui:define name="titulo">Editar Pedido</ui:define>
         <ui:define name="editableArea">
-            <div class="row">
-                <div class="col s12 m9">
-                    <h3>Editar Pedido</h3>
-                    <div class="row">
-                        <div class="input-field col s12">
-                            <i class="material-icons prefix">number</i>
-                            <h:inputText value="#{controladorPedidos.pedido.id}" required="true" disabled="true"></h:inputText>
-                            <label for="nombreP" data-error="el campo es invalido">Codigo del Pedido</label>
+                <div class="row">
+                    <div class="col s12 m9">
+                        <h3>Tramitar envio del pedido</h3>
+                        <div class="row">
+                            <div class="input-field col s12">
+                                <i class="material-icons prefix">style</i>
+                                <h:inputText value="#{controladorPedidos.pedido.id}" required="true"></h:inputText>
+                                <label for="nombreP" data-error="el campo es invalido">Pedido Seleccionado</label>
+                            </div>
                         </div>
+                        <div class="row">
+
+                            <i class="material-icons prefix">local_shipping</i>
+                            <h:selectOneMenu value="#{controladorEnvio.codigoEmpresa}" class="validate">
+                                <f:selectItem noSelectionOption="true" itemLabel="Seleccione la empresa" />
+                                <c:forEach var="emp" items="#{controladorEmpresa.listaEmpresa}">
+                                    <f:selectItem itemValue="#{emp.codigoEmpresa}" itemLabel="#{emp.nombreEmpresa}" />
+                                </c:forEach>
+                            </h:selectOneMenu>
+                            <label for="empresa" data-error="el campo es invalido">Empresa de envio</label>
+                        </div>
+                        <h:commandLink value="crear" class="btn" action="#{controladorEnvio.crearEnvio(controladorPedidos.pedido)}"></h:commandLink>
+                        
                     </div>
-                    <div class="row">
-                        <div class="input-field col s12">
-                            <i class="material-icons prefix">calendar</i>
-                            <h:inputText value="#{controladorPedidos.pedido.fechaPedido}" disabled="true" required="true"></h:inputText>
-                            <label for="precio" data-error="El campo es invalido">Fecha del Pedido</label>
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="input-field col s12">
-                            <i class="material-icons prefix">number</i>
-                            <h:inputText value="#{controladorPedidos.pedido.codigoPedido.codigoCarrito}" disabled="true" required="true"></h:inputText>
-                            <label for="precio" data-error="El campo es invalido">Codigo del Carrito</label>
-                        </div>
-                    </div>                          
-                    <div class="row">
-                        <div class="input-field col s12">
-                            <i class="material-icons prefix">format_list_numbered</i>
-                            <h:inputText value="#{controladorPedidos.pedido.codigoPedido.cedula.cedula}" required="true"></h:inputText>
-                            <label for="cantidad">Cedula Cliente</label>
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="input-field col s12">
-                            <i class="material-icons prefix">format_list_numbered</i>
-                            <h:inputText value="#{controladorPedidos.pedido.codigoPedido.cedula.nombres}" required="true"></h:inputText>
-                            <label for="cantidad">Nombre Cliente</label>
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="input-field col s12">
-                            <i class="material-icons prefix">format_list_numbered</i>
-                            <h:inputText value="#{controladorPedidos.pedido.referecia.referecia}" required="true"></h:inputText>
-                            <label for="cantidad">Referencia Producto</label>
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="input-field col s12">
-                            <i class="material-icons prefix">format_list_numbered</i>
-                            <h:inputText value="#{controladorPedidos.pedido.referecia.nombre}" required="true"></h:inputText>
-                            <label for="cantidad">Nombre Producto</label>
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="col s12 center">
-                            <h:commandLink class="waves-effect waves-red btn blue accent-4" value="editar" action="#{controladorPedidos.editarPedido(controladorPedidos.pedido)}"></h:commandLink>
-                        </div>
-                    </div>                                
                 </div>
-            </div>  
+            <h:commandButton value="Prueba" action="#{controladorEnvio.create()}"></h:commandButton>
         </ui:define>
-        </ui:composition>
+    </ui:composition>
 </html>
+

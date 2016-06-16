@@ -36,9 +36,9 @@ FROM
 	<title>
 		<band height="79" splitType="Stretch">
 			<staticText>
-				<reportElement mode="Opaque" x="12" y="12" width="761" height="52" forecolor="#FFFFFF" backcolor="#FF3333" uuid="c42fbb69-64d0-446b-824a-66e20ae7478e"/>
+				<reportElement mode="Opaque" x="0" y="0" width="802" height="79" forecolor="#FFFFFF" backcolor="#FF3333" uuid="c42fbb69-64d0-446b-824a-66e20ae7478e"/>
 				<textElement>
-					<font size="18"/>
+					<font fontName="Caviar Dreams" size="18"/>
 				</textElement>
 				<text><![CDATA[Sistema de Información de Pedidos y Envíos SIPGE- Reporte Usuarios registrados]]></text>
 			</staticText>

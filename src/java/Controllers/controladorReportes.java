@@ -35,33 +35,49 @@ public class controladorReportes {
      */
     public controladorReportes() {
     }
-    
-        public void pdfConsulta() throws ClassNotFoundException, SQLException, JRException, IOException{
+
+    public void pdfConsulta() throws ClassNotFoundException, SQLException, JRException, IOException {
         Class.forName("com.mysql.jdbc.Driver");
-        Connection conexion= DriverManager.getConnection("jdbc:mysql://localhost:3306/sigpe", "root", "1234");
-        
-        
+        Connection conexion = DriverManager.getConnection("jdbc:mysql://localhost:3306/sigpe", "root", "1234");
+
         // Parametros para enviar al reporte
-        Map<String,Object> parametros = new HashMap<String, Object>();
+        Map<String, Object> parametros = new HashMap<String, Object>();
         parametros.put("texto", "nicolas");
-        
+
         //Cargar el archivo .jasper
         File archivo = new File(FacesContext.getCurrentInstance().getExternalContext().getRealPath("reportes/report1.jasper"));
         // Enviar el archivo, los parametros y la conexion o los datos a llenar
-        JasperPrint jp= JasperFillManager.fillReport(archivo.getPath(), parametros,conexion);
-        
+        JasperPrint jp = JasperFillManager.fillReport(archivo.getPath(), parametros, conexion);
+
         // inicializar la descarga del archivo
         HttpServletResponse sr = (HttpServletResponse) FacesContext.getCurrentInstance().getExternalContext().getResponse();
         sr.addHeader("Content-disposition", "attachment; filename=reporteUsuarios.pdf");
-                
+
         ServletOutputStream stream = sr.getOutputStream();
-        
+
         // Descarga del pdf
         JasperExportManager.exportReportToPdfStream(jp, stream);
         stream.flush();
         stream.close();
-        
+
         FacesContext.getCurrentInstance().responseComplete();
     }
-    
+
+    public void pdfFactura(long cedula, int pedido) throws ClassNotFoundException, SQLException, JRException, IOException {
+        Class.forName("com.mysql.jdbc.Driver");
+        Connection conexion = DriverManager.getConnection("jdbc:mysql://localhost:3306/sigpe", "root", "1234");
+        Map<String, Object> parametros = new HashMap<String, Object>();
+        parametros.put("cedula", cedula);
+        parametros.put("pedido", pedido);
+        File archivo = new File(FacesContext.getCurrentInstance().getExternalContext().getRealPath("reportes/factura.jasper"));
+        JasperPrint jp = JasperFillManager.fillReport(archivo.getPath(), parametros, conexion);
+        HttpServletResponse sr = (HttpServletResponse) FacesContext.getCurrentInstance().getExternalContext().getResponse();
+        sr.addHeader("Content-disposition", "attachment; filename=facturaSIGPE.pdf");
+        ServletOutputStream stream = sr.getOutputStream();
+        JasperExportManager.exportReportToPdfStream(jp, stream);
+        stream.flush();
+        stream.close();
+        FacesContext.getCurrentInstance().responseComplete();
+    }
+
 }

@@ -127,14 +127,13 @@ public class controladorCarrito implements Serializable {
 
     public List<Carrito> listaCarritosUser() {
         List<Carrito> lc = new ArrayList<>();
-        if (userSession() == true) {
-            asignarUsuarioSesion();
-            return carritoFacade.listaPorCedula(user);
-        } else if (user.getCedula() == null) {
+        if (user.getCedula() == null) {
             lc.add(carritoFacade.find(1));
             return lc;
         }
-        return null;
+        asignarUsuarioSesion();
+        return carritoFacade.listaPorCedula(user);
+        
     }
 
     public void addToList(Producto p, Carrito car) {
@@ -244,9 +243,14 @@ public class controladorCarrito implements Serializable {
             pec = listOfProduct;
             pecFacade.create(pec);
         }
+        try {
+            traerDatos().redirect("shipments.xhtml");
+        } catch (Exception e) {
+        }
     }
 
     public void createShipment() {
+        asignarUsuarioSesion();
         if (user.getCedula() != null) {
             carrito = carritoFacade.listCartUser(user);
             createShip(carrito, total);

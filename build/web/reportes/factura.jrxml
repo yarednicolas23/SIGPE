@@ -1,0 +1,269 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="null" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="7a98b713-2dd8-4f48-b170-9f5ef44077c0">
+	<property name="ireport.zoom" value="1.0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<parameter name="pedido" class="java.lang.Integer">
+		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+	</parameter>
+	<parameter name="cedula" class="java.lang.Long"/>
+	<queryString>
+		<![CDATA[SELECT
+     usuario.`cedula` AS usuario_cedula,
+     usuario.`Nombres` AS usuario_Nombres,
+     usuario.`Apellidos` AS usuario_Apellidos,
+     productosencarrito.`refereciaProducto` AS productosencarrito_refereciaProducto,
+     productosencarrito.`cantidad` AS productosencarrito_cantidad,
+     carrito.`codigoCarrito` AS carrito_codigoCarrito,
+     carrito.`fechaCarrito` AS carrito_fechaCarrito,
+     carrito.`estadoPedido` AS carrito_estadoPedido,
+     carrito.`cedula` AS carrito_cedula,
+     pedido.`codigoCarrito` AS pedido_codigoCarrito,
+     pedido.`montoTotal` AS pedido_montoTotal,
+     pedido.`fechaPedido` AS pedido_fechaPedido,
+     envio.`codigoPedido` AS envio_codigoPedido,
+     envio.`fechaEnvio` AS envio_fechaEnvio,
+     envio.`empresa` AS envio_empresa,
+     empresa.`codigoEmpresa` AS empresa_codigoEmpresa,
+     empresa.`nombreEmpresa` AS empresa_nombreEmpresa,
+     productosencarrito.`codCarrito` AS productosencarrito_codCarrito,
+     pedido.`id` AS pedido_id,
+     producto.`nombre` AS producto_nombre,
+     producto.`precio` AS producto_precio
+FROM
+     `usuario` usuario INNER JOIN `carrito` carrito ON usuario.`cedula` = carrito.`cedula`
+     INNER JOIN `productosencarrito` productosencarrito ON carrito.`codigoCarrito` = productosencarrito.`codCarrito`
+     INNER JOIN `pedido` pedido ON carrito.`codigoCarrito` = pedido.`codigoCarrito`
+     INNER JOIN `envio` envio ON pedido.`id` = envio.`codigoPedido`
+     INNER JOIN `empresa` empresa ON envio.`empresa` = empresa.`codigoEmpresa`
+     INNER JOIN `producto` producto ON productosencarrito.`refereciaProducto` = producto.`referecia`
+WHERE
+     usuario.cedula = $P{cedula}
+     and pedido.id = $P{pedido}]]>
+	</queryString>
+	<field name="usuario_cedula" class="java.lang.Long"/>
+	<field name="usuario_Nombres" class="java.lang.String"/>
+	<field name="usuario_Apellidos" class="java.lang.String"/>
+	<field name="productosencarrito_refereciaProducto" class="java.lang.Integer"/>
+	<field name="productosencarrito_cantidad" class="java.lang.Integer"/>
+	<field name="carrito_codigoCarrito" class="java.lang.Integer"/>
+	<field name="carrito_fechaCarrito" class="java.sql.Timestamp"/>
+	<field name="carrito_estadoPedido" class="java.lang.String"/>
+	<field name="carrito_cedula" class="java.lang.Long"/>
+	<field name="pedido_codigoCarrito" class="java.lang.Integer"/>
+	<field name="pedido_montoTotal" class="java.lang.Long"/>
+	<field name="pedido_fechaPedido" class="java.sql.Timestamp"/>
+	<field name="envio_codigoPedido" class="java.lang.Integer"/>
+	<field name="envio_fechaEnvio" class="java.sql.Timestamp"/>
+	<field name="envio_empresa" class="java.lang.Integer"/>
+	<field name="empresa_codigoEmpresa" class="java.lang.Integer"/>
+	<field name="empresa_nombreEmpresa" class="java.lang.String"/>
+	<field name="productosencarrito_codCarrito" class="java.lang.Integer"/>
+	<field name="pedido_id" class="java.lang.Integer"/>
+	<field name="producto_nombre" class="java.lang.String"/>
+	<field name="producto_precio" class="java.lang.Integer"/>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="60" splitType="Stretch">
+			<staticText>
+				<reportElement mode="Opaque" x="0" y="0" width="555" height="60" forecolor="#FFFFFF" backcolor="#FF3333" uuid="4c39ed10-9856-46f1-8083-5c87a6bd1da3"/>
+				<box>
+					<pen lineColor="#FF3333"/>
+					<topPen lineColor="#FF3333"/>
+					<leftPen lineColor="#FF3333"/>
+					<bottomPen lineColor="#FF3333"/>
+					<rightPen lineColor="#FF3333"/>
+				</box>
+				<textElement textAlignment="Center" markup="none">
+					<font fontName="Calibri Light" size="24"/>
+				</textElement>
+				<text><![CDATA[Factura - SIGPE]]></text>
+			</staticText>
+		</band>
+	</title>
+	<pageHeader>
+		<band height="35" splitType="Stretch">
+			<staticText>
+				<reportElement x="0" y="15" width="100" height="20" uuid="f3e728cc-8bdf-446b-9b2a-86f1a1b876ed"/>
+				<textElement>
+					<font fontName="Calibri Light"/>
+				</textElement>
+				<text><![CDATA[Nombre Cliente:]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="100" y="15" width="100" height="20" uuid="a2e8d65f-2a42-41a6-aac2-1c331ec5fad5"/>
+				<textElement>
+					<font fontName="Calibri Light"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{usuario_Nombres}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="181" y="15" width="100" height="20" uuid="40b7bfb8-2005-4462-9d8c-40a7ccda3ac9"/>
+				<textElement>
+					<font fontName="Calibri Light"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{usuario_Apellidos}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="300" y="15" width="100" height="20" uuid="f6bd8f29-aacc-43e1-a711-9dfd9d9a10e3"/>
+				<textElement>
+					<font fontName="Calibri Light"/>
+				</textElement>
+				<text><![CDATA[Cedula Cliente:]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="381" y="15" width="100" height="20" uuid="2efaf9c9-4e7b-4539-b0d1-b8ac20f8abda"/>
+				<textElement>
+					<font fontName="Calibri Light"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{usuario_cedula}]]></textFieldExpression>
+			</textField>
+		</band>
+	</pageHeader>
+	<columnHeader>
+		<band height="77" splitType="Stretch">
+			<staticText>
+				<reportElement x="0" y="8" width="100" height="20" uuid="3c5e59f4-1945-4076-a71a-b15c5b9d52f4"/>
+				<textElement>
+					<font fontName="Calibri Light"/>
+				</textElement>
+				<text><![CDATA[Codigo del Carrito:]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="100" y="8" width="100" height="20" uuid="46fc487d-ed2e-4e28-a65a-2fca9aeffc4c"/>
+				<textElement>
+					<font fontName="Calibri Light"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{carrito_codigoCarrito}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="200" y="8" width="100" height="20" uuid="8e3d797f-c0d3-45c8-80e8-872db0863e22"/>
+				<textElement>
+					<font fontName="Calibri Light"/>
+				</textElement>
+				<text><![CDATA[Codigo del Pedido:]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="300" y="8" width="100" height="20" uuid="4cef5d48-44bc-489c-b306-5cf1eff3555f"/>
+				<textElement>
+					<font fontName="Calibri Light"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{pedido}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="11" y="57" width="118" height="20" uuid="e932e0b6-6a4b-40a4-a916-8be8a5a2d3e5"/>
+				<textElement>
+					<font fontName="Calibri Light"/>
+				</textElement>
+				<text><![CDATA[Referencia del Producto]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="0" y="28" width="555" height="31" uuid="c567d1c8-5804-44c7-8430-4588c2bfb2da"/>
+				<textElement textAlignment="Center">
+					<font fontName="Calibri Light" size="16"/>
+				</textElement>
+				<text><![CDATA[Productos en el Carrito:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="129" y="57" width="100" height="20" uuid="3445119e-4ae5-4ede-b13e-0f35f323defa"/>
+				<textElement>
+					<font fontName="Calibri Light"/>
+				</textElement>
+				<text><![CDATA[Cantidad]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="229" y="57" width="100" height="20" uuid="1c0b485f-f7e1-406b-ace2-8168587e4235"/>
+				<textElement>
+					<font fontName="Calibri Light"/>
+				</textElement>
+				<text><![CDATA[Nombre]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="345" y="57" width="100" height="20" uuid="e02d881d-0162-41a0-9889-784deb9d161c"/>
+				<textElement>
+					<font fontName="Calibri Light"/>
+				</textElement>
+				<text><![CDATA[Precio Unidad]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="400" y="8" width="100" height="20" uuid="acc0da3d-214c-4d27-a661-2d5c62a63f60"/>
+				<textElement>
+					<font fontName="Calibri Light"/>
+				</textElement>
+				<text><![CDATA[Fecha:]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="455" y="8" width="100" height="20" uuid="9a42ab15-b115-4e78-808c-a69bad1cfd1c"/>
+				<textElement>
+					<font fontName="Calibri Light"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{pedido_fechaPedido}]]></textFieldExpression>
+			</textField>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="25" splitType="Stretch">
+			<textField>
+				<reportElement x="11" y="0" width="100" height="20" uuid="21450f17-5f15-4ef7-b9c8-8311ce1a9261"/>
+				<textElement>
+					<font fontName="Calibri Light"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{productosencarrito_refereciaProducto}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="129" y="0" width="100" height="20" uuid="eea2d02c-02a3-4cbd-bc6a-2a3c3233a486"/>
+				<textElement>
+					<font fontName="Calibri Light"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{productosencarrito_cantidad}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="229" y="0" width="100" height="20" uuid="84023358-aaf8-48ad-8e06-38382d70ba2c"/>
+				<textElement>
+					<font fontName="Calibri Light"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{producto_nombre}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="345" y="0" width="100" height="20" uuid="8c94ba9e-d802-480e-aa4e-6fbf11cc9cb8"/>
+				<textElement>
+					<font fontName="Calibri Light"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{producto_precio}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+	<columnFooter>
+		<band height="34" splitType="Stretch">
+			<staticText>
+				<reportElement mode="Opaque" x="0" y="3" width="555" height="31" forecolor="#FFFFFF" backcolor="#FF3333" uuid="caf00e73-b486-459c-8900-a8edc3d47c64"/>
+				<box>
+					<pen lineColor="#FF3333"/>
+					<topPen lineColor="#FF3333"/>
+					<leftPen lineColor="#FF3333"/>
+					<bottomPen lineColor="#FF3333"/>
+					<rightPen lineColor="#FF3333"/>
+				</box>
+				<textElement textAlignment="Center" markup="none">
+					<font fontName="Calibri Light" size="24"/>
+				</textElement>
+				<text><![CDATA[Total = $]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="345" y="3" width="118" height="31" forecolor="#FFFFFF" uuid="5137d27a-89e8-4017-8aa1-83d2d27dbc11"/>
+				<textElement>
+					<font fontName="Calibri Light" size="12"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{pedido_montoTotal}]]></textFieldExpression>
+			</textField>
+		</band>
+	</columnFooter>
+	<pageFooter>
+		<band height="10" splitType="Stretch"/>
+	</pageFooter>
+	<summary>
+		<band height="16" splitType="Stretch"/>
+	</summary>
+</jasperReport>

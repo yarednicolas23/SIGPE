@@ -98,6 +98,9 @@ textarea.materialize-textarea:focus:not([readonly]) {
 .input-field .prefix.active{
     color:#EE3434 !important;
 }
+.profile-user .input-field .prefix.active {
+    color: #fff !important;
+}
 label:after, 
 input[type=password]:focus.invalid + label:after, 
 input[type=email].invalid + label:after, 
@@ -206,7 +209,7 @@ footer.page-footer {
     color:#455a64 !important;
 }
 .tab-profile .tab a{
-    background-color:#3f51b5 !important;
+    background-color:#283593  !important;
     color: white !important;
 }
 .tab-profile .indicator{

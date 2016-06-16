@@ -16,69 +16,33 @@ and open the template in the editor.
             <!--Editable Area-->
             <div class="row">
                 <!--Cards of graphics-->
-                <div class="col s12 m6">
+                <div class="col s12 m5">
                     <div class="card">
                         <div class="card-image waves-effect waves-block waves-light">
                             <div class="blue-grey darken-2">
                                 <div id="canvas-holder">
-                                    <canvas id="grafico" class="activator" width="600px" height="300px"></canvas>
+                                    <div class="col s10">
+                                        <canvas id="grafico4" class="activator" width="300" height="300"></canvas>
+                                    </div>
                                 </div>
                             </div>
                         </div>
-                        <ul class="card-action-buttons">
-                            <li>
-                                <a class="btn-floating waves-effect waves-light pink"><i class="material-icons activator">info_outline</i></a>
-                            </li>
-                        </ul>
-                        <div class="card-content blue-grey darken-4 white-text">
-                            <span class="card-title">#{msg.reportShipments}</span>
-                            <p><i class="material-icons red-text">brightness_1</i> #{msg.shipments}</p>
-                        </div>
-                        <div class="card-reveal blue-grey darken-4 white-text">
-                            <span class="card-title ">#{msg.reportShipments}<i class="material-icons right">close</i></span>
-                            <p>Here is some more information about this product that is only revealed once clicked on.</p>
-                        </div>
                     </div>
                 </div>
-                <div class="col s12 m3">
+                <div class="col s12 m4">
                     <div class="card">
                         <div class="card-image waves-effect waves-block waves-light">
-                            <div class="teal">
+                            <div class="grey lighten-3">
                                 <div id="canvas-holder">
                                     <canvas id="grafico2" class="activator" width="300px" height="300px"></canvas>
                                 </div>
                             </div>
                         </div>
-                        <ul class="card-action-buttons">
-                            <li>
-                                <a class="btn-floating waves-effect waves-light pink"><i class="material-icons activator">info_outline</i></a>
-                            </li>
-                        </ul>
-                        <div class="card-content teal darken-3 white-text">
-                            <span class="card-title">#{msg.stockProducts}</span>
-                            <div id="canvas-holder">             
-                                <div class="row">
-                                    <div class="col s7">
-                                        <h6><i class="material-icons red-text">brightness_1</i> #{msg.pegante}</h6>
-                                        <h6><i class="material-icons indigo-text">brightness_1</i> #{msg.vinilo}</h6>
-                                        <h6><i class="material-icons orange-text">brightness_1</i> #{msg.pva}</h6>
-                                        <h6><i class="material-icons white-text">brightness_1</i> #{msg.esmalte}</h6>
-                                        <h6><i class="material-icons grey-text">brightness_1</i> #{msg.estuco}</h6>
-                                        <h6><i class="material-icons green-text">brightness_1</i> #{msg.anticorrosivo}</h6>
-                                    </div>
-                                    <canvas id="grafico3" class="activator right" width="100px" height="200px"></canvas>
-                                </div>             
-                            </div>
-                        </div>
-                        <div class="card-reveal teal darken-3 white-text">
-                            <span class="card-title ">#{msg.stockProducts}<i class="material-icons right">close</i></span>
-                            <p>Here is some more information about this product that is only revealed once clicked on.</p>
-                        </div>
                     </div>
-                </div>      
+                </div>
                 <!--End of Cards of graphics-->
             </div>
-            <!--End of Editable Area-->          
+            <!--End of Editable Area-->            
         </ui:define>
         
         <ui:define name="script">
@@ -89,24 +53,62 @@ and open the template in the editor.
                     datasets: [
                         {
                             label: "My First dataset",
-                            fillColor: "rgba(220,220,220,0.2)",
+                            borderWidth:3,
+                            borderColor: "rgba(38, 50, 56, 0.59)",
+                            fillColor: "rgba(38, 50, 56, 0.59)",
+                            pointBorderColor:"#fff",
+                            pointBackgroundColor:"rgba(38, 50, 56, 0.59)",
+                            pointRadius:3,
                             strokeColor: "rgba(220,220,220,1)",
-                            pointColor: "rgba(220,220,220,1)",
+                            pointColor: "#f44336",
                             pointStrokeColor: "#fff",
+                            pointHoverBackgroundColor: "rgba(220,220,220,1)",
                             pointHighlightFill: "#fff",
-                            pointHighlightStroke: "rgba(220,220,220,1)",
+                            pointHighlightStroke: "rgba(220,220,220,1)",                            
                             data: [<c:forEach var="prod" items="#{controladorProductos.listaProductos()}">#{prod.cantidadDisponible}  ,</c:forEach>]
                         },
                     ]
                 };
                 var ctx2 = document.getElementById("grafico2").getContext("2d");
-                var myRadarChart2 = new Chart(ctx2).Radar(productos, {
-                    pointLabelFontColor: "#fff",
-                    pointDot: true,
-                    angleLineColor: "#fff"
+                var myRadarChart3 = new Chart(ctx2, {
+                    type: 'radar',
+                    data: productos,
+                    options: {
+                        scaleFontSize : 12,
+                        scaleFontColor : "#666",
+                        angleLineColor : "rgba(255,255,255,0.3)",
+                        pointLabelFontColor : "#EFEFEF"
+                    }
                 });
-                
-            </script>  
+               
+            </script>
+            <script>
+                var ctx5 = document.getElementById("grafico4");
+                var myChart = new Chart(ctx5, {
+                    type: 'doughnut',
+                    data: {
+                        labels: [<c:forEach var="pro" items="#{controladorProductos.listaProductos()}">"#{pro.nombre}",</c:forEach>],
+                        datasets: [{
+                            label: '# of Votes',
+                            data: [<c:forEach var="prod" items="#{controladorProductos.listaProductos()}">#{prod.favoritos}  ,</c:forEach>],
+                            backgroundColor: [
+                                "#FF6384",
+                                "#36A2EB",
+                                "#ff4081",
+                                "#ba68c8",
+                                "#ffb74d",
+                                "#a1887f",
+                                "#b0bec5",
+                                "#1de9b6"
+                            ],
+                            borderWidth: 0
+                        }]
+                    },
+                    options:{
+                        responsive: true
+                    }
+                });
+            </script>
         </ui:define>
     </ui:composition>
 </html>

@@ -5,6 +5,7 @@
  */
 package Facades;
 
+import Entities.Carrito;
 import Entities.Pedido;
 import Entities.Usuario;
 import java.util.ArrayList;
@@ -33,8 +34,14 @@ public class PedidoFacade extends AbstractFacade<Pedido> {
         super(Pedido.class);
     }
     
-    public List<Pedido> listaPorCedula(Usuario u){
-        Query q = em.createNativeQuery("select * from pedido where codigoCarrito=2;", Pedido.class);
+    public List<Pedido> listaPorCedula(Carrito c){
+        Query q = em.createNativeQuery("select * from pedido where codigoCarrito=?;", Pedido.class);
+        q.setParameter(1, c.getCodigoCarrito());
+        return q.getResultList();
+    }
+    
+    public List<Pedido> listaPorEstado(Usuario u) {
+        Query q = em.createNativeQuery("select * from Pedido inner join carrito on pedido.codigoCarrito = carrito.codigoCarrito where carrito.estadoPedido = 'Aprobado';", Pedido.class);
         return q.getResultList();
     }
     

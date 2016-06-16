@@ -13,7 +13,93 @@ and open the template in the editor.
     <ui:composition template="templateAdmin.xhtml">
         <ui:define name="titulo">#{msg.sends}</ui:define>
         <ui:define name="editableArea">
-            
+            <!--Editable Area-->
+            <div class="row">
+                <div class="col s12 m9 red-text">
+                    <ul class="tabs">
+                        <li class="tab col s3"><a class="active"  href="#envio">#{msg.sends}</a></li>
+                        <li class="tab col s3"><a href="#crear">Crear Envio</a></li>
+                    </ul>
+                </div>
+                <div id="envio" class="col s12 m9">
+                    <!--Products List-->
+                    <div class="row">
+                        <h:form>
+
+                            <h1><h:outputText value="Lista Envios"/></h1>
+                            <h:dataTable class="highlight responsive-table centered" value="#{controladorEnvio.listaEnvios()}" var="lista">
+                                <h:column>
+                                    <f:facet name="header">
+                                        <h:outputText value="Codigo Envio"/>
+                                    </f:facet>
+                                    <h:outputText value="#{lista.codigoEnvio}"/>
+                                </h:column>
+                                <h:column>
+                                    <f:facet name="header">
+                                        <h:outputText value="Pedido"/>
+                                    </f:facet>
+                                    <h:outputText value="#{lista.codigoPedido.id}"/>
+                                </h:column>
+                                <h:column>
+                                    <f:facet name="header">
+                                        <h:outputText value="Fecha Envio"/>
+                                    </f:facet>
+                                    <h:outputText value="#{lista.fechaEnvio}">
+                                        <f:convertDateTime pattern="MM/dd/yyyy HH:mm:ss" />
+                                    </h:outputText>
+                                </h:column>
+                                <h:column>
+                                    <f:facet name="header">
+                                        <h:outputText value="Empresa"/>
+                                    </f:facet>
+                                    <h:outputText value="#{lista.empresa.nombreEmpresa}"/>
+                                </h:column>
+                            </h:dataTable>
+                        </h:form>
+                    </div>
+                </div>
+                <div id="crear" class="col s12 m9">
+                    <div class="row">
+                        <div class="col s12">
+                            <h3>Tramitar envio del pedido</h3>
+
+                            <h:form class="white-text ">
+                                <div class="col s12 ">                  
+                                    <div class="row">
+                                        <div class="col s12 m9 red-text">
+                                            <i class="material-icons prefix">local_shipping</i>
+                                            <h:selectOneMenu value="#{controladorPedidos.pedido.id}" class="validate">
+                                                <f:selectItem noSelectionOption="true" itemLabel="Seleccione el pedido" />
+                                                <c:forEach var="pe" items="#{controladorPedidos.listPedidosAprobados()}">
+                                                    <f:selectItem itemValue="#{pe.id}" itemLabel="#{pe.id}" />
+                                                </c:forEach>
+                                            </h:selectOneMenu>
+                                            <label for="pedido" data-error="el campo es invalido">Pedido por enviar</label>
+                                        </div> 
+                                    </div>
+                                    <div class="row">
+                                       <div class="col s12 m9 red-text">
+                                        <i class="material-icons prefix">local_shipping</i>
+                                        <h:selectOneMenu value="#{controladorPedidos.empresa.codigoEmpresa}" class="validate">
+                                            <f:selectItem noSelectionOption="true" itemLabel="Seleccione la empresa" />
+                                            <c:forEach var="emp" items="#{controladorEmpresa.listaEmpresa}">
+                                                <f:selectItem itemValue="#{emp.codigoEmpresa}" itemLabel="#{emp.nombreEmpresa}" />
+                                            </c:forEach>
+                                        </h:selectOneMenu>
+                                        <label for="empresa" data-error="el campo es invalido">Empresa de envio</label>
+                                    </div> 
+                                </div>
+                                    <div class="row">
+                                        <div class="col s12 center">
+                                            <h:commandButton class="waves-effect waves-red btn blue accent-4" value="Registrar" ></h:commandButton>                                        
+                                        </div>
+                                    </div>
+                                </div>
+                            </h:form>                       
+                        </div>                                
+                    </div>
+                </div>
+            </div>
         </ui:define>
     </ui:composition>
 </html>

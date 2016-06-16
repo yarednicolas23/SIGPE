@@ -33,7 +33,7 @@ public class ProductosencarritoFacade extends AbstractFacade<Productosencarrito>
         super(Productosencarrito.class);
     }
     
-    public List<Productosencarrito> listaPorCedula(Carrito c){
+    public List<Productosencarrito> listaPEC(Carrito c){
         Query q = em.createNativeQuery("select * from Productosencarrito where codCarrito=?", Productosencarrito.class);
         q.setParameter(1, c.getCodigoCarrito());
         return q.getResultList();
